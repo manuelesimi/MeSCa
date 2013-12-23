@@ -1,1 +1,1 @@
-# This is the MeSCa project
+# A cluster detection method for DNA sequence variations in whole exome sequencing (WES) data.
