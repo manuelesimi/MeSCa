@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="mesca" />
         <module name="VCFClusterDetector" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="mesca" target="1.6" />
       <module name="VCFClusterDetector" target="1.6" />
     </bytecodeTargetLevel>
   </component>
