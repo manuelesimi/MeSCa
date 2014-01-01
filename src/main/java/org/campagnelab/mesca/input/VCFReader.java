@@ -7,15 +7,19 @@ import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author manuele
  */
-public class VCFFile {
+public class VCFReader {
 
-    VCFParser parser;
+    private VCFParser parser;
 
-    public VCFFile(final File vcfFile) throws IOException {
+    private List<String> patients = new ArrayList<String>();
+
+    public VCFReader(final File vcfFile) throws IOException {
         try {
             this.createParser(new FileReader(vcfFile));
         } catch (Exception e) {
@@ -28,9 +32,42 @@ public class VCFFile {
         parser = new VCFParser(reader);
         parser.readHeader();
         parser.readTsvColumnTypes();
+        for (int i = 0; i<  parser.getNumberOfColumns(); i++) {
+           String name = parser.getColumnName(i);
+            if (name.endsWith("blood-patient"))
+                this.patients.add(name);
+        }
+
     }
 
-    public void printSomeData() {
+    /**
+     * Gets the number of patients in the file.
+     * @return the number of patients
+     */
+    public int getNumOfPatients() {
+       return this.patients.size();
+    }
+
+    /**
+     * Reads the patients' samples at the next position.
+     * @return the samples or null if there is no position (e.g. EOF is reached).
+     */
+    public Sample[] readNextPosition() {
+        parser.next();
+        if (parser.hasNextDataLine()) {
+            final Position position = new Position();
+            for (int i = 0; i < parser.countAllFields(); i++) {
+                final String name = parser.getFieldName(i);
+                System.out.println("name: " + name);
+                final String stringFieldValue = parser.getStringFieldValue(i);
+                System.out.println("val: " +stringFieldValue);
+            }
+            return position.getSamples();
+        }
+        return null;
+    }
+
+    private void printSomeData() {
         String samples[] = parser.getColumnNamesUsingFormat();
 
         while (parser.hasNextDataLine()) {
