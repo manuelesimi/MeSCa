@@ -1,29 +1,36 @@
 package org.campagnelab.mesca.input;
 
-import edu.cornell.med.icb.goby.readers.vcf.ColumnInfo;
+import edu.cornell.med.icb.goby.readers.vcf.ColumnType;
 import edu.cornell.med.icb.goby.readers.vcf.VCFParser;
-import it.unimi.dsi.fastutil.objects.ObjectIterator;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author manuele
  */
 public class VCFReader {
 
+    protected static Logger logger = Logger.getLogger(VCFReader.class);
+
     private VCFParser parser;
 
-    private List<String> patients = new ArrayList<String>();
+    private List<PatientInfo> patients = new ArrayList<PatientInfo>();
+
+    private static final String chromosomeFieldName = "CHROM";
+
+    private static final String positionFieldName = "POS";
 
     public VCFReader(final File vcfFile) throws IOException {
         try {
             this.createParser(new FileReader(vcfFile));
         } catch (Exception e) {
-            throw new IOException();
+            throw new IOException(e.getMessage());
         }
 
     }
@@ -32,12 +39,20 @@ public class VCFReader {
         parser = new VCFParser(reader);
         parser.readHeader();
         parser.readTsvColumnTypes();
+        int assignedIndex = 0;
         for (int i = 0; i<  parser.getNumberOfColumns(); i++) {
            String name = parser.getColumnName(i);
             if (name.endsWith("blood-patient"))
-                this.patients.add(name);
+                this.patients.add(new PatientInfo(assignedIndex++,name));
         }
 
+        /*StringBuilder builder = new StringBuilder();
+        for (String patient : this.patients) {
+            builder.append("priority\\["+ patient + "\\]=(\\-{0,1}\\d+\\.\\d+);.*");
+        }
+        System.out.println(builder.toString());
+        //builder.append("$");
+        this.infoColumnPattern = Pattern.compile(builder.toString());*/
     }
 
     /**
@@ -52,17 +67,35 @@ public class VCFReader {
      * Reads the patients' samples at the next position.
      * @return the samples found in the position or null if there is no position (e.g. EOF is reached).
      */
-    public Sample[] readNextPosition() {
-        parser.next();
+    public Sample[] readNextPosition() throws InvalidDataLine {
         if (parser.hasNextDataLine()) {
-            final DataLine line = new DataLine();
-            for (int i = 0; i < parser.countAllFields(); i++) {
-                final String name = parser.getFieldName(i);
-                System.out.println("name: " + name);
-                final String stringFieldValue = parser.getStringFieldValue(i);
-                System.out.println("val: " +stringFieldValue);
+            try {
+                Sample[] samples = new Sample[this.patients.size()];
+                for (PatientInfo patientInfo : this.patients)
+                    samples[patientInfo.index] = new Sample(patientInfo.index);
+                for (int i = 0; i < parser.countAllFields(); i++) {
+                    final String name = parser.getFieldName(i);
+                    if (name.equals(chromosomeFieldName)) {
+                        for (int s = 0; s < samples.length;s++)
+                            samples[s].setChromosome(Integer.valueOf(parser.getFieldValue(i).toString()));
+                    } else  if (name.equals(positionFieldName)) {
+                        for (int s = 0; s < samples.length;s++)
+                            samples[s].setPosition(Integer.valueOf(parser.getFieldValue(i).toString()));
+                    } else if (name.startsWith("INFO[priority")) {
+                        for (PatientInfo patientInfo : this.patients) {
+                            if (name.equals(patientInfo.infoFieldName)) {
+                               samples[patientInfo.index].setPriorityScore(Float.valueOf(parser.getFieldValue(i).toString()));
+                            }
+                        }
+                    }
+                }
+                return samples;
+            } catch (Exception e) {
+                logger.error("Invalid data line found. The data line was skipped.", e);
+                throw new InvalidDataLine();
+            }  finally {
+                parser.next();
             }
-            return line.getSamples();
         }
         return null;
     }
@@ -87,4 +120,38 @@ public class VCFReader {
         }
     }
 
+    class PatientInfo {
+        protected String sampleName;
+        protected int index;
+        protected String infoFieldName;
+
+        protected PatientInfo(int index, String sampleName) {
+            this.sampleName = sampleName;
+            this.index = index;
+            this.infoFieldName = String.format("INFO[priority[%s]]",sampleName);
+        }
+    }
+
+
+        /**
+     * Invalid data line detected.
+     */
+    public static class InvalidDataLine extends Exception {
+
+        public InvalidDataLine() {
+            super();
+        }
+
+        public InvalidDataLine(String s) {
+            super(s);
+        }
+
+        public InvalidDataLine(String s, Throwable throwable) {
+            super(s, throwable);
+        }
+
+        public InvalidDataLine(Throwable throwable) {
+            super(throwable);
+        }
+    }
 }

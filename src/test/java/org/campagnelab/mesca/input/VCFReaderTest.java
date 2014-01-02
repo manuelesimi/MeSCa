@@ -21,7 +21,17 @@ public class VCFReaderTest {
 
     @Test
     public void testReadNextPosition() throws Exception {
-          Sample[] samples = vcf.readNextPosition();
+        Sample[] samples = vcf.readNextPosition();
+        while (samples != null) {
+            try {
+                assertEquals("Unexpected number of samples found",2,samples.length);
+                for (Sample sample : samples)
+                        System.out.println(sample);
+                samples = vcf.readNextPosition();
+            } catch (VCFReader.InvalidDataLine invalidDataLine) {
+
+            }
+        }
     }
 
     @Test
