@@ -10,4 +10,12 @@ public class Sample {
     protected Sample() {
 
     }
+
+    public int getChromosome() {
+        return 0;
+    }
+
+    public int getPosition() {
+       return 0;
+    }
 }

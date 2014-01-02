@@ -50,19 +50,19 @@ public class VCFReader {
 
     /**
      * Reads the patients' samples at the next position.
-     * @return the samples or null if there is no position (e.g. EOF is reached).
+     * @return the samples found in the position or null if there is no position (e.g. EOF is reached).
      */
     public Sample[] readNextPosition() {
         parser.next();
         if (parser.hasNextDataLine()) {
-            final Position position = new Position();
+            final DataLine line = new DataLine();
             for (int i = 0; i < parser.countAllFields(); i++) {
                 final String name = parser.getFieldName(i);
                 System.out.println("name: " + name);
                 final String stringFieldValue = parser.getStringFieldValue(i);
                 System.out.println("val: " +stringFieldValue);
             }
-            return position.getSamples();
+            return line.getSamples();
         }
         return null;
     }
@@ -87,12 +87,4 @@ public class VCFReader {
         }
     }
 
-
-
-    private void printSomeInfo() {
-        System.out.println("Number of columns in the file: " + parser.getNumberOfColumns());
-        ObjectIterator<ColumnInfo> iterator = parser.getColumns().iterator();
-        while (iterator.hasNext())
-            System.out.println("Column name: " + iterator.next().getColumnName());
-    }
 }
