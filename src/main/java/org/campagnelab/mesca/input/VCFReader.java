@@ -43,7 +43,7 @@ public class VCFReader {
         for (int i = 0; i<  parser.getNumberOfColumns(); i++) {
            String name = parser.getColumnName(i);
             if (name.endsWith("blood-patient"))
-                PatientInfoMap.add(assignedIndex++,name);
+                PatientInfoIndexer.add(assignedIndex++, name);
         }
 
         /*StringBuilder builder = new StringBuilder();
@@ -60,7 +60,7 @@ public class VCFReader {
      * @return the number of patients
      */
     public int getNumOfPatients() {
-       return PatientInfoMap.size();
+       return PatientInfoIndexer.size();
     }
 
     /**
@@ -70,8 +70,8 @@ public class VCFReader {
     public Sample[] readNextPosition() throws InvalidDataLine {
         if (parser.hasNextDataLine()) {
             try {
-                Sample[] samples = new Sample[PatientInfoMap.size()];
-                for (PatientInfoMap.PatientInfo patientInfo : PatientInfoMap.getPatients())
+                Sample[] samples = new Sample[PatientInfoIndexer.size()];
+                for (PatientInfoIndexer.PatientInfo patientInfo : PatientInfoIndexer.getPatients())
                     samples[patientInfo.index] = new Sample(patientInfo.index);
                 int chromosome = 0;
                 int position = 0;
@@ -82,7 +82,7 @@ public class VCFReader {
                     } else  if (name.equals(positionFieldName)) {
                         position = Integer.valueOf(parser.getFieldValue(i).toString());
                     } else if (name.startsWith("INFO[priority")) {
-                        for (PatientInfoMap.PatientInfo patientInfo : PatientInfoMap.getPatients()) {
+                        for (PatientInfoIndexer.PatientInfo patientInfo : PatientInfoIndexer.getPatients()) {
                             if (name.equals(patientInfo.infoFieldName)) {
                                samples[patientInfo.index].setPriorityScore(Float.valueOf(parser.getFieldValue(i).toString()));
                             }

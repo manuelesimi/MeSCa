@@ -3,14 +3,22 @@ package org.campagnelab.mesca.input;
 import java.util.*;
 
 /**
- * Created by mas2182 on 1/3/14.
+ *
+ * Map patient sample names to indexes.
+ *
+ * @author manuele
  */
-public class PatientInfoMap {
+public class PatientInfoIndexer {
 
 
     private static Map<Integer, PatientInfo> patients = new HashMap<Integer, PatientInfo>();
 
-    protected static void add (int index, String sampleName) {
+    /**
+     * Indexes a new sample name.
+     * @param index
+     * @param sampleName
+     */
+    protected static void add(int index, String sampleName) {
         patients.put(index, new PatientInfo(index, sampleName));
     }
 
