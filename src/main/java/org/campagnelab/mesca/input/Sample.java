@@ -51,7 +51,7 @@ public class Sample {
                 "position=" + info[1] +
                 ", chromosome=" + info[0] +
                 ", priorityScore=" + priorityScore +
-                ", ID=" + ID +
+                ", ID=" + PatientInfoMap.getSampleName(ID) +
                 '}';
     }
 

@@ -6,8 +6,7 @@ import org.apache.log4j.Logger;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * @author manuele
@@ -17,8 +16,6 @@ public class VCFReader {
     protected static Logger logger = Logger.getLogger(VCFReader.class);
 
     private VCFParser parser;
-
-    private List<PatientInfo> patients = new ArrayList<PatientInfo>();
 
     private static final String chromosomeFieldName = "CHROM";
 
@@ -46,7 +43,7 @@ public class VCFReader {
         for (int i = 0; i<  parser.getNumberOfColumns(); i++) {
            String name = parser.getColumnName(i);
             if (name.endsWith("blood-patient"))
-                this.patients.add(new PatientInfo(assignedIndex++,name));
+                PatientInfoMap.add(assignedIndex++,name);
         }
 
         /*StringBuilder builder = new StringBuilder();
@@ -63,7 +60,7 @@ public class VCFReader {
      * @return the number of patients
      */
     public int getNumOfPatients() {
-       return this.patients.size();
+       return PatientInfoMap.size();
     }
 
     /**
@@ -73,8 +70,8 @@ public class VCFReader {
     public Sample[] readNextPosition() throws InvalidDataLine {
         if (parser.hasNextDataLine()) {
             try {
-                Sample[] samples = new Sample[this.patients.size()];
-                for (PatientInfo patientInfo : this.patients)
+                Sample[] samples = new Sample[PatientInfoMap.size()];
+                for (PatientInfoMap.PatientInfo patientInfo : PatientInfoMap.getPatients())
                     samples[patientInfo.index] = new Sample(patientInfo.index);
                 int chromosome = 0;
                 int position = 0;
@@ -85,7 +82,7 @@ public class VCFReader {
                     } else  if (name.equals(positionFieldName)) {
                         position = Integer.valueOf(parser.getFieldValue(i).toString());
                     } else if (name.startsWith("INFO[priority")) {
-                        for (PatientInfo patientInfo : this.patients) {
+                        for (PatientInfoMap.PatientInfo patientInfo : PatientInfoMap.getPatients()) {
                             if (name.equals(patientInfo.infoFieldName)) {
                                samples[patientInfo.index].setPriorityScore(Float.valueOf(parser.getFieldValue(i).toString()));
                             }
@@ -111,17 +108,7 @@ public class VCFReader {
         return null;
     }
 
-    class PatientInfo {
-        protected String sampleName;
-        protected int index;
-        protected String infoFieldName;
 
-        protected PatientInfo(int index, String sampleName) {
-            this.sampleName = sampleName;
-            this.index = index;
-            this.infoFieldName = String.format("INFO[priority[%s]]",sampleName);
-        }
-    }
 
 
         /**
