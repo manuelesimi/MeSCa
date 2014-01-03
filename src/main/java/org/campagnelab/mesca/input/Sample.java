@@ -7,27 +7,20 @@ package org.campagnelab.mesca.input;
  */
 public class Sample {
 
-    private int position;
-    private int chromosome;
     private float priorityScore;
+
     private final int ID;
+
+    private int positionCode;
 
     protected Sample(int id) {this.ID = id;}
 
     public int getChromosome() {
-        return this.chromosome;
+        return PositionCodeCalculator.decodePosition(this.positionCode)[0];
     }
 
     public int getPosition() {
-       return this.position;
-    }
-
-    protected void setPosition(int position) {
-        this.position = position;
-    }
-
-    protected void setChromosome(int chromosome) {
-        this.chromosome = chromosome;
+       return PositionCodeCalculator.decodePosition(this.positionCode)[1];
     }
 
     protected void setPriorityScore(float priorityScore) {
@@ -42,13 +35,24 @@ public class Sample {
         return ID;
     }
 
+
+    public void setPositionCode(int positionCode) {
+        this.positionCode = positionCode;
+    }
+
+    public int getPositionCode() {
+        return positionCode;
+    }
+
     @Override
     public String toString() {
+            int[] info = PositionCodeCalculator.decodePosition(this.positionCode);
         return "Sample{" +
-                "position=" + position +
-                ", chromosome=" + chromosome +
+                "position=" + info[1] +
+                ", chromosome=" + info[0] +
                 ", priorityScore=" + priorityScore +
                 ", ID=" + ID +
                 '}';
     }
+
 }

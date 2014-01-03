@@ -1,6 +1,5 @@
 package org.campagnelab.mesca.input;
 
-import edu.cornell.med.icb.goby.readers.vcf.ColumnType;
 import edu.cornell.med.icb.goby.readers.vcf.VCFParser;
 import org.apache.log4j.Logger;
 
@@ -9,7 +8,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author manuele
@@ -25,6 +23,11 @@ public class VCFReader {
     private static final String chromosomeFieldName = "CHROM";
 
     private static final String positionFieldName = "POS";
+
+    private int currentChromosome = -1;
+
+    private int currentEndPosition = -1;
+
 
     public VCFReader(final File vcfFile) throws IOException {
         try {
@@ -73,14 +76,14 @@ public class VCFReader {
                 Sample[] samples = new Sample[this.patients.size()];
                 for (PatientInfo patientInfo : this.patients)
                     samples[patientInfo.index] = new Sample(patientInfo.index);
+                int chromosome = 0;
+                int position = 0;
                 for (int i = 0; i < parser.countAllFields(); i++) {
                     final String name = parser.getFieldName(i);
                     if (name.equals(chromosomeFieldName)) {
-                        for (int s = 0; s < samples.length;s++)
-                            samples[s].setChromosome(Integer.valueOf(parser.getFieldValue(i).toString()));
+                        chromosome = Integer.valueOf(parser.getFieldValue(i).toString());
                     } else  if (name.equals(positionFieldName)) {
-                        for (int s = 0; s < samples.length;s++)
-                            samples[s].setPosition(Integer.valueOf(parser.getFieldValue(i).toString()));
+                        position = Integer.valueOf(parser.getFieldValue(i).toString());
                     } else if (name.startsWith("INFO[priority")) {
                         for (PatientInfo patientInfo : this.patients) {
                             if (name.equals(patientInfo.infoFieldName)) {
@@ -89,6 +92,14 @@ public class VCFReader {
                         }
                     }
                 }
+                if (chromosome != currentChromosome) {
+                    PositionCodeCalculator.closeChromosome(currentEndPosition);
+                    PositionCodeCalculator.openChromosome(chromosome, position);
+                    currentChromosome = chromosome;
+                }
+                for (int s = 0; s < samples.length;s++)
+                    samples[s].setPositionCode(PositionCodeCalculator.encodePosition(position));
+                currentEndPosition = position;
                 return samples;
             } catch (Exception e) {
                 logger.error("Invalid data line found. The data line was skipped.", e);
@@ -98,26 +109,6 @@ public class VCFReader {
             }
         }
         return null;
-    }
-
-    private void printSomeData() {
-        String samples[] = parser.getColumnNamesUsingFormat();
-
-        while (parser.hasNextDataLine()) {
-            for (int i = 0; i < parser.countAllFields(); i++) {
-                final String name = parser.getFieldName(i);
-                final String stringFieldValue = parser.getStringFieldValue(i);
-                System.out.printf("field %s gfi:%d value: %s%n", name, i,
-                        stringFieldValue);
-                String columnName = samples[0];
-                String fieldName = "GT";
-                int globalFieldIndex = parser.getGlobalFieldIndex(columnName, fieldName);
-                String genotypeValue = parser.getStringFieldValue(globalFieldIndex);
-                System.out.println("genotype=" + genotypeValue);
-            }
-            parser.next();
-
-        }
     }
 
     class PatientInfo {
