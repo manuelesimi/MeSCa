@@ -10,11 +10,11 @@ import java.util.List;
  */
 public class PositionCodeCalculator {
 
-    static final List<Integer> chromosomePositionOffsets = new ArrayList<Integer>();
+    private static final List<Integer> chromosomePositionOffsets = new ArrayList<Integer>();
 
-    static final List<Integer> chromosomeStartPositions = new ArrayList<Integer>();
+    private static final List<Integer> chromosomeStartPositions = new ArrayList<Integer>();
 
-    static final List<Integer> chromosomes = new ArrayList<Integer>();
+    private static final List<Integer> chromosomes = new ArrayList<Integer>();
 
     protected static void closeChromosome(final int endPosition) {
        if (chromosomes.size() == 0)
@@ -41,7 +41,7 @@ public class PositionCodeCalculator {
      * @param position
      * @return the position code
      */
-    public static int encodePosition(final int position) {
+    protected static int encodePosition(final int position) {
         return (position - chromosomeStartPositions.get(chromosomeStartPositions.size()-1))
                 + chromosomePositionOffsets.get(chromosomePositionOffsets.size()-1);
     }
