@@ -21,9 +21,9 @@ public class VCFReader {
 
     private static final String positionFieldName = "POS";
 
-    private int currentChromosome = -1;
+    //private int currentChromosome = -1;
 
-    private int currentEndPosition = -1;
+    //private int currentEndPosition = -1;
 
 
     public VCFReader(final File vcfFile) throws IOException {
@@ -99,7 +99,7 @@ public class VCFReader {
                     samples[s].setPosition(position);
                     samples[s].setChromosome(chromosome);
                 }
-                currentEndPosition = position;
+                //currentEndPosition = position;
             } catch (Exception e) {
                 logger.error("Invalid data line found. The data line was skipped.", e);
                 e.printStackTrace();
