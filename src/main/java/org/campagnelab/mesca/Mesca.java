@@ -2,6 +2,7 @@ package org.campagnelab.mesca;
 
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.log4j.Logger;
+import org.campagnelab.mesca.data.DoublyLinkedList;
 import org.campagnelab.mesca.input.Sample;
 import org.campagnelab.mesca.input.VCFReader;
 
@@ -52,7 +53,7 @@ public class Mesca {
         if (config == null)
             System.exit(1);
         VCFReader vcfReader = new VCFReader(config.getFile("input-file"));
-        List<Sample> sampleList = new ArrayList<Sample>();
+        DoublyLinkedList<Sample> sampleList = new DoublyLinkedList<Sample>();
         while (vcfReader.hasNextPosition()) {
             try {
                 Sample[] samples = vcfReader.readNextPosition();
