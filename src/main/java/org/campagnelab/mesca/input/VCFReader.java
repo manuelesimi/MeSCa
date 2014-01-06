@@ -68,9 +68,10 @@ public class VCFReader {
      * @return the samples found in the position or null if there is no position (e.g. EOF is reached).
      */
     public Sample[] readNextPosition() throws InvalidDataLine {
+        Sample[] samples = null;
         if (parser.hasNextDataLine()) {
             try {
-                Sample[] samples = new Sample[PatientInfoIndexer.size()];
+                samples = new Sample[PatientInfoIndexer.size()];
                 for (PatientInfoIndexer.PatientInfo patientInfo : PatientInfoIndexer.getPatients())
                     samples[patientInfo.index] = new Sample(patientInfo.index);
                 int chromosome = 0;
@@ -89,29 +90,48 @@ public class VCFReader {
                         }
                     }
                 }
-                if (chromosome != currentChromosome) {
+                /*if (chromosome != currentChromosome) {
                     PositionCodeCalculator.closeChromosome(currentEndPosition);
                     PositionCodeCalculator.openChromosome(chromosome, position);
                     currentChromosome = chromosome;
+                }  */
+                for (int s = 0; s < samples.length;s++) {
+                    samples[s].setPosition(position);
+                    samples[s].setChromosome(chromosome);
                 }
-                for (int s = 0; s < samples.length;s++)
-                    samples[s].setPositionCode(PositionCodeCalculator.encodePosition(position));
                 currentEndPosition = position;
-                return samples;
             } catch (Exception e) {
                 logger.error("Invalid data line found. The data line was skipped.", e);
+                e.printStackTrace();
                 throw new InvalidDataLine();
             }  finally {
                 parser.next();
             }
         }
-        return null;
+        return samples;
+    }
+
+    /**
+     * Checks if the reader has a next position to read.
+     * @return
+     */
+    public boolean hasNextPosition() {
+        return parser.hasNextDataLine();
+    }
+
+    /**
+     *  Closes the reader.
+     */
+    public void close() {
+        try {
+            parser.close();
+        } catch (IOException e) {
+            logger.warn("Failed to close VCF reader.", e);
+        }
     }
 
 
-
-
-        /**
+    /**
      * Invalid data line detected.
      */
     public static class InvalidDataLine extends Exception {
