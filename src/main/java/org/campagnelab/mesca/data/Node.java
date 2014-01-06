@@ -7,14 +7,14 @@ import java.io.File;
  *
  * @author manuele
  */
- public class Node<T> {
+class Node<T> {
     Node prev = null;
     Node next = null;
     T element;
 
     protected Node() { }
 
-    public Node(T element) {
+    protected Node(T element) {
         this.element = element;
     }
 
