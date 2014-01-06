@@ -62,6 +62,7 @@ public class Sample {
                 ", ID=" + ID +
                 ", position=" + position +
                 ", chromosome=" + chromosome +
+                ", name=" + this.getName() +
                 '}';
     }
 }
