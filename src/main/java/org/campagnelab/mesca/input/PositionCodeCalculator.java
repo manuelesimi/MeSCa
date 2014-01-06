@@ -6,6 +6,10 @@ import java.util.List;
 /**
  * Encode/decode a pair (chromosome, position) to/from a single value.
  *
+ * @deprecated there is a but in the approach that prevents to use it correctly: the last position of a chromosome
+ * and the first one of the next chromosome get the same position code. The class is left here for possible usage in the
+ * future, when there is more time to work around this issue.
+ *
  * @author manuele
  */
 public class PositionCodeCalculator {
@@ -21,7 +25,8 @@ public class PositionCodeCalculator {
            return;
        int length = endPosition - chromosomeStartPositions.get(chromosomeStartPositions.size()-1);
        if (length <= 0)
-            throw new IllegalArgumentException("Invalid end position: it is smaller than the recorded start position.");
+            throw new IllegalArgumentException(String.format("Invalid end position %d: it is smaller than the recorded start position (%d).",
+                    endPosition,chromosomeStartPositions.get(chromosomeStartPositions.size()-1)));
        //record the offset for the next chromosome, if any
        chromosomePositionOffsets.add(
          length + chromosomePositionOffsets.get(chromosomePositionOffsets.size()-1));
@@ -37,13 +42,13 @@ public class PositionCodeCalculator {
     }
 
     /**
-     * Calculates the coding offset for the position.
+     * Calculates the code for the position.
      * @param position
      * @return the position code
      */
     protected static int encodePosition(final int position) {
         return (position - chromosomeStartPositions.get(chromosomeStartPositions.size()-1))
-                + chromosomePositionOffsets.get(chromosomePositionOffsets.size()-1);
+                + chromosomePositionOffsets.get(chromosomePositionOffsets.size()-1) +1;
     }
 
 

@@ -11,16 +11,21 @@ public class Sample {
 
     private final int ID;
 
-    private int positionCode;
+    private int position;
 
-    protected Sample(int id) {this.ID = id;}
+    private int chromosome;
 
-    public int getChromosome() {
-        return PositionCodeCalculator.decodePosition(this.positionCode)[0];
+
+    protected Sample(int id) {
+        this.ID = id;
     }
 
-    public int getPosition() {
-       return PositionCodeCalculator.decodePosition(this.positionCode)[1];
+    public int getChromosome() {
+        return this.chromosome;
+    }
+
+    protected void setChromosome(int chromosome) {
+        this.chromosome = chromosome;
     }
 
     protected void setPriorityScore(float priorityScore) {
@@ -39,23 +44,25 @@ public class Sample {
         return PatientInfoIndexer.getSampleName(ID);
     }
 
-    public void setPositionCode(int positionCode) {
-        this.positionCode = positionCode;
+    protected void setPosition(int position) {
+
+
+        this.position = position;
     }
 
-    public int getPositionCode() {
-        return positionCode;
+    public int getPosition() {
+        return this.position;
     }
+
 
     @Override
     public String toString() {
-            int[] info = PositionCodeCalculator.decodePosition(this.positionCode);
         return "Sample{" +
-                "position=" + info[1] +
-                ", chromosome=" + info[0] +
-                ", priorityScore=" + priorityScore +
-                ", sampleName=" + PatientInfoIndexer.getSampleName(ID) +
+                "priorityScore=" + priorityScore +
+                ", ID=" + ID +
+                ", position=" + position +
+                ", chromosome=" + chromosome +
+                ", name=" + this.getName() +
                 '}';
     }
-
 }

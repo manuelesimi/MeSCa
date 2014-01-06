@@ -1,0 +1,33 @@
+<jsap>
+    <parameters>
+
+        <flaggedOption>
+            <id>input-file</id>
+            <stringParser>
+                <classname>FileStringParser</classname>
+                <properties>
+                    <property>
+                        <name>mustBeDirectory</name>
+                        <value>false</value>
+                    </property>
+                    <property>
+                        <name>mustExist</name>
+                        <value>true</value>
+                    </property>
+                </properties>
+            </stringParser>
+            <required>true</required>
+            <shortFlag>f</shortFlag>
+            <longFlag>input-file</longFlag>
+            <help>The file in VCF format to process.</help>
+        </flaggedOption>
+
+    <switch>
+        <id>help</id>
+        <shortFlag>h</shortFlag>
+        <longFlag>help</longFlag>
+        <help>Print help message.</help>
+    </switch>
+
+    </parameters>
+</jsap>
