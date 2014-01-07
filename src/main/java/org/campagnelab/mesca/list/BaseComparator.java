@@ -1,4 +1,4 @@
-package org.campagnelab.mesca.data;
+package org.campagnelab.mesca.list;
 
 /**
  * Created by manuelesimi on 1/7/14.

@@ -1,8 +1,6 @@
-package org.campagnelab.mesca.data;
+package org.campagnelab.mesca.input;
 
-import org.campagnelab.mesca.input.Sample;
-
-import java.util.Comparator;
+import org.campagnelab.mesca.list.BaseComparator;
 
 /**
  * Comparator interface for {@link org.campagnelab.mesca.input.Sample}s.

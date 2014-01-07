@@ -1,6 +1,4 @@
-package org.campagnelab.mesca.data;
-
-import java.io.File;
+package org.campagnelab.mesca.list;
 
 /**
  * A node in the list.

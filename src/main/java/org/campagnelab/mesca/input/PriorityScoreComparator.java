@@ -1,8 +1,5 @@
 package org.campagnelab.mesca.input;
 
-import org.campagnelab.mesca.data.SampleComparator;
-import org.campagnelab.mesca.input.Sample;
-
 /**
  * Comparator for comparing samples according to their priority score.
  *

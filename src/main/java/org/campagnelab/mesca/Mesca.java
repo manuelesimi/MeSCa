@@ -2,12 +2,10 @@ package org.campagnelab.mesca;
 
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.log4j.Logger;
-import org.campagnelab.mesca.data.DoublyLinkedList;
+import org.campagnelab.mesca.list.DoublyLinkedList;
 import org.campagnelab.mesca.input.Sample;
 import org.campagnelab.mesca.input.VCFReader;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 

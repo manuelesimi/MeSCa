@@ -1,4 +1,4 @@
-package org.campagnelab.mesca.data;
+package org.campagnelab.mesca.list;
 
 import java.util.Comparator;
 
