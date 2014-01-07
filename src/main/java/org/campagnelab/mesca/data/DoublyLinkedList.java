@@ -47,10 +47,10 @@ public class DoublyLinkedList<E> {
         return  this.internalList.get(i).element;
     }
 
-/*    public void sort() {
-        Collections.sort(this.internalList);
+    public void sort(Comparator<? super E> c) {
+        Collections.sort(this.internalList, (Comparator<? super Node<E>>) c);
     }
-*/
+
 
     /**
      *  Randomly permutes the list.
