@@ -9,12 +9,7 @@ import java.util.Comparator;
  *
  * @author manuele
  */
-public abstract class SampleComparator implements Comparator<Node<Sample>> {
+public abstract class SampleComparator extends BaseComparator<Sample> {
 
-    @Override
-    public int compare(Node<Sample> sampleNode, Node<Sample> sampleNode2) {
-        return this.compare(sampleNode.element, sampleNode2.element);
-    }
-
-    protected abstract int compare(Sample sample1, Sample sample2);
+    protected abstract int compareElement(Sample sample1, Sample sample2);
 }

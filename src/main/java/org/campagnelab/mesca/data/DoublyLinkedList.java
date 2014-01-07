@@ -47,8 +47,8 @@ public class DoublyLinkedList<E> {
         return  this.internalList.get(i).element;
     }
 
-    public void sort(Comparator<? super E> c) {
-        Collections.sort(this.internalList, (Comparator<? super Node<E>>) c);
+    public void sort(BaseComparator<E> c) {
+        Collections.sort(this.internalList, c);
     }
 
 
