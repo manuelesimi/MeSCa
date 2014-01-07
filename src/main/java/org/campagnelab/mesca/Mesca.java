@@ -9,6 +9,7 @@ import org.campagnelab.mesca.input.VCFReader;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Entry point for the command line tool.
@@ -63,7 +64,23 @@ public class Mesca {
                 idl.printStackTrace();
             }
         }
+
         logger.info(String.format("%d sample(s) have been loaded from the input file.", sampleList.size()));
+
         vcfReader.close();
+
+        sampleList.shuffle();
+
+        //sample iterators testing, TODO to remove
+        ListIterator<Sample> backwardIterator = sampleList.backwardIterator(sampleList.size()-1);
+        while (backwardIterator.hasPrevious()) {
+            logger.info("Go backward: " + backwardIterator.previous().toString());
+        }
+
+        ListIterator<Sample> forwardIterator = sampleList.forwardIterator(0);
+        while (forwardIterator.hasNext()) {
+            logger.info("Go forward: " + forwardIterator.next().toString());
+        }
+
     }
 }

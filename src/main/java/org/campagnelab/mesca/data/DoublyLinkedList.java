@@ -51,6 +51,14 @@ public class DoublyLinkedList<E> {
         Collections.sort(this.internalList);
     }
 */
+
+    /**
+     *  Randomly permutes the list.
+     */
+    public void shuffle() {
+        Collections.shuffle(this.internalList);
+    }
+
     public ListIterator<E> forwardIterator(int position) {
         return new LinkedForwardIterator<E>(internalList.get(position));
     }
@@ -95,8 +103,9 @@ public class DoublyLinkedList<E> {
         public E previous() {
             if (!hasPrevious())
                 throw new NoSuchElementException();
+            E element = current.element;
             current = current.prev;
-            return current.element;
+            return element;
         }
 
         @Override
@@ -150,8 +159,9 @@ public class DoublyLinkedList<E> {
         public E next() {
             if (!hasNext())
                 throw new NoSuchElementException();
+            E element = current.element;
             current = current.next;
-            return current.element;
+            return element;
         }
 
         @Override
