@@ -1,13 +1,16 @@
 package org.campagnelab.mesca.algorithm;
 
-import java.util.Comparator;
-
 /**
  * @author manuele
  */
 public interface StopCondition extends Comparable<StopCondition>{
 
-    public boolean check();
+    /**
+     * Applies the stop condition to the cluster.
+     * @param cluster
+     * @return true if the cluster match the condition, false otherwise
+     */
+    public boolean apply(Cluster cluster);
 
     public String getMessage();
 

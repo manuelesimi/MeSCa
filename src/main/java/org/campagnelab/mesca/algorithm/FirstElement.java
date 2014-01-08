@@ -6,7 +6,7 @@ package org.campagnelab.mesca.algorithm;
 public class FirstElement extends BaseStopCondition {
 
     @Override
-    public boolean check() {
+    public boolean apply(Cluster cluster) {
         return false;
     }
 
