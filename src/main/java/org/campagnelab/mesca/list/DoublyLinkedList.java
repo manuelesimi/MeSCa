@@ -7,7 +7,7 @@ import java.util.*;
  *
  * @author manuele
  */
-public class DoublyLinkedList<E> {
+public class DoublyLinkedList<E> implements Iterable<E> {
 
     List<Node<E>> internalList = new ArrayList<Node<E>>();
 
@@ -46,6 +46,10 @@ public class DoublyLinkedList<E> {
         return  this.internalList.get(i).element;
     }
 
+    public int size() {
+        return this.internalList.size();
+    }
+
     public void sort(BaseComparator<E> c) {
         Collections.sort(this.internalList, c);
     }
@@ -63,14 +67,6 @@ public class DoublyLinkedList<E> {
         Collections.shuffle(this.internalList);
     }
 
-    /**
-     * Gets an iterator that navigates the list in the actual order.
-     * @return
-     */
-    public Iterator<E> sequentialForwardIterator() {
-        return new SequentialForwardIterator<E>(internalList.iterator());
-    }
-
     public ListIterator<E> forwardIterator(int position) {
         return new LinkedForwardIterator<E>(internalList.get(position));
     }
@@ -79,8 +75,13 @@ public class DoublyLinkedList<E> {
         return new LinkedBackwardIterator<E>(internalList.get(position));
     }
 
-    public int size() {
-        return this.internalList.size();
+    /**
+     * Gets an iterator that navigates the list in the actual order.
+     * @return
+     */
+    @Override
+    public Iterator<E> iterator() {
+        return new SequentialForwardIterator<E>(internalList.iterator());
     }
 
     /**

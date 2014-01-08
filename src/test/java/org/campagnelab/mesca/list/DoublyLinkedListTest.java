@@ -50,9 +50,10 @@ public class DoublyLinkedListTest {
 
     @Test
     public void testSequentialForwardIterator() throws Exception {
-        Iterator<Sample> forwardIterator2 = samplesList.sequentialForwardIterator();
+        Iterator<Sample> forwardIterator2 = samplesList.iterator();
         while (forwardIterator2.hasNext()) {
-            System.out.println("Going forward with sequential iterator: "                    + forwardIterator2.next().toString());
+            System.out.println("Going forward with sequential iterator: "
+                    + forwardIterator2.next().toString());
         }
     }
 
