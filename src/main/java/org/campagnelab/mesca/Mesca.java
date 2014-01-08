@@ -86,7 +86,7 @@ public class Mesca {
         TSVFormatter formatter = new TSVFormatter();
         formatter.format(clusters, config.getFile("output-file"));
 
-        logger.info(String.format("Detected cluster(s) have been recorder in %s.", config.getFile("output-file").getAbsolutePath()));
+        logger.info(String.format("Detected cluster(s) are available in %s.", config.getFile("output-file").getAbsolutePath()));
 
     }
 }

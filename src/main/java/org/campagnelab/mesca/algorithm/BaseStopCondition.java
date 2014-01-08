@@ -1,7 +1,9 @@
 package org.campagnelab.mesca.algorithm;
 
 /**
- * Created by manuelesimi on 12/27/13.
+ * Base implementation for stop conditions.
+ *
+ * @author manuele
  */
 public abstract class BaseStopCondition implements StopCondition {
 
@@ -24,7 +26,8 @@ public abstract class BaseStopCondition implements StopCondition {
     }
 
     @Override
-    public int compare(Integer order1, Integer order2) {
-        return order1.compareTo(order2);
+    public int compareTo(StopCondition stopCondition) {
+        //ascending order
+        return this.getOrder()- stopCondition.getOrder();
     }
 }

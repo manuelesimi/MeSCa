@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * @author manuele
  */
-public interface StopCondition extends Comparator<Integer>{
+public interface StopCondition extends Comparable<StopCondition>{
 
     public boolean check();
 

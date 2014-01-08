@@ -3,8 +3,7 @@ package org.campagnelab.mesca.algorithm;
 import org.campagnelab.mesca.input.Sample;
 import org.campagnelab.mesca.list.DoublyLinkedList;
 
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * The cluster detection method.
@@ -16,7 +15,7 @@ import java.util.TreeSet;
  */
 public final class ClusterDetector {
 
-    private SortedSet<StopCondition> stopConditions = new TreeSet<StopCondition>();
+    private List<StopCondition> stopConditions = new ArrayList<StopCondition>();
 
     private final DoublyLinkedList<Sample> sampleList;
 
@@ -37,6 +36,7 @@ public final class ClusterDetector {
      * @return
      */
     public ClusterQueue detect() {
+        Collections.sort(stopConditions);
         ClusterQueue clusters = new ClusterQueue();
         for (Sample sample : sampleList) {
             //try to build a cluster around the sample
