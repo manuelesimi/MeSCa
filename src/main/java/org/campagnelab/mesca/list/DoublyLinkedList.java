@@ -3,8 +3,7 @@ package org.campagnelab.mesca.list;
 import java.util.*;
 
 /**
- * A list implemented with a doubly linked list. The elements are stored
- * (and iterated over) in the same order that they are inserted.
+ * A list implemented with a doubly linked list.
  *
  * @author manuele
  */

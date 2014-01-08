@@ -3,7 +3,7 @@ package org.campagnelab.mesca.input;
 import org.campagnelab.mesca.list.BaseComparator;
 
 /**
- * Comparator interface for {@link org.campagnelab.mesca.input.Sample}s.
+ * Base comparator for {@link org.campagnelab.mesca.input.Sample}s.
  *
  * @author manuele
  */

@@ -1,7 +1,9 @@
 package org.campagnelab.mesca.list;
 
 /**
- * Created by manuelesimi on 1/7/14.
+ * Base comparator for sorting elements of {@link org.campagnelab.mesca.list.DoublyLinkedList}
+ *
+ * @author manuele
  */
 public abstract  class BaseComparator<E> implements NodeComparator<E> {
     @Override
