@@ -7,6 +7,7 @@ import org.campagnelab.mesca.list.DoublyLinkedList;
 import org.campagnelab.mesca.input.Sample;
 import org.campagnelab.mesca.input.VCFReader;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -68,24 +69,14 @@ public class Mesca {
 
         vcfReader.close();
 
-        sampleList.shuffle();
+        //create stop conditions
 
-        //sample iterators testing, TODO to remove
-        ListIterator<Sample> backwardIterator = sampleList.backwardIterator(sampleList.size()-1);
-        while (backwardIterator.hasPrevious()) {
-            logger.info("Going backward: " + backwardIterator.previous().toString());
-        }
 
-        ListIterator<Sample> forwardIterator = sampleList.forwardIterator(0);
-        while (forwardIterator.hasNext()) {
-            logger.info("Going forward: " + forwardIterator.next().toString());
-        }
-        sampleList.sort(new PriorityScoreComparator());
-        sampleList.reverse();
-        ListIterator<Sample> forwardIterator2 = sampleList.iterator();
-        while (forwardIterator2.hasNext()) {
-            logger.info("Going forward2: " + forwardIterator2.next().toString());
-        }
+        //invoke ClusterDetector
+
+        //print the output
+
+
 
     }
 }

@@ -64,11 +64,11 @@ public class DoublyLinkedList<E> {
     }
 
     /**
-     * Gets an iterator that navigate the list in the actual order.
+     * Gets an iterator that navigates the list in the actual order.
      * @return
      */
-    public ListIterator<E> iterator() {
-        return new Iterator<E>(internalList.iterator());
+    public Iterator<E> sequentialForwardIterator() {
+        return new SequentialForwardIterator<E>(internalList.iterator());
     }
 
     public ListIterator<E> forwardIterator(int position) {
@@ -87,11 +87,11 @@ public class DoublyLinkedList<E> {
      * An iterator that navigates the list in the actual order.
      * @param <E>
      */
-    private class Iterator<E> implements ListIterator<E> {
+    private class SequentialForwardIterator<E> implements Iterator<E> {
 
         private java.util.Iterator<Node<E>> iterator;
 
-        public Iterator(java.util.Iterator<Node<E>> iterator) {
+        public SequentialForwardIterator(java.util.Iterator<Node<E>> iterator) {
            this.iterator = iterator;
         }
 
@@ -106,39 +106,10 @@ public class DoublyLinkedList<E> {
         }
 
         @Override
-        public boolean hasPrevious() {
-            return false;
-        }
-
-        @Override
-        public E previous() {
-            return null;
-        }
-
-        @Override
-        public int nextIndex() {
-            return 0;
-        }
-
-        @Override
-        public int previousIndex() {
-            return 0;
-        }
-
-        @Override
         public void remove() {
             this.iterator.remove();
         }
 
-        @Override
-        public void set(E e) {
-
-        }
-
-        @Override
-        public void add(E e) {
-
-        }
     }
 
 
@@ -159,12 +130,12 @@ public class DoublyLinkedList<E> {
 
         @Override
         public boolean hasNext() {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
         }
 
         @Override
         public E next() {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
         }
 
         public boolean hasPrevious() {
@@ -181,27 +152,27 @@ public class DoublyLinkedList<E> {
 
         @Override
         public int nextIndex() {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
         }
 
         @Override
         public int previousIndex() {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
         }
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
         }
 
         @Override
         public void set(E e) {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
         }
 
         @Override
         public void add(E e) {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
         }
 
     }
@@ -237,39 +208,39 @@ public class DoublyLinkedList<E> {
 
         @Override
         public boolean hasPrevious() {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
         }
 
         @Override
         public E previous() {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
         }
 
         @Override
         public int nextIndex() {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
         }
 
         @Override
         public int previousIndex() {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
         }
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
 
         }
 
         @Override
         public void set(E e) {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
 
         }
 
         @Override
         public void add(E e) {
-            throw new UnsupportedOperationException("The operation is not supported by this Iterator");
+            throw new UnsupportedOperationException("The operation is not supported by this SequentialForwardIterator");
 
         }
 
