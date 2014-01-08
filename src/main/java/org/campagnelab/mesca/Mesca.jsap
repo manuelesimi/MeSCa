@@ -22,6 +22,27 @@
             <help>The file in VCF format to process.</help>
         </flaggedOption>
 
+        <flaggedOption>
+            <id>output-file</id>
+            <stringParser>
+                <classname>FileStringParser</classname>
+                <properties>
+                    <property>
+                        <name>mustBeDirectory</name>
+                        <value>false</value>
+                    </property>
+                    <property>
+                        <name>mustExist</name>
+                        <value>false</value>
+                    </property>
+                </properties>
+            </stringParser>
+            <required>false</required>
+            <shortFlag>o</shortFlag>
+            <longFlag>output-file</longFlag>
+            <help>The file where detected clusters are printed.</help>
+        </flaggedOption>
+
     <switch>
         <id>help</id>
         <shortFlag>h</shortFlag>

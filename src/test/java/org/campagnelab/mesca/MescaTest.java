@@ -18,7 +18,8 @@ public class MescaTest {
     @Test
     public void testProcess() throws Exception {
         Mesca.process(new String[] {
-           "--input-file", new File("test-data/vcf/VCFReaderIntegrityInput.vcf").getAbsolutePath()
+           "--input-file", new File("test-data/vcf/VCFReaderIntegrityInput.vcf").getAbsolutePath(),
+           "--output-file", new File("test-results/clusters.tsv").getAbsolutePath()
         });
     }
 }

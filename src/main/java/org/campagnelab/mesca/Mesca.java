@@ -2,11 +2,15 @@ package org.campagnelab.mesca;
 
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.log4j.Logger;
+import org.campagnelab.mesca.algorithm.ClusterDetector;
+import org.campagnelab.mesca.algorithm.ClusterQueue;
 import org.campagnelab.mesca.input.PriorityScoreComparator;
 import org.campagnelab.mesca.list.DoublyLinkedList;
 import org.campagnelab.mesca.input.Sample;
 import org.campagnelab.mesca.input.VCFReader;
+import org.campagnelab.mesca.output.TSVFormatter;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -69,14 +73,20 @@ public class Mesca {
 
         vcfReader.close();
 
+        ClusterDetector detector = new ClusterDetector(sampleList);
+
         //create stop conditions
 
 
         //invoke ClusterDetector
+        ClusterQueue clusters = detector.detect();
+        logger.info(String.format("%d cluster(s) have been detected.", clusters.size()));
 
         //print the output
+        TSVFormatter formatter = new TSVFormatter();
+        formatter.format(clusters, config.getFile("output-file"));
 
-
+        logger.info(String.format("Detected cluster(s) have been recorder in %s.", config.getFile("output-file").getAbsolutePath()));
 
     }
 }
