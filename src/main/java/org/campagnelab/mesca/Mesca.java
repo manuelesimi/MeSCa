@@ -2,6 +2,7 @@ package org.campagnelab.mesca;
 
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.log4j.Logger;
+import org.campagnelab.mesca.input.PriorityScoreComparator;
 import org.campagnelab.mesca.list.DoublyLinkedList;
 import org.campagnelab.mesca.input.Sample;
 import org.campagnelab.mesca.input.VCFReader;
@@ -72,12 +73,18 @@ public class Mesca {
         //sample iterators testing, TODO to remove
         ListIterator<Sample> backwardIterator = sampleList.backwardIterator(sampleList.size()-1);
         while (backwardIterator.hasPrevious()) {
-            logger.info("Go backward: " + backwardIterator.previous().toString());
+            logger.info("Going backward: " + backwardIterator.previous().toString());
         }
 
         ListIterator<Sample> forwardIterator = sampleList.forwardIterator(0);
         while (forwardIterator.hasNext()) {
-            logger.info("Go forward: " + forwardIterator.next().toString());
+            logger.info("Going forward: " + forwardIterator.next().toString());
+        }
+        sampleList.sort(new PriorityScoreComparator());
+
+        ListIterator<Sample> forwardIterator2 = sampleList.iterator();
+        while (forwardIterator2.hasNext()) {
+            logger.info("Going forward2: " + forwardIterator2.next().toString());
         }
 
     }

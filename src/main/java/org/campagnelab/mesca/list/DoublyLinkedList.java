@@ -58,6 +58,14 @@ public class DoublyLinkedList<E> {
         Collections.shuffle(this.internalList);
     }
 
+    /**
+     * Gets an iterator that navigate the list in the actual order.
+     * @return
+     */
+    public ListIterator<E> iterator() {
+        return new Iterator<E>(internalList.iterator());
+    }
+
     public ListIterator<E> forwardIterator(int position) {
         return new LinkedForwardIterator<E>(internalList.get(position));
     }
@@ -71,6 +79,65 @@ public class DoublyLinkedList<E> {
     }
 
     /**
+     * An iterator that navigates the list in the actual order.
+     * @param <E>
+     */
+    private class Iterator<E> implements ListIterator<E> {
+
+        private java.util.Iterator<Node<E>> iterator;
+
+        public Iterator(java.util.Iterator<Node<E>> iterator) {
+           this.iterator = iterator;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return this.iterator.hasNext();
+        }
+
+        @Override
+        public E next() {
+            return this.iterator.next().element;
+        }
+
+        @Override
+        public boolean hasPrevious() {
+            return false;
+        }
+
+        @Override
+        public E previous() {
+            return null;
+        }
+
+        @Override
+        public int nextIndex() {
+            return 0;
+        }
+
+        @Override
+        public int previousIndex() {
+            return 0;
+        }
+
+        @Override
+        public void remove() {
+            this.iterator.remove();
+        }
+
+        @Override
+        public void set(E e) {
+
+        }
+
+        @Override
+        public void add(E e) {
+
+        }
+    }
+
+
+        /**
      * An iterator to navigate linked elements in the backward direction.
      *
      * @param <E>
