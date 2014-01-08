@@ -81,7 +81,7 @@ public class Mesca {
             logger.info("Going forward: " + forwardIterator.next().toString());
         }
         sampleList.sort(new PriorityScoreComparator());
-
+        sampleList.reverse();
         ListIterator<Sample> forwardIterator2 = sampleList.iterator();
         while (forwardIterator2.hasNext()) {
             logger.info("Going forward2: " + forwardIterator2.next().toString());

@@ -50,7 +50,12 @@ public class DoublyLinkedList<E> {
         Collections.sort(this.internalList, c);
     }
 
-
+    /**
+     * Reverses the order of the elements in the list.
+     */
+    public void reverse() {
+        Collections.reverse(this.internalList);
+    }
     /**
      *  Randomly permutes the list.
      */
