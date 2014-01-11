@@ -40,7 +40,7 @@ public class DoublyLinkedListTest {
     }
 
     @Test
-    public void testSequentialForwardIterator() throws Exception {
+    public void testSequentialForwardIterator() {
         Iterator<Sample> forwardIterator2 = samplesList.iterator();
         assertEquals(0.20200586F, forwardIterator2.next().getPriorityScore());
         assertEquals(0.050501466F, forwardIterator2.next().getPriorityScore());
@@ -50,7 +50,7 @@ public class DoublyLinkedListTest {
     }
 
     @Test
-    public void testForwardIterator() throws Exception {
+    public void testForwardIterator() {
         ListIterator<Sample> forwardIterator = samplesList.forwardIterator(0);
         assertEquals(-0.4496079F,forwardIterator.next().getPriorityScore());
         assertEquals(-3.4028235E38F,forwardIterator.next().getPriorityScore());
