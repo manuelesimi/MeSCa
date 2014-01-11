@@ -7,12 +7,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNull;
 
 /**
  * Created by manuelesimi on 1/8/14.
@@ -36,46 +34,45 @@ public class DoublyLinkedListTest {
             }
         }
         assertEquals("Invalid number of samples found", 12, samplesList.size());
-    }
-
-    @Test
-    public void testSort() throws Exception {
         samplesList.sort(new PriorityScoreComparator());
-    }
+        samplesList.reverse();
 
-    @Test
-    public void testReverse() throws Exception {
-       samplesList.reverse();
     }
 
     @Test
     public void testSequentialForwardIterator() throws Exception {
         Iterator<Sample> forwardIterator2 = samplesList.iterator();
-        while (forwardIterator2.hasNext()) {
-            System.out.println("Going forward with sequential iterator: "
-                    + forwardIterator2.next().toString());
-        }
+        assertEquals(0.20200586F, forwardIterator2.next().getPriorityScore());
+        assertEquals(0.050501466F, forwardIterator2.next().getPriorityScore());
+        assertEquals(66001418, forwardIterator2.next().getPosition());
+        assertEquals(883568, forwardIterator2.next().getPosition());
+        assertEquals(881627, forwardIterator2.next().getPosition());
     }
 
     @Test
     public void testForwardIterator() throws Exception {
         ListIterator<Sample> forwardIterator = samplesList.forwardIterator(0);
-        while (forwardIterator.hasNext()) {
-            System.out.println("Going forward: " + forwardIterator.next().toString());
-        }
+        assertEquals(-0.4496079F,forwardIterator.next().getPriorityScore());
+        assertEquals(-3.4028235E38F,forwardIterator.next().getPriorityScore());
+        assertEquals(0.050501466F,forwardIterator.next().getPriorityScore());
+        assertEquals(65868310,forwardIterator.next().getPosition());
+        assertEquals(65868310,forwardIterator.next().getPosition());
+        assertEquals(66001418,forwardIterator.next().getPosition());
+        assertEquals(66001418,forwardIterator.next().getPosition());
+
 
     }
 
-    @Test
+    @Test(expected=NoSuchElementException.class)
     public void testBackwardIterator() throws Exception {
         ListIterator<Sample> backwardIterator = samplesList.backwardIterator(samplesList.size()-1);
-        while (backwardIterator.hasPrevious()) {
-            System.out.println("Going backward: " + backwardIterator.previous().toString());
-        }
+        assertEquals(-0.4496079F,backwardIterator.previous().getPriorityScore());
+        assertEquals(0.20200586F,backwardIterator.previous().getPriorityScore());
+        backwardIterator.previous();
     }
 
     @Test
     public void testSize() throws Exception {
-
+       assertEquals(12,samplesList.size());
     }
 }

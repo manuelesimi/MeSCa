@@ -1,5 +1,7 @@
 package org.campagnelab.mesca.list;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+
 import java.util.*;
 
 /**
@@ -9,7 +11,7 @@ import java.util.*;
  */
 public class DoublyLinkedList<E> implements Iterable<E> {
 
-    List<Node<E>> internalList = new ArrayList<Node<E>>();
+    ObjectArrayList<Node<E>> internalList = new ObjectArrayList<Node<E>>();
 
     public boolean add(E element) {
         Node<E> node = new Node<E>(element);
