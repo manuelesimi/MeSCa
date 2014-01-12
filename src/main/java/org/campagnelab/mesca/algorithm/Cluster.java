@@ -1,5 +1,7 @@
 package org.campagnelab.mesca.algorithm;
 
+import java.util.Comparator;
+
 /**
  * A cluster of ....
  *
@@ -22,7 +24,6 @@ class Cluster {
      */
     private int highestPS;
 
-
     private long startPosition;
 
     private long lowestPosition;
@@ -43,6 +44,22 @@ class Cluster {
     }
 
     protected void close() {
+
+    }
+
+    public int getUniquePatients() {
+        return uniquePatients;
+    }
+
+    public static class ClusterComparator implements Comparator<Cluster> {
+
+        @Override
+        public int compare(Cluster cluster1, Cluster cluster2) {
+            //TODO: refine the comparator to consider also the size and score of the cluster?
+            return cluster1.getUniquePatients() < cluster2.getUniquePatients() ? -1
+                    : cluster1.getUniquePatients() > cluster2.getUniquePatients() ? 1
+                    : 0;
+        }
 
     }
 }

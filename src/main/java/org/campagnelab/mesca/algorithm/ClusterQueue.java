@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 /**
  * The clusters detected by {@link org.campagnelab.mesca.algorithm.ClusterDetector}.
- * Cluster are queued and dequeued according to the given comparator.
+ * Cluster are queued and dequeued according to Cluster.ClusterComparator().
  *
  * @author manuele
  */
@@ -16,10 +16,9 @@ public class ClusterQueue {
 
     /**
      *
-     * @param comparator the comparator used in this queue
      */
-    protected ClusterQueue(Comparator<? super Cluster> comparator) {
-        outputQueue = new ObjectArrayPriorityQueue<Cluster>(comparator);
+    protected ClusterQueue() {
+        outputQueue = new ObjectArrayPriorityQueue<Cluster>(new Cluster.ClusterComparator());
     }
 
     /**
