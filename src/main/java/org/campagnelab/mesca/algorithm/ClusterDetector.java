@@ -1,5 +1,6 @@
 package org.campagnelab.mesca.algorithm;
 
+import org.apache.log4j.Logger;
 import org.campagnelab.mesca.input.Sample;
 import org.campagnelab.mesca.list.DoublyLinkedList;
 
@@ -15,9 +16,12 @@ import java.util.*;
  */
 public final class ClusterDetector {
 
+    private static final org.apache.log4j.Logger logger = Logger.getLogger(ClusterDetector.class);
+
     private List<StopCondition> stopConditions = new ArrayList<StopCondition>();
 
     private final DoublyLinkedList<Sample> sampleList;
+    private final ClusterQueue clusterQueue;
 
 
     /**
@@ -25,6 +29,7 @@ public final class ClusterDetector {
      */
     public ClusterDetector(DoublyLinkedList<Sample> sampleList) {
         this.sampleList = sampleList;
+        this.clusterQueue = new ClusterQueue();
     }
 
     public void addStopCondition(StopCondition stopCondition) {
@@ -40,7 +45,16 @@ public final class ClusterDetector {
         ClusterQueue clusters = new ClusterQueue();
         for (Sample sample : sampleList) {
             //try to build a cluster around the sample
-
+            try {
+                Cluster cluster = new Cluster(sample.getPosition());
+                cluster.goLeft(sampleList.backwardIterator(sample.getPosition()));
+                cluster.goRight(sampleList.forwardIterator(sample.getPosition()));
+                cluster.close();
+                if (cluster.isRelevant())
+                 this.clusterQueue.addCluster(cluster);
+            } catch (Exception e) {
+                logger.error("Failed to create cluster around position " + sample.getPosition());
+            }
         }
         return clusters;
     }

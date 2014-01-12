@@ -1,6 +1,9 @@
 package org.campagnelab.mesca.algorithm;
 
+import org.campagnelab.mesca.input.Sample;
+
 import java.util.Comparator;
+import java.util.ListIterator;
 
 /**
  * A cluster of ....
@@ -35,11 +38,11 @@ class Cluster {
       this.startPosition = startPosition;
     }
 
-    protected boolean goLeft() {
+    protected boolean goLeft(ListIterator<Sample> sampleListIterator) {
         return false;
     }
 
-    protected boolean goRight() {
+    protected boolean goRight(ListIterator<Sample> sampleListIterator) {
         return false;
     }
 
@@ -49,6 +52,15 @@ class Cluster {
 
     public int getUniquePatients() {
         return uniquePatients;
+    }
+
+    /**
+     * Decides whether this cluster is relevant or not.
+     * A relevant cluster is included in the output queue.
+     * @return
+     */
+    public boolean isRelevant() {
+        return true;
     }
 
     public static class ClusterComparator implements Comparator<Cluster> {
