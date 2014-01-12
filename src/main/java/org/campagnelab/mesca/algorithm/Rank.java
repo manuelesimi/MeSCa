@@ -2,15 +2,15 @@ package org.campagnelab.mesca.algorithm;
 
 /**
  *
- * The quality score is a measure of the quality of a cluster.
- * The score is calculated weighting different aspects of the cluster
+ * The cluster rank is a measure of the quality of a cluster.
+ * The rank is calculated weighting different aspects of the cluster
  * such as: the number of unique patients, the priority score of each position,
  * the size of the cluster and others.
- * When it decreases, a stop condition occurs.
+ * A decreasing rank represents a stop condition for the cluster.
  *
  * @author manuele
  */
-public class QualityScore extends BaseStopCondition {
+public class Rank extends BaseStopCondition {
 
     @Override
     public boolean apply(Cluster cluster) {
