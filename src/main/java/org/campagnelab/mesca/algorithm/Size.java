@@ -3,7 +3,7 @@ package org.campagnelab.mesca.algorithm;
 /**
  * @author manuele
  */
-public class ClusterTooBig extends BaseStopCondition {
+public class Size extends BaseStopCondition {
 
     @Override
     public boolean apply(Cluster cluster) {

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d2a3553-4c97-422b-9ac5-3d284844b2df" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/QualityScore.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Rank.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterTooBig.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Size.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="VCFClusterDetector.iws" />
@@ -113,10 +113,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Rank.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Rank.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Rank.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="3" selection-start="367" selection-end="367" vertical-scroll-proportion="0.252505" vertical-offset="0" max-vertical-offset="499">
+            <state line="15" column="25" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="434">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Size.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Size.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="17" selection-start="86" selection-end="86" vertical-scroll-proportion="0.14705883" vertical-offset="0" max-vertical-offset="476">
               <folding />
             </state>
           </provider>
@@ -172,15 +181,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClusterDetector.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterDetector.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="49" selection-start="1076" selection-end="1076" vertical-scroll-proportion="0.0" vertical-offset="201" max-vertical-offset="700">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -194,7 +194,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/Position.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/DataLine.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/CodingOffset.java" />
         <option value="$PROJECT_DIR$/test-data/vcf/MLWQHLM-GIR-KAN-BWA-3-15stats-first-500.vcf" />
@@ -235,7 +234,6 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/StopCondition.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/QualityScore.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterTooBig.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/FirstElement.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/LastElement.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
@@ -245,6 +243,8 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterDetector.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Rank.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterTooBig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Size.java" />
       </list>
     </option>
   </component>
@@ -974,7 +974,7 @@
       <workItem from="1389141502319" duration="3901000" />
       <workItem from="1389195354487" duration="7207000" />
       <workItem from="1389223258359" duration="8091000" />
-      <workItem from="1389473699274" duration="6350000" />
+      <workItem from="1389473699274" duration="6591000" />
     </task>
     <task id="LOCAL-00001" summary="Sketch java classes for the detection algorithm.&#10;">
       <created>1388237419699</created>
@@ -1092,11 +1092,15 @@
       <created>1389552315898</created>
       <updated>1389552315898</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Rename QualityScore to Rank.">
+      <created>1389552676554</created>
+      <updated>1389552676555</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145933000" />
+    <option name="totallyTimeSpent" value="146174000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="668" extended-state="0" />
@@ -1142,7 +1146,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Refactor VCFReader to use fields instead of columns. Remove DataLine class." />
     <MESSAGE value="Assign position codes to Samples. Position codes allow to reduce the information to keep in the sorted list by mapping  a pair &lt;chromosome, absolute-position&gt; into a single value." />
     <MESSAGE value="Map patient information with an index. Again, the goal is to save as much space as possible in the global sorted list." />
     <MESSAGE value="Fix access modifiers in PositionCodeCalculator." />
@@ -1167,7 +1170,8 @@
     <MESSAGE value="Remove exceptions from some test cases." />
     <MESSAGE value="Model the output cluster queue." />
     <MESSAGE value="Define the cluster comparator to use in the output queue." />
-    <option name="LAST_COMMIT_MESSAGE" value="Define the cluster comparator to use in the output queue." />
+    <MESSAGE value="Rename QualityScore to Rank." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename QualityScore to Rank." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1177,7 +1181,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterTooBig.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Size.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="43" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="322" />
       </provider>
@@ -1471,13 +1475,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterTooBig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="41" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="322">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="62" column="0" selection-start="1894" selection-end="1894" vertical-scroll-proportion="0.9461538" vertical-offset="376" max-vertical-offset="980">
@@ -1543,7 +1540,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Rank.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="3" selection-start="367" selection-end="367" vertical-scroll-proportion="0.252505" vertical-offset="0" max-vertical-offset="499">
+        <state line="15" column="25" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="434">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Size.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="17" selection-start="86" selection-end="86" vertical-scroll-proportion="0.14705883" vertical-offset="0" max-vertical-offset="476">
           <folding />
         </state>
       </provider>
