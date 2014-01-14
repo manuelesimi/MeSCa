@@ -2,8 +2,7 @@ package org.campagnelab.mesca;
 
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.log4j.Logger;
-import org.campagnelab.mesca.algorithm.ClusterDetector;
-import org.campagnelab.mesca.algorithm.ClusterQueue;
+import org.campagnelab.mesca.algorithm.*;
 import org.campagnelab.mesca.input.PriorityScoreComparator;
 import org.campagnelab.mesca.list.DoublyLinkedList;
 import org.campagnelab.mesca.input.Sample;
@@ -76,7 +75,9 @@ public class Mesca {
         ClusterDetector detector = new ClusterDetector(sampleList);
 
         //create stop conditions
-
+        detector.addStopCondition(new Size(sampleList));
+        detector.addStopCondition(new LastElement(sampleList));
+        detector.addStopCondition(new FirstElement(sampleList));
 
         //invoke ClusterDetector
         ClusterQueue clusters = detector.detect();

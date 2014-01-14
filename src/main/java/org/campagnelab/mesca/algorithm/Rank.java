@@ -1,5 +1,8 @@
 package org.campagnelab.mesca.algorithm;
 
+import org.campagnelab.mesca.input.Sample;
+import org.campagnelab.mesca.list.DoublyLinkedList;
+
 /**
  *
  * The cluster rank is a measure of the quality of a cluster.
@@ -11,6 +14,14 @@ package org.campagnelab.mesca.algorithm;
  * @author manuele
  */
 public class Rank extends BaseStopCondition {
+
+    public Rank(final DoublyLinkedList<Sample> sampleList) {
+        super(sampleList);
+    }
+
+    public Rank(final DoublyLinkedList<Sample> sampleList, int order) {
+        super(sampleList, order);
+    }
 
     @Override
     public boolean apply(Cluster cluster) {
