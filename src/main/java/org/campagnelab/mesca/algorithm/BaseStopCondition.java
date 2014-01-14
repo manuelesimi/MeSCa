@@ -15,6 +15,8 @@ public abstract class BaseStopCondition implements StopCondition {
      */
     protected Integer order = 0;
 
+    protected String message = "";
+
     @Override
     public void setOrder(int order) {
        this.order = order;
@@ -23,6 +25,12 @@ public abstract class BaseStopCondition implements StopCondition {
     @Override
     public int getOrder() {
         return this.order;
+    }
+
+
+    @Override
+    public String getMessage() {
+        return this.message;
     }
 
     @Override

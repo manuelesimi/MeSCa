@@ -9,9 +9,4 @@ public class FirstElement extends BaseStopCondition {
     public boolean apply(Cluster cluster) {
         return false;
     }
-
-    @Override
-    public String getMessage() {
-        return null;
-    }
 }

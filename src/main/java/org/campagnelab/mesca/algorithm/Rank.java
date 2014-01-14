@@ -17,9 +17,4 @@ public class Rank extends BaseStopCondition {
         return false;
     }
 
-    @Override
-    public String getMessage() {
-        return null;
-    }
-
 }

@@ -10,8 +10,4 @@ public class LastElement extends BaseStopCondition {
         return false;
     }
 
-    @Override
-    public String getMessage() {
-        return null;
-    }
 }
