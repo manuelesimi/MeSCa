@@ -75,9 +75,11 @@ public class Mesca {
         ClusterDetector detector = new ClusterDetector(sampleList);
 
         //create stop conditions
+        Size size = new Size(sampleList);
+        size.setMaxClusterSize(1000);
         detector.addStopCondition(new Size(sampleList));
-        detector.addStopCondition(new LastElement(sampleList));
-        detector.addStopCondition(new FirstElement(sampleList));
+        //detector.addStopCondition(new LastElement(sampleList));
+        //detector.addStopCondition(new FirstElement(sampleList));
 
         //invoke ClusterDetector
         ClusterQueue clusters = detector.detect();

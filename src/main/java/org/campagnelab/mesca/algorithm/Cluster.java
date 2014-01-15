@@ -29,13 +29,21 @@ class Cluster {
 
     private long startPosition;
 
-    private long lowestPosition;
+    private long lastPosition;
 
-    private long highestPosition;
+    private long firstPosition;
 
 
     protected Cluster(long startPosition) {
       this.startPosition = startPosition;
+    }
+
+    public long firstPosition() {
+        return firstPosition;
+    }
+
+    public long lastPosition() {
+        return lastPosition;
     }
 
     protected boolean goLeft(ListIterator<Sample> sampleListIterator) {
