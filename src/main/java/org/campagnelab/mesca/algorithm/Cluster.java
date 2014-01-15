@@ -3,6 +3,7 @@ package org.campagnelab.mesca.algorithm;
 import org.campagnelab.mesca.input.Sample;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.ListIterator;
 
 /**
@@ -27,15 +28,17 @@ class Cluster {
      */
     private int highestPS;
 
-    private long startPosition;
+    private final long startPosition;
 
+    private final List<StopCondition> stopConditions;
     private long lastPosition;
 
     private long firstPosition;
 
 
-    protected Cluster(long startPosition) {
+    protected Cluster(long startPosition, final List<StopCondition> stopConditions) {
       this.startPosition = startPosition;
+        this.stopConditions = stopConditions;
     }
 
     public long firstPosition() {

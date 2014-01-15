@@ -46,7 +46,7 @@ public final class ClusterDetector {
         for (Sample sample : sampleList) {
             //try to build a cluster around the sample
             try {
-                Cluster cluster = new Cluster(sample.getPosition());
+                Cluster cluster = new Cluster(sample.getPosition(), this.stopConditions);
                 cluster.goLeft(sampleList.backwardIterator(sample.getPosition()));
                 cluster.goRight(sampleList.forwardIterator(sample.getPosition()));
                 cluster.close();
