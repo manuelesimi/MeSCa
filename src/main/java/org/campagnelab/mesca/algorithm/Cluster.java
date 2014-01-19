@@ -31,6 +31,7 @@ class Cluster {
     private final long startPosition;
 
     private final List<StopCondition> stopConditions;
+
     private long lastPosition;
 
     private long firstPosition;
@@ -49,12 +50,16 @@ class Cluster {
         return lastPosition;
     }
 
-    protected boolean goLeft(ListIterator<Sample> sampleListIterator) {
-        return false;
+    protected void goLeft(ListIterator<Sample> sampleListIterator) {
+        while (sampleListIterator.hasPrevious()) {
+
+        }
     }
 
-    protected boolean goRight(ListIterator<Sample> sampleListIterator) {
-        return false;
+    protected void goRight(ListIterator<Sample> sampleListIterator) {
+        while (sampleListIterator.hasNext()) {
+
+        }
     }
 
     protected void close() {

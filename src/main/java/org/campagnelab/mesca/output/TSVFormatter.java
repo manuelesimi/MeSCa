@@ -1,6 +1,7 @@
 package org.campagnelab.mesca.output;
 
 import org.campagnelab.mesca.algorithm.ClusterQueue;
+import org.campagnelab.mesca.algorithm.DetectorWatcher;
 
 import java.io.File;
 import java.io.PrintStream;
@@ -16,12 +17,16 @@ public class TSVFormatter implements Formatter {
     public TSVFormatter() {}
 
     @Override
-    public void format(ClusterQueue clusters, PrintStream stream) {
-
+    public void format(DetectorWatcher watcher, ClusterQueue clusters, PrintStream stream) {
+        printStatistics(watcher);
     }
 
     @Override
-    public void format(ClusterQueue clusters, File file) {
+    public void format(DetectorWatcher watcher, ClusterQueue clusters, File file) {
+        printStatistics(watcher);
+    }
 
+    private void printStatistics(DetectorWatcher watcher) {
+        System.out.println("Elapsed time: " + watcher.elapsedTime());
     }
 }
