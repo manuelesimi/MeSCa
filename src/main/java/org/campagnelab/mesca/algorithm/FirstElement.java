@@ -19,7 +19,7 @@ public class FirstElement extends BaseStopCondition {
     }
 
     @Override
-    public boolean apply(Cluster cluster) {
+    public boolean apply(Cluster cluster, Sample sample) {
         return false;
     }
 }

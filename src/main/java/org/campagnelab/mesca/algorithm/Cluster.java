@@ -7,12 +7,16 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * A cluster of ....
+ * A cluster of samples in a region matching a set of {@link org.campagnelab.mesca.algorithm.StopCondition}s.
  *
  * @author manuele
  */
 class Cluster {
 
+    protected static enum DIRECTION {
+        LEFT,
+        RIGHT
+    }
     /**
      * Number of unique patients in the cluster.
      */
@@ -28,37 +32,84 @@ class Cluster {
      */
     private int highestPS;
 
+    /**
+     * The position around which the cluster is built.
+     */
     private final long startPosition;
 
     private final List<StopCondition> stopConditions;
 
-    private long lastPosition;
+    private long rightEnd;
 
-    private long firstPosition;
+    private long leftEnd;
 
 
     protected Cluster(long startPosition, final List<StopCondition> stopConditions) {
-      this.startPosition = startPosition;
+        this.startPosition = startPosition;
         this.stopConditions = stopConditions;
     }
 
-    public long firstPosition() {
-        return firstPosition;
+    /**
+     * Gets the position at the left end of the cluster.
+     * @return
+     */
+    public long leftEnd() {
+        return leftEnd;
     }
 
-    public long lastPosition() {
-        return lastPosition;
+    /**
+     * Gets the position at the right end of the cluster.
+     * @return
+     */
+    public long rightEnd() {
+        return rightEnd;
     }
 
+    /**
+     * Extends the cluster to the next left positions.
+     * @param sampleListIterator
+     */
     protected void goLeft(ListIterator<Sample> sampleListIterator) {
-        while (sampleListIterator.hasPrevious()) {
-
+        leftLoop: while (sampleListIterator.hasPrevious()) {
+            Sample previous = sampleListIterator.previous();
+            for (StopCondition condition : this.stopConditions) {
+                if (condition.apply(this, previous, DIRECTION.LEFT)) {
+                    //skip the sample
+                    break leftLoop;
+                }
+            }
+            this.addSample(previous, DIRECTION.LEFT);
         }
     }
 
-    protected void goRight(ListIterator<Sample> sampleListIterator) {
-        while (sampleListIterator.hasNext()) {
+    /**
+     * Adds the sample to the cluster.
+     * @param sample
+     * @param direction
+     */
+    private void addSample(Sample sample, DIRECTION direction) {
 
+        //calculate if there is a new unique patient
+
+        //extend the cluster according to the position
+
+        //record if the sample has the lowest or highest priority
+    }
+
+    /**
+     * Extends the cluster to the next right positions.
+     * @param sampleListIterator
+     */
+    protected void goRight(ListIterator<Sample> sampleListIterator) {
+        rightLoop: while (sampleListIterator.hasNext()) {
+            Sample next = sampleListIterator.next();
+            for (StopCondition condition : this.stopConditions) {
+                if (condition.apply(this,next, DIRECTION.RIGHT)) {
+                  //skip the sample
+                  break rightLoop;
+                }
+            }
+            this.addSample(next, DIRECTION.RIGHT);
         }
     }
 

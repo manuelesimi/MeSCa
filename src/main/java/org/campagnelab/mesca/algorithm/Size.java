@@ -23,7 +23,7 @@ public class Size extends BaseStopCondition {
     }
 
     @Override
-    public boolean apply(Cluster cluster) {
-        return (cluster.lastPosition() - cluster.firstPosition()) > this.maxClusterSize;
+    public boolean apply(Cluster cluster, Sample sample) {
+        return (cluster.rightEnd() - cluster.leftEnd()) > this.maxClusterSize;
     }
 }
