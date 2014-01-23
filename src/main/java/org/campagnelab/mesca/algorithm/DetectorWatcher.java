@@ -1,6 +1,8 @@
 package org.campagnelab.mesca.algorithm;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Measure an execution of {@link org.campagnelab.mesca.algorithm.ClusterDetector}
@@ -13,13 +15,14 @@ public class DetectorWatcher {
 
     private String filename;
 
+    private List<StopCondition> stopConditions = new ArrayList<StopCondition>();
+
     /**
      * Create a stopwatch object.
      */
     public DetectorWatcher() {
         start = System.currentTimeMillis();
     }
-
 
     /**
      * Return elapsed time (in seconds) since this object was created.
@@ -35,5 +38,16 @@ public class DetectorWatcher {
 
     public String getInputFileName() {
         return this.filename;
+    }
+
+    public void addStopCondition(StopCondition condition) {
+        this.stopConditions.add(condition);
+    }
+
+    public String[] getDescriptionForStopConditions(){
+        String[] descriptions = new String[stopConditions.size()];
+        for (int i=0; i < stopConditions.size(); i++)
+            descriptions[i] = stopConditions.get(i).asString();
+        return descriptions;
     }
 }

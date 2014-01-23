@@ -42,6 +42,9 @@ public class Cluster {
 
     private long leftEnd;
 
+    private ListIterator<Sample> rightListIterator;
+
+    private ListIterator<Sample> leftListIterator;
 
     protected Cluster(long startPosition, final List<StopCondition> stopConditions) {
         this.startPosition = startPosition;
@@ -62,23 +65,6 @@ public class Cluster {
      */
     public long rightEnd() {
         return rightEnd;
-    }
-
-    /**
-     * Extends the cluster to the next left positions.
-     * @param sampleListIterator
-     */
-    protected void goLeft(ListIterator<Sample> sampleListIterator) {
-        leftLoop: while (sampleListIterator.hasPrevious()) {
-            Sample previous = sampleListIterator.previous();
-            for (StopCondition condition : this.stopConditions) {
-                if (condition.apply(this, previous, DIRECTION.LEFT)) {
-                    //skip the sample
-                    break leftLoop;
-                }
-            }
-            this.addSample(previous, DIRECTION.LEFT);
-        }
     }
 
     public Set<String> getSamples() {
@@ -113,24 +99,61 @@ public class Cluster {
     }
 
     /**
-     * Extends the cluster to the next right positions.
+     * Iterator to extend the cluster in the right direction.
      * @param sampleListIterator
      */
-    protected void goRight(ListIterator<Sample> sampleListIterator) {
-        rightLoop: while (sampleListIterator.hasNext()) {
-            Sample next = sampleListIterator.next();
-            for (StopCondition condition : this.stopConditions) {
-                if (condition.apply(this,next, DIRECTION.RIGHT)) {
-                  //skip the sample
-                  break rightLoop;
-                }
-            }
-            this.addSample(next, DIRECTION.RIGHT);
-        }
+    protected void addRightIterator(ListIterator<Sample> sampleListIterator) {
+        this.rightListIterator = sampleListIterator;
     }
 
-    protected void close() {
+    /**
+     * Iterator to extend the cluster in the left direction.
+     * @param sampleListIterator
+     */
+    protected void addLeftIterator(ListIterator<Sample> sampleListIterator) {
+        this.leftListIterator = sampleListIterator;
+    }
 
+    protected void detect() {
+       boolean haltDetection = false;
+       boolean haltRightExpansion = false;
+       boolean haltLeftExpansion = false;
+       while (! haltDetection) {
+           if (!haltRightExpansion)
+            haltRightExpansion = addNextRightPosition();
+           if(! haltLeftExpansion)
+            haltLeftExpansion =  addNextLeftPosition();
+           haltDetection = (haltRightExpansion && haltLeftExpansion);
+       }
+
+    }
+
+    private boolean addNextLeftPosition() {
+        if (!leftListIterator.hasPrevious())
+            return true;
+        Sample previous = leftListIterator.previous();
+        for (StopCondition condition : this.stopConditions) {
+            if (condition.apply(this,previous, DIRECTION.LEFT)) {
+                //skip the sample
+                return true;
+            }
+        }
+        this.addSample(previous, DIRECTION.LEFT);
+        return false;
+    }
+
+    private boolean addNextRightPosition() {
+        if (!rightListIterator.hasNext())
+            return true;
+        Sample next = rightListIterator.next();
+        for (StopCondition condition : this.stopConditions) {
+            if (condition.apply(this,next, DIRECTION.RIGHT)) {
+                //skip the sample
+                return true;
+            }
+        }
+        this.addSample(next, DIRECTION.RIGHT);
+        return false;
     }
 
 

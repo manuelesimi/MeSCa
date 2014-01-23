@@ -76,15 +76,16 @@ public class Mesca {
 
         //create stop conditions
         Size size = new Size(sampleList);
-        size.setMaxClusterSize(1000000000);
-        detector.addStopCondition(new Size(sampleList));
+        size.setMaxClusterSize(10000000);
+        detector.addStopCondition(size);
         //detector.addStopCondition(new LastElement(sampleList));
         //detector.addStopCondition(new FirstElement(sampleList));
 
         DetectorWatcher watcher = new DetectorWatcher();
         watcher.recordVCFInputFile(config.getFile("input-file"));
+        watcher.addStopCondition(size);
         //invoke ClusterDetector
-        ClusterQueue clusters = detector.detect();
+        ClusterQueue clusters = detector.run();
         logger.info(String.format("%d cluster(s) have been detected.", clusters.size()));
 
         //print the output

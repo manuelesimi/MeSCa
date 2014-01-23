@@ -26,4 +26,14 @@ public class Size extends BaseStopCondition {
     public boolean apply(Cluster cluster, Sample sample, Cluster.DIRECTION direction) {
         return (cluster.rightEnd() - cluster.leftEnd()) > this.maxClusterSize;
     }
+
+    /**
+     * Provides a string representation of the condition to include in the output report.
+     *
+     * @return
+     */
+    @Override
+    public String asString() {
+        return "Max Cluster Size: " + this.maxClusterSize;
+    }
 }

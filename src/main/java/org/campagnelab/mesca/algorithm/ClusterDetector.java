@@ -21,15 +21,12 @@ public final class ClusterDetector {
     private List<StopCondition> stopConditions = new ArrayList<StopCondition>();
 
     private final DoublyLinkedList<Sample> sampleList;
-    private final ClusterQueue clusterQueue;
-
 
     /**
      * @param sampleList the list of samples to clusterize.
      */
     public ClusterDetector(DoublyLinkedList<Sample> sampleList) {
         this.sampleList = sampleList;
-        this.clusterQueue = new ClusterQueue();
     }
 
     public void addStopCondition(StopCondition stopCondition) {
@@ -37,10 +34,10 @@ public final class ClusterDetector {
     }
 
     /**
-     * Detects the cluster in the sampleList.
+     * Detects the clusters in the sampleList.
      * @return
      */
-    public ClusterQueue detect() {
+    public ClusterQueue run() {
         Collections.sort(stopConditions);
         ClusterQueue clusters = new ClusterQueue();
         for (int index = 0; index < sampleList.size(); index++) {
@@ -49,9 +46,9 @@ public final class ClusterDetector {
             logger.info("Trying to cluster around position " + sample.getPosition());
             try {
                 Cluster cluster = new Cluster(sample.getPosition(), this.stopConditions);
-                cluster.goLeft(sampleList.backwardIterator(index));
-                cluster.goRight(sampleList.forwardIterator(index));
-                cluster.close();
+                cluster.addLeftIterator(sampleList.backwardIterator(index));
+                cluster.addRightIterator(sampleList.forwardIterator(index));
+                cluster.detect();
                 if (cluster.isRelevant())
                     clusters.addCluster(cluster);
             } catch (Exception e) {

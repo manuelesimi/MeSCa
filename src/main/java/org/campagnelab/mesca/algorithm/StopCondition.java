@@ -30,4 +30,10 @@ public interface StopCondition extends Comparable<StopCondition>{
      * @return
      */
     public int getOrder();
+
+    /**
+     * Provides a string representation of the condition to include in the output report.
+     * @return
+     */
+    public String asString();
 }

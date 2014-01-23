@@ -27,4 +27,13 @@ public class Rank extends BaseStopCondition {
     public boolean apply(Cluster cluster, Sample sample, Cluster.DIRECTION direction) {
         return false;
     }
+    /**
+     * Provides a string representation of the condition to include in the output report.
+     *
+     * @return
+     */
+    @Override
+    public String asString() {
+        return "Rank: ";
+    }
 }
