@@ -24,8 +24,7 @@ public class Rank extends BaseStopCondition {
     }
 
     @Override
-    public boolean apply(Cluster cluster, Sample sample) {
+    public boolean apply(Cluster cluster, Sample sample, Cluster.DIRECTION direction) {
         return false;
     }
-
 }
