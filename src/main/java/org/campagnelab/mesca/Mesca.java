@@ -76,7 +76,7 @@ public class Mesca {
 
         //create stop conditions
         Size size = new Size(sampleList);
-        size.setMaxClusterSize(1000);
+        size.setMaxClusterSize(1000000000);
         detector.addStopCondition(new Size(sampleList));
         //detector.addStopCondition(new LastElement(sampleList));
         //detector.addStopCondition(new FirstElement(sampleList));

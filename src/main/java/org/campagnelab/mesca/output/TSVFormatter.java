@@ -27,6 +27,6 @@ public class TSVFormatter implements Formatter {
     }
 
     private void printStatistics(DetectorWatcher watcher) {
-        System.out.println("Elapsed time: " + watcher.elapsedTime());
+        System.out.println("Time elapsed: " + watcher.elapsedTime() + " sec");
     }
 }

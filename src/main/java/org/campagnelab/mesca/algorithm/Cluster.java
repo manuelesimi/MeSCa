@@ -92,6 +92,12 @@ class Cluster {
         //calculate if there is a new unique patient
 
         //extend the cluster according to the position
+        switch (direction) {
+            case LEFT:
+                break;
+            case RIGHT:
+                break;
+        }
 
         //record if the sample has the lowest or highest priority
     }

@@ -43,17 +43,19 @@ public final class ClusterDetector {
     public ClusterQueue detect() {
         Collections.sort(stopConditions);
         ClusterQueue clusters = new ClusterQueue();
-        for (Sample sample : sampleList) {
+        for (int index = 0; index < sampleList.size(); index++) {
+            Sample sample = sampleList.get(index);
             //try to build a cluster around the sample
+            logger.info("Trying to cluster around position " + sample.getPosition());
             try {
                 Cluster cluster = new Cluster(sample.getPosition(), this.stopConditions);
-                cluster.goLeft(sampleList.backwardIterator(sample.getPosition()));
-                cluster.goRight(sampleList.forwardIterator(sample.getPosition()));
+                cluster.goLeft(sampleList.backwardIterator(index));
+                cluster.goRight(sampleList.forwardIterator(index));
                 cluster.close();
                 if (cluster.isRelevant())
                  this.clusterQueue.addCluster(cluster);
             } catch (Exception e) {
-                logger.error("Failed to create cluster around position " + sample.getPosition());
+                logger.error("Failed to create cluster around position " + sample.getPosition(),e);
             }
         }
         return clusters;
