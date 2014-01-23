@@ -6,6 +6,7 @@ import org.campagnelab.mesca.algorithm.DetectorWatcher;
 
 import java.io.File;
 import java.io.PrintStream;
+import java.util.Arrays;
 
 /**
  * Created by mas2182 on 1/8/14.
@@ -25,24 +26,29 @@ public class TSVFormatter implements Formatter {
         Cluster cluster;
         while (clusters.size() > 0) {
             cluster = clusters.getCluster();
-            stream.println(String.format("%s%s[%d:%d]%s%d%s[%f:%f]",
-                    cluster.getName(),
-                    separator,
-                    cluster.leftEnd(),
-                    cluster.rightEnd(),
-                    separator,
-                    cluster.getUniquePatients(),
-                    separator,
-                    cluster.getMinPriorityScore(),
-                    cluster.getMaxPriorityScore()
-            ));
-
+            stream.println(buildLine(cluster));
         }
 
     }
 
     @Override
     public void format(DetectorWatcher watcher, ClusterQueue clusters, File file) {
+    }
+
+    private String buildLine(Cluster cluster) {
+        return String.format("%s%s[%d:%d]%s%d%s%s%s[%f:%f]",
+                cluster.getName(),
+                separator,
+                cluster.leftEnd(),
+                cluster.rightEnd(),
+                separator,
+                cluster.getUniquePatients(),
+                separator,
+                Arrays.toString(cluster.getSamples().toArray(new String[0])),
+                separator,
+                cluster.getMinPriorityScore(),
+                cluster.getMaxPriorityScore()
+        );
     }
 
     private String[] getStatistics(DetectorWatcher watcher) {

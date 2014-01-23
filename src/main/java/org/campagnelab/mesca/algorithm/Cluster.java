@@ -19,7 +19,7 @@ public class Cluster {
     /**
      * Number of unique patients in the cluster.
      */
-    private Set<Integer> uniquePatients = new HashSet<Integer>();
+    private Set<String> uniquePatients = new HashSet<String>();
 
     /**
      * Lowest priority score in the cluster.
@@ -81,6 +81,10 @@ public class Cluster {
         }
     }
 
+    public Set<String> getSamples() {
+        return Collections.unmodifiableSet(this.uniquePatients);
+    }
+
     /**
      * Adds the sample to the cluster.
      * @param sample
@@ -89,7 +93,7 @@ public class Cluster {
     private void addSample(Sample sample, DIRECTION direction) {
 
         //calculate if there is a new unique patient
-        uniquePatients.add(sample.getID());
+        uniquePatients.add(sample.getName());
 
         //extend the cluster according to the position
         switch (direction) {
