@@ -2,16 +2,15 @@ package org.campagnelab.mesca.algorithm;
 
 import org.campagnelab.mesca.input.Sample;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 /**
  * A cluster of samples in a region matching a set of {@link org.campagnelab.mesca.algorithm.StopCondition}s.
  *
  * @author manuele
  */
-class Cluster {
+public class Cluster {
+
 
     protected static enum DIRECTION {
         LEFT,
@@ -20,17 +19,17 @@ class Cluster {
     /**
      * Number of unique patients in the cluster.
      */
-    private int uniquePatients = 0;
+    private Set<Integer> uniquePatients = new HashSet<Integer>();
 
     /**
      * Lowest priority score in the cluster.
      */
-    private int lowestPS;
+    private float minPriorityScore = 0;
 
     /**
      * Highest priority score in the cluster.
      */
-    private int highestPS;
+    private float maxPriorityScore = 0;
 
     /**
      * The position around which the cluster is built.
@@ -90,16 +89,23 @@ class Cluster {
     private void addSample(Sample sample, DIRECTION direction) {
 
         //calculate if there is a new unique patient
+        uniquePatients.add(sample.getID());
 
         //extend the cluster according to the position
         switch (direction) {
             case LEFT:
+                    this.leftEnd = sample.getPosition();
                 break;
             case RIGHT:
+                    this.rightEnd = sample.getPosition();
                 break;
         }
 
         //record if the sample has the lowest or highest priority
+        if (sample.getPriorityScore() > this.maxPriorityScore)
+            this.maxPriorityScore = sample.getPriorityScore();
+        if (sample.getPriorityScore() < this.minPriorityScore)
+            this.minPriorityScore = sample.getPriorityScore();
     }
 
     /**
@@ -123,8 +129,21 @@ class Cluster {
 
     }
 
+
+    public String getName() {
+        return "C" + startPosition;
+    }
+
     public int getUniquePatients() {
-        return uniquePatients;
+        return uniquePatients.size();
+    }
+
+    public float getMaxPriorityScore() {
+        return maxPriorityScore;
+    }
+
+    public float getMinPriorityScore() {
+        return minPriorityScore;
     }
 
     /**
@@ -141,8 +160,8 @@ class Cluster {
         @Override
         public int compare(Cluster cluster1, Cluster cluster2) {
             //TODO: refine the comparator to consider also the size and score of the cluster?
-            return cluster1.getUniquePatients() < cluster2.getUniquePatients() ? -1
-                    : cluster1.getUniquePatients() > cluster2.getUniquePatients() ? 1
+            return cluster1.getUniquePatients() < cluster2.getUniquePatients() ? 1
+                    : cluster1.getUniquePatients() > cluster2.getUniquePatients() ? -1
                     : 0;
         }
 

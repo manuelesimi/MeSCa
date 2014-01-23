@@ -53,7 +53,7 @@ public final class ClusterDetector {
                 cluster.goRight(sampleList.forwardIterator(index));
                 cluster.close();
                 if (cluster.isRelevant())
-                 this.clusterQueue.addCluster(cluster);
+                    clusters.addCluster(cluster);
             } catch (Exception e) {
                 logger.error("Failed to create cluster around position " + sample.getPosition(),e);
             }

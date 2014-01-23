@@ -82,13 +82,15 @@ public class Mesca {
         //detector.addStopCondition(new FirstElement(sampleList));
 
         DetectorWatcher watcher = new DetectorWatcher();
+        watcher.recordVCFInputFile(config.getFile("input-file"));
         //invoke ClusterDetector
         ClusterQueue clusters = detector.detect();
         logger.info(String.format("%d cluster(s) have been detected.", clusters.size()));
 
         //print the output
         TSVFormatter formatter = new TSVFormatter();
-        formatter.format(watcher, clusters, config.getFile("output-file"));
+        //formatter.format(watcher, clusters, config.getFile("output-file"));
+        formatter.format(watcher, clusters, System.out);
 
         logger.info(String.format("Detected cluster(s) are available in %s.", config.getFile("output-file").getAbsolutePath()));
 
