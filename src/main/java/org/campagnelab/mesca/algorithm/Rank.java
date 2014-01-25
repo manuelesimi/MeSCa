@@ -29,10 +29,9 @@ public class Rank extends BaseStopCondition {
 
     @Override
     public boolean apply(Cluster cluster, Sample sample, Cluster.DIRECTION direction) {
-        //todo set relevant cluster or not
         Operands operands = analyzeCluster(cluster);
-        float newRank = calculateNewRank(operands, sample);
-        if (cluster.rank < newRank) {
+        float newRank = calculateNewRank(operands,cluster, sample);
+        if (cluster.rank < newRank || cluster.getNumOfSamples()==0) {
             cluster.rank = newRank;
             return false;
         }
@@ -41,16 +40,18 @@ public class Rank extends BaseStopCondition {
 
     @Override
     public boolean isRelevant(Cluster cluster) {
-        return this.calculateRank(this.analyzeCluster(cluster)) > MIN_RELEVANT_RANK;
+        return true;//this.calculateRank(this.analyzeCluster(cluster)) > MIN_RELEVANT_RANK;
     }
 
-    private float calculateNewRank(Operands operands, Sample sample) {
+    private float calculateNewRank(Operands operands, Cluster cluster, Sample sample) {
         operands.totalPriorityScores += sample.getPriorityScore();
         if (operands.leftEnd > sample.getPosition())
             operands.leftEnd = sample.getPosition();
         if (operands.rightEnd < sample.getPosition())
             operands.rightEnd = sample.getPosition();
-        //TODO: check if sample has a new patient
+        if (!cluster.hasPatient(sample.getName())) {
+            operands.uniquePatients++;
+        }
         return this.calculateRank(operands);
     }
 

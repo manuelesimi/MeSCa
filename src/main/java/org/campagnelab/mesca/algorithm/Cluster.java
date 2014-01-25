@@ -3,7 +3,6 @@ package org.campagnelab.mesca.algorithm;
 import it.unimi.dsi.fastutil.floats.FloatCollection;
 import it.unimi.dsi.fastutil.ints.Int2FloatArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2FloatMap;
-import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
 import org.campagnelab.mesca.input.Sample;
 
 import java.util.*;
@@ -92,6 +91,9 @@ public class Cluster {
         return priorityScoreAtPosition.values();
     }
 
+    protected int getNumOfSamples() {
+        return priorityScoreAtPosition.values().size();
+    }
     /**
      * Adds the sample to the cluster.
      * @param sample
@@ -179,6 +181,9 @@ public class Cluster {
         return false;
     }
 
+    public boolean hasPatient(String name) {
+        return this.uniquePatients.contains(name);
+    }
 
     public String getName() {
         return "C" + startPosition;
@@ -194,6 +199,10 @@ public class Cluster {
 
     public float getMinPriorityScore() {
         return minPriorityScore;
+    }
+
+    public float getRank() {
+        return this.rank;
     }
 
     /**

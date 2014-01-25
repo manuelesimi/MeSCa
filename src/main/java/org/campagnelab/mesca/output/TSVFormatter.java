@@ -36,7 +36,7 @@ public class TSVFormatter implements Formatter {
     }
 
     private String buildLine(Cluster cluster) {
-        return String.format("%s%s[%d:%d]%s%d%s%s%s[%f:%f]",
+        return String.format("%s%s[%d:%d]%s%d%s%s%s[%f:%f]%s%f",
                 cluster.getName(),
                 separator,
                 cluster.leftEnd(),
@@ -47,7 +47,9 @@ public class TSVFormatter implements Formatter {
                 Arrays.toString(cluster.getUniquePatientNames().toArray(new String[0])),
                 separator,
                 cluster.getMinPriorityScore(),
-                cluster.getMaxPriorityScore()
+                cluster.getMaxPriorityScore(),
+                separator,
+                cluster.getRank()
         );
     }
 
@@ -60,7 +62,7 @@ public class TSVFormatter implements Formatter {
 
 
     private String getHeader() {
-        return String.format("cluster-name%s[start_position:end_position]%snum_of_patients%ssample(s)%s[min_priority_score:max_priority_score]",
-                separator, separator,separator, separator);
+        return String.format("cluster-name%s[start_position:end_position]%snum_of_patients%ssample(s)%s[min_priority_score:max_priority_score]%srank",
+                separator, separator,separator, separator, separator);
     }
 }

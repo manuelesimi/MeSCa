@@ -74,8 +74,7 @@ public class Mesca {
         Size size = new Size(sampleList);
         size.setMaxClusterSize(10000000);
         detector.addStopCondition(size);
-        //detector.addStopCondition(new LastElement(sampleList));
-        //detector.addStopCondition(new FirstElement(sampleList));
+        detector.addStopCondition(new Rank(sampleList));
 
         DetectorWatcher watcher = new DetectorWatcher();
         watcher.recordVCFInputFile(config.getFile("input-file"));
