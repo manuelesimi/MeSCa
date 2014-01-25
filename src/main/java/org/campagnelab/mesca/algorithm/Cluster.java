@@ -1,5 +1,8 @@
 package org.campagnelab.mesca.algorithm;
 
+import it.unimi.dsi.fastutil.floats.FloatCollection;
+import it.unimi.dsi.fastutil.ints.Int2FloatArrayMap;
+import it.unimi.dsi.fastutil.ints.Int2FloatMap;
 import org.campagnelab.mesca.input.Sample;
 
 import java.util.*;
@@ -36,12 +39,14 @@ public class Cluster {
      */
     private final long startPosition;
 
+    private Int2FloatMap priorityScoreAtPosition = new Int2FloatArrayMap();
+
     private final List<StopCondition> stopConditions;
 
     /**
      * Min number of patients in the cluster that make it relevant.
      */
-    private static final int MIN_RELEVANT_PATIENTS = 2;
+    private static final int MIN_RELEVANT_PATIENTS = 2;   //TODO: will be a parameter in the command line
 
     private long rightEnd;
 
@@ -50,8 +55,6 @@ public class Cluster {
     private ListIterator<Sample> rightListIterator;
 
     private ListIterator<Sample> leftListIterator;
-
-    private boolean relevant = true;
 
     protected Cluster(long startPosition, final List<StopCondition> stopConditions) {
         this.startPosition = startPosition;
@@ -74,8 +77,16 @@ public class Cluster {
         return rightEnd;
     }
 
-    public Set<String> getSamples() {
+    public Set<String> getUniquePatientNames() {
         return Collections.unmodifiableSet(this.uniquePatients);
+    }
+
+    /**
+     * Gets all the priority scores of the samples in the cluster,
+     * @return
+     */
+    protected FloatCollection getAllPriorityScores() {
+        return priorityScoreAtPosition.values();
     }
 
     /**
@@ -103,6 +114,8 @@ public class Cluster {
             this.maxPriorityScore = sample.getPriorityScore();
         if (sample.getPriorityScore() < this.minPriorityScore)
             this.minPriorityScore = sample.getPriorityScore();
+
+        priorityScoreAtPosition.put(sample.getPosition(),sample.getPriorityScore());
     }
 
     /**
@@ -186,11 +199,11 @@ public class Cluster {
      * @return
      */
     protected boolean isRelevant() {
-        return (this.relevant && this.uniquePatients.size() >= MIN_RELEVANT_PATIENTS);
-    }
-
-    protected void markAsNotRelevant() {
-      this.relevant = false;
+        //check if the detected cluster is relevant according to the defined stop conditions
+        boolean relevant = true;
+        for (StopCondition condition : this.stopConditions)
+            if (!condition.isRelevant(this)) relevant = false;
+        return (relevant && this.uniquePatients.size() >= MIN_RELEVANT_PATIENTS);
     }
 
     public static class ClusterComparator implements Comparator<Cluster> {

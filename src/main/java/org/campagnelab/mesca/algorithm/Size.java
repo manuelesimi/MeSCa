@@ -27,6 +27,11 @@ public class Size extends BaseStopCondition {
         return (cluster.rightEnd() - cluster.leftEnd()) > this.maxClusterSize;
     }
 
+    @Override
+    public boolean isRelevant(Cluster cluster) {
+        return this.apply(cluster,null,null);
+    }
+
     /**
      * Provides a string representation of the condition to include in the output report.
      *

@@ -44,7 +44,7 @@ public class TSVFormatter implements Formatter {
                 separator,
                 cluster.getUniquePatients(),
                 separator,
-                Arrays.toString(cluster.getSamples().toArray(new String[0])),
+                Arrays.toString(cluster.getUniquePatientNames().toArray(new String[0])),
                 separator,
                 cluster.getMinPriorityScore(),
                 cluster.getMaxPriorityScore()

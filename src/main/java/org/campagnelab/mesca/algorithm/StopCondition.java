@@ -11,14 +11,21 @@ import org.campagnelab.mesca.input.Sample;
 public interface StopCondition extends Comparable<StopCondition>{
 
     /**
-     * Applies the stop condition to the cluster.
+     * Applies the stop condition to the cluster. When the cluster matches the condition, the
+     * expansion in the given direction is halted.
      * @param cluster
      * @param sample the sample that would be added to the cluster if the stop condition does not apply
      * @param direction the direction in which the sample would be added
-     * @return true if the cluster match the condition, false otherwise
+     * @return true if the cluster match the condition, false otherwise.
      */
     public boolean apply(Cluster cluster, Sample sample, Cluster.DIRECTION direction);
 
+    /**
+     * Checks if the cluster is relevant according to the condition.
+     * @param cluster
+     * @return  true if the cluster is relevant, false otherwise
+     */
+    public boolean isRelevant(Cluster cluster);
     /**
      * Gets the message from the last {@link org.campagnelab.mesca.algorithm.StopCondition#apply(Cluster, Sample, Cluster.DIRECTION)} invocation.
      * @return the message
