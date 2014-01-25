@@ -38,6 +38,11 @@ public class Cluster {
 
     private final List<StopCondition> stopConditions;
 
+    /**
+     * Min number of patients in the cluster that make it relevant.
+     */
+    private static final int MIN_RELEVANT_PATIENTS = 2;
+
     private long rightEnd;
 
     private long leftEnd;
@@ -45,6 +50,8 @@ public class Cluster {
     private ListIterator<Sample> rightListIterator;
 
     private ListIterator<Sample> leftListIterator;
+
+    private boolean relevant = true;
 
     protected Cluster(long startPosition, final List<StopCondition> stopConditions) {
         this.startPosition = startPosition;
@@ -174,12 +181,16 @@ public class Cluster {
     }
 
     /**
-     * Decides whether this cluster is relevant or not.
+     * Gets whether this cluster is relevant or not.
      * A relevant cluster is included in the output queue.
      * @return
      */
-    public boolean isRelevant() {
-        return true;
+    protected boolean isRelevant() {
+        return (this.relevant && this.uniquePatients.size() >= MIN_RELEVANT_PATIENTS);
+    }
+
+    protected void markAsNotRelevant() {
+      this.relevant = false;
     }
 
     public static class ClusterComparator implements Comparator<Cluster> {

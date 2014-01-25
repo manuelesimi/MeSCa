@@ -3,16 +3,12 @@ package org.campagnelab.mesca;
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.log4j.Logger;
 import org.campagnelab.mesca.algorithm.*;
-import org.campagnelab.mesca.input.PriorityScoreComparator;
 import org.campagnelab.mesca.list.DoublyLinkedList;
 import org.campagnelab.mesca.input.Sample;
 import org.campagnelab.mesca.input.VCFReader;
 import org.campagnelab.mesca.output.TSVFormatter;
 
-import java.io.File;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Entry point for the command line tool.
