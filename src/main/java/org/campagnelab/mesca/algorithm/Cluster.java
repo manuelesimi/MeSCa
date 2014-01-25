@@ -3,6 +3,7 @@ package org.campagnelab.mesca.algorithm;
 import it.unimi.dsi.fastutil.floats.FloatCollection;
 import it.unimi.dsi.fastutil.ints.Int2FloatArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2FloatMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
 import org.campagnelab.mesca.input.Sample;
 
 import java.util.*;
@@ -55,6 +56,8 @@ public class Cluster {
     private ListIterator<Sample> rightListIterator;
 
     private ListIterator<Sample> leftListIterator;
+
+    protected float rank = 0F;
 
     protected Cluster(long startPosition, final List<StopCondition> stopConditions) {
         this.startPosition = startPosition;

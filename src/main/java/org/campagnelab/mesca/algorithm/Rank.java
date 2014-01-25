@@ -31,11 +31,9 @@ public class Rank extends BaseStopCondition {
     public boolean apply(Cluster cluster, Sample sample, Cluster.DIRECTION direction) {
         //todo set relevant cluster or not
         Operands operands = analyzeCluster(cluster);
-        float actualRank = calculateRank(operands);
         float newRank = calculateNewRank(operands, sample);
-        if (actualRank > newRank) {
-           // if (newRank < MIN_RELEVANT_RANK)
-           //     cluster.markAsNotRelevant();
+        if (cluster.rank < newRank) {
+            cluster.rank = newRank;
             return false;
         }
         return true;
