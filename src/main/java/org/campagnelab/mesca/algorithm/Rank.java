@@ -17,7 +17,7 @@ import org.campagnelab.mesca.list.DoublyLinkedList;
  */
 public class Rank extends BaseStopCondition {
 
-    private static final float MIN_RELEVANT_RANK = 1F;
+    private static final float MIN_RELEVANT_RANK = 0F;
 
     public Rank(final DoublyLinkedList<Site> siteList) {
         super(siteList);
@@ -40,7 +40,7 @@ public class Rank extends BaseStopCondition {
 
     @Override
     public boolean isRelevant(Cluster cluster) {
-        return true;//this.calculateRank(this.analyzeCluster(cluster)) > MIN_RELEVANT_RANK;
+        return cluster.rank > MIN_RELEVANT_RANK;
     }
 
     private float calculateNewRank(Operands operands, Cluster cluster, Site[] sites) {

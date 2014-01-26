@@ -8,29 +8,39 @@ import org.campagnelab.mesca.list.DoublyLinkedList;
  */
 public class Size extends BaseStopCondition {
 
-    private long maxClusterSize;
+    private final long maxClusterSize;
 
-    public Size(final DoublyLinkedList<Site> siteList) {
+    public Size(final DoublyLinkedList<Site> siteList,long maxClusterSize) {
         super(siteList);
-    }
-
-    public Size(final DoublyLinkedList<Site> siteList, int order) {
-        super(siteList, order);
-    }
-
-    public void setMaxClusterSize(long maxClusterSize) {
         this.maxClusterSize = maxClusterSize;
+
     }
+
+    public Size(final DoublyLinkedList<Site> siteList, long maxClusterSize, int order) {
+        super(siteList, order);
+        this.maxClusterSize = maxClusterSize;
+
+    }
+
 
     @Override
     public boolean apply(Cluster cluster, Site[] sites, Cluster.DIRECTION direction) {
-        //TODO: this is not correct!!
-        return (cluster.rightEnd() - cluster.leftEnd()) > this.maxClusterSize;
+        float leftEnd = cluster.leftEnd();
+        float rightEnd = cluster.rightEnd();
+        for (Site site : sites) {
+            if (site == null)
+                continue;
+            if (leftEnd > site.getPosition())
+                leftEnd = site.getPosition();
+            if (rightEnd < site.getPosition())
+                rightEnd = site.getPosition();
+        }
+        return ((rightEnd - leftEnd) > this.maxClusterSize);
     }
 
     @Override
     public boolean isRelevant(Cluster cluster) {
-        return this.apply(cluster,null,null);
+        return ((cluster.rightEnd() - cluster.leftEnd()) < this.maxClusterSize);
     }
 
     /**
