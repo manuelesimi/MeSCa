@@ -64,16 +64,16 @@ public class VCFReader {
     }
 
     /**
-     * Reads the patients' samples at the next position.
-     * @return the samples found in the position or null if there is no position (e.g. EOF is reached).
+     * Reads the patients' sites at the next position.
+     * @return the sites found in the position or null if there is no position (e.g. EOF is reached).
      */
-    public Sample[] readNextPosition() throws InvalidDataLine {
-        Sample[] samples = null;
+    public Site[] readNextPosition() throws InvalidDataLine {
+        Site[] sites = null;
         if (parser.hasNextDataLine()) {
             try {
-                samples = new Sample[PatientInfoIndexer.size()];
+                sites = new Site[PatientInfoIndexer.size()];
                 for (PatientInfoIndexer.PatientInfo patientInfo : PatientInfoIndexer.getPatients())
-                    samples[patientInfo.index] = new Sample(patientInfo.index);
+                    sites[patientInfo.index] = new Site(patientInfo.index);
                 int chromosome = 0;
                 int position = 0;
                 for (int i = 0; i < parser.countAllFields(); i++) {
@@ -85,7 +85,7 @@ public class VCFReader {
                     } else if (name.startsWith("INFO[priority")) {
                         for (PatientInfoIndexer.PatientInfo patientInfo : PatientInfoIndexer.getPatients()) {
                             if (name.equals(patientInfo.infoFieldName)) {
-                               samples[patientInfo.index].setPriorityScore(Float.valueOf(parser.getFieldValue(i).toString()));
+                               sites[patientInfo.index].setPriorityScore(Float.valueOf(parser.getFieldValue(i).toString()));
                             }
                         }
                     }
@@ -95,9 +95,9 @@ public class VCFReader {
                     PositionCodeCalculator.openChromosome(chromosome, position);
                     currentChromosome = chromosome;
                 }  */
-                for (int s = 0; s < samples.length;s++) {
-                    samples[s].setPosition(position);
-                    samples[s].setChromosome(chromosome);
+                for (int s = 0; s < sites.length;s++) {
+                    sites[s].setPosition(position);
+                    sites[s].setChromosome(chromosome);
                 }
                 //currentEndPosition = position;
             } catch (Exception e) {
@@ -108,7 +108,7 @@ public class VCFReader {
                 parser.next();
             }
         }
-        return samples;
+        return sites;
     }
 
     /**

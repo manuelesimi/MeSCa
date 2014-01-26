@@ -5,7 +5,7 @@ package org.campagnelab.mesca.input;
  *
  * @author manuele
  */
-public class Sample {
+public class Site {
 
     private float priorityScore;
 
@@ -16,7 +16,7 @@ public class Sample {
     private int chromosome;
 
 
-    protected Sample(int id) {
+    protected Site(int id) {
         this.ID = id;
     }
 
@@ -41,7 +41,7 @@ public class Sample {
     }
 
     public String getName() {
-        return PatientInfoIndexer.getSampleName(ID);
+        return PatientInfoIndexer.getName(ID);
     }
 
     protected void setPosition(int position) {
@@ -57,7 +57,7 @@ public class Sample {
 
     @Override
     public String toString() {
-        return "Sample{" +
+        return "Site{" +
                 "priorityScore=" + priorityScore +
                 ", ID=" + ID +
                 ", position=" + position +

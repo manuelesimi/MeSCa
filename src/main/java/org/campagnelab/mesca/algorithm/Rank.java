@@ -2,7 +2,7 @@ package org.campagnelab.mesca.algorithm;
 ;
 import it.unimi.dsi.fastutil.floats.FloatCollection;
 import it.unimi.dsi.fastutil.floats.FloatIterator;
-import org.campagnelab.mesca.input.Sample;
+import org.campagnelab.mesca.input.Site;
 import org.campagnelab.mesca.list.DoublyLinkedList;
 
 /**
@@ -19,19 +19,19 @@ public class Rank extends BaseStopCondition {
 
     private static final float MIN_RELEVANT_RANK = 1F;
 
-    public Rank(final DoublyLinkedList<Sample> sampleList) {
-        super(sampleList);
+    public Rank(final DoublyLinkedList<Site> siteList) {
+        super(siteList);
     }
 
-    public Rank(final DoublyLinkedList<Sample> sampleList, int order) {
-        super(sampleList, order);
+    public Rank(final DoublyLinkedList<Site> siteList, int order) {
+        super(siteList, order);
     }
 
     @Override
-    public boolean apply(Cluster cluster, Sample[] samples, Cluster.DIRECTION direction) {
+    public boolean apply(Cluster cluster, Site[] sites, Cluster.DIRECTION direction) {
         Operands operands = analyzeCluster(cluster);
-        float newRank = calculateNewRank(operands,cluster, samples);
-        if (cluster.rank < newRank || cluster.getNumOfSamples()==0) {
+        float newRank = calculateNewRank(operands,cluster, sites);
+        if (cluster.rank < newRank || cluster.getNumOfSites()==0) {
             cluster.rank = newRank;
             return false;
         }
@@ -43,16 +43,16 @@ public class Rank extends BaseStopCondition {
         return true;//this.calculateRank(this.analyzeCluster(cluster)) > MIN_RELEVANT_RANK;
     }
 
-    private float calculateNewRank(Operands operands, Cluster cluster, Sample[] samples) {
-       for (Sample sample : samples) {
-           if (sample == null)
+    private float calculateNewRank(Operands operands, Cluster cluster, Site[] sites) {
+       for (Site site : sites) {
+           if (site == null)
                continue;
-           operands.totalPriorityScores += sample.getPriorityScore();
-           if (operands.leftEnd > sample.getPosition())
-               operands.leftEnd = sample.getPosition();
-           if (operands.rightEnd < sample.getPosition())
-               operands.rightEnd = sample.getPosition();
-           if (!cluster.hasPatient(sample.getName())) {
+           operands.totalPriorityScores += site.getPriorityScore();
+           if (operands.leftEnd > site.getPosition())
+               operands.leftEnd = site.getPosition();
+           if (operands.rightEnd < site.getPosition())
+               operands.rightEnd = site.getPosition();
+           if (!cluster.hasPatient(site.getName())) {
                operands.uniquePatients++;
            }
        }

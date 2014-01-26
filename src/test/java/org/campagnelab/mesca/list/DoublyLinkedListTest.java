@@ -1,7 +1,7 @@
 package org.campagnelab.mesca.list;
 
 import org.campagnelab.mesca.input.PriorityScoreComparator;
-import org.campagnelab.mesca.input.Sample;
+import org.campagnelab.mesca.input.Site;
 import org.campagnelab.mesca.input.VCFReader;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,17 +18,17 @@ import static junit.framework.Assert.assertNull;
 public class DoublyLinkedListTest {
 
     static VCFReader vcf;
-    static DoublyLinkedList<Sample> samplesList;
+    static DoublyLinkedList<Site> samplesList;
 
     @BeforeClass
     public static void setUp() throws Exception {
-        samplesList = new DoublyLinkedList<Sample>();
+        samplesList = new DoublyLinkedList<Site>();
         vcf = new VCFReader(new File("test-data/vcf/VCFReaderIntegrityInput.vcf"));
         while (vcf.hasNextPosition()) {
             try {
-                Sample[] samples = vcf.readNextPosition();
-                for (Sample sample : samples)
-                    samplesList.add(sample);
+                Site[] sites = vcf.readNextPosition();
+                for (Site site : sites)
+                    samplesList.add(site);
             } catch (VCFReader.InvalidDataLine idl) {
                 idl.printStackTrace();
             }
@@ -41,7 +41,7 @@ public class DoublyLinkedListTest {
 
     @Test
     public void testSequentialForwardIterator() {
-        Iterator<Sample> forwardIterator2 = samplesList.iterator();
+        Iterator<Site> forwardIterator2 = samplesList.iterator();
         assertEquals(0.20200586F, forwardIterator2.next().getPriorityScore());
         assertEquals(0.050501466F, forwardIterator2.next().getPriorityScore());
         assertEquals(66001418, forwardIterator2.next().getPosition());
@@ -51,7 +51,7 @@ public class DoublyLinkedListTest {
 
     @Test
     public void testForwardIterator() {
-        ListIterator<Sample> forwardIterator = samplesList.forwardIterator(0);
+        ListIterator<Site> forwardIterator = samplesList.forwardIterator(0);
         assertEquals(-0.4496079F,forwardIterator.next().getPriorityScore());
         assertEquals(-3.4028235E38F,forwardIterator.next().getPriorityScore());
         assertEquals(0.050501466F,forwardIterator.next().getPriorityScore());
@@ -65,7 +65,7 @@ public class DoublyLinkedListTest {
 
     @Test(expected=NoSuchElementException.class)
     public void testBackwardIterator() throws Exception {
-        ListIterator<Sample> backwardIterator = samplesList.backwardIterator(samplesList.size()-1);
+        ListIterator<Site> backwardIterator = samplesList.backwardIterator(samplesList.size()-1);
         assertEquals(-0.4496079F,backwardIterator.previous().getPriorityScore());
         assertEquals(0.20200586F,backwardIterator.previous().getPriorityScore());
         backwardIterator.previous();

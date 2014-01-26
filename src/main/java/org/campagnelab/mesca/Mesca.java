@@ -3,8 +3,8 @@ package org.campagnelab.mesca;
 import com.martiansoftware.jsap.JSAPResult;
 import org.apache.log4j.Logger;
 import org.campagnelab.mesca.algorithm.*;
+import org.campagnelab.mesca.input.Site;
 import org.campagnelab.mesca.list.DoublyLinkedList;
-import org.campagnelab.mesca.input.Sample;
 import org.campagnelab.mesca.input.VCFReader;
 import org.campagnelab.mesca.output.TSVFormatter;
 
@@ -53,28 +53,28 @@ public class Mesca {
         if (config == null)
             System.exit(1);
         VCFReader vcfReader = new VCFReader(config.getFile("input-file"));
-        DoublyLinkedList<Sample> sampleList = new DoublyLinkedList<Sample>();
+        DoublyLinkedList<Site> siteList = new DoublyLinkedList<Site>();
         while (vcfReader.hasNextPosition()) {
             try {
-                Sample[] samples = vcfReader.readNextPosition();
-                for (Sample sample : samples)
-                    sampleList.add(sample);
+                Site[] sites = vcfReader.readNextPosition();
+                for (Site site : sites)
+                    siteList.add(site);
             } catch (VCFReader.InvalidDataLine idl) {
                 idl.printStackTrace();
             }
         }
 
-        logger.info(String.format("%d sample(s) have been loaded from the input file.", sampleList.size()));
+        logger.info(String.format("%d site(s) have been loaded from the input file.", siteList.size()));
 
         vcfReader.close();
 
-        ClusterDetector detector = new ClusterDetector(sampleList);
+        ClusterDetector detector = new ClusterDetector(siteList);
 
         //create stop conditions
-        Size size = new Size(sampleList);
+        Size size = new Size(siteList);
         size.setMaxClusterSize(10000000);
         detector.addStopCondition(size);
-        detector.addStopCondition(new Rank(sampleList));
+        detector.addStopCondition(new Rank(siteList));
 
         DetectorWatcher watcher = new DetectorWatcher();
         watcher.recordVCFInputFile(config.getFile("input-file"));

@@ -1,6 +1,6 @@
 package org.campagnelab.mesca.algorithm;
 
-import org.campagnelab.mesca.input.Sample;
+import org.campagnelab.mesca.input.Site;
 
 /**
  * A stop condition is control to apply to an expanding {@link org.campagnelab.mesca.algorithm.Cluster}.
@@ -14,11 +14,11 @@ public interface StopCondition extends Comparable<StopCondition>{
      * Applies the stop condition to the cluster. When the cluster matches the condition, the
      * expansion in the given direction is halted.
      * @param cluster
-     * @param samples the samples that would be added to the cluster if the stop condition does not apply
-     * @param direction the direction in which the sample would be added
+     * @param sites the sites that would be added to the cluster if the stop condition does not apply
+     * @param direction the direction in which the site would be added
      * @return true if the cluster match the condition, false otherwise.
      */
-    public boolean apply(Cluster cluster, Sample[] samples, Cluster.DIRECTION direction);
+    public boolean apply(Cluster cluster, Site[] sites, Cluster.DIRECTION direction);
 
     /**
      * Checks if the cluster is relevant according to the condition.
@@ -27,7 +27,7 @@ public interface StopCondition extends Comparable<StopCondition>{
      */
     public boolean isRelevant(Cluster cluster);
     /**
-     * Gets the message from the last {@link org.campagnelab.mesca.algorithm.StopCondition#apply(Cluster, Sample, Cluster.DIRECTION)} invocation.
+     * Gets the message from the last {@link org.campagnelab.mesca.algorithm.StopCondition#apply(Cluster, org.campagnelab.mesca.input.Site[], Cluster.DIRECTION)} invocation.
      * @return the message
      */
     public String getMessage();

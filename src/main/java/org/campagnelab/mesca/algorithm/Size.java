@@ -1,6 +1,6 @@
 package org.campagnelab.mesca.algorithm;
 
-import org.campagnelab.mesca.input.Sample;
+import org.campagnelab.mesca.input.Site;
 import org.campagnelab.mesca.list.DoublyLinkedList;
 
 /**
@@ -10,12 +10,12 @@ public class Size extends BaseStopCondition {
 
     private long maxClusterSize;
 
-    public Size(final DoublyLinkedList<Sample> sampleList) {
-        super(sampleList);
+    public Size(final DoublyLinkedList<Site> siteList) {
+        super(siteList);
     }
 
-    public Size(final DoublyLinkedList<Sample> sampleList, int order) {
-        super(sampleList, order);
+    public Size(final DoublyLinkedList<Site> siteList, int order) {
+        super(siteList, order);
     }
 
     public void setMaxClusterSize(long maxClusterSize) {
@@ -23,7 +23,7 @@ public class Size extends BaseStopCondition {
     }
 
     @Override
-    public boolean apply(Cluster cluster, Sample[] samples, Cluster.DIRECTION direction) {
+    public boolean apply(Cluster cluster, Site[] sites, Cluster.DIRECTION direction) {
         //TODO: this is not correct!!
         return (cluster.rightEnd() - cluster.leftEnd()) > this.maxClusterSize;
     }

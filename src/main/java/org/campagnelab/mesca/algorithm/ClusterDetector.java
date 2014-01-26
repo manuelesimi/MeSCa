@@ -1,7 +1,7 @@
 package org.campagnelab.mesca.algorithm;
 
 import org.apache.log4j.Logger;
-import org.campagnelab.mesca.input.Sample;
+import org.campagnelab.mesca.input.Site;
 import org.campagnelab.mesca.list.DoublyLinkedList;
 
 import java.util.*;
@@ -20,13 +20,13 @@ public final class ClusterDetector {
 
     private List<StopCondition> stopConditions = new ArrayList<StopCondition>();
 
-    private final DoublyLinkedList<Sample> sampleList;
+    private final DoublyLinkedList<Site> siteList;
 
     /**
-     * @param sampleList the list of samples to clusterize.
+     * @param siteList the list of sites to clusterize.
      */
-    public ClusterDetector(DoublyLinkedList<Sample> sampleList) {
-        this.sampleList = sampleList;
+    public ClusterDetector(DoublyLinkedList<Site> siteList) {
+        this.siteList = siteList;
     }
 
     public void addStopCondition(StopCondition stopCondition) {
@@ -34,25 +34,25 @@ public final class ClusterDetector {
     }
 
     /**
-     * Detects the clusters in the sampleList.
+     * Detects the clusters in the siteList.
      * @return
      */
     public ClusterQueue run() {
         Collections.sort(stopConditions);
         ClusterQueue clusters = new ClusterQueue();
-        for (int index = 0; index < sampleList.size(); index++) {
-            Sample sample = sampleList.get(index);
-            //try to build a cluster around the sample
-            logger.info("Trying to cluster around position " + sample.getPosition());
+        for (int index = 0; index < siteList.size(); index++) {
+            Site site = siteList.get(index);
+            //try to build a cluster around the site
+            logger.info("Trying to cluster around position " + site.getPosition());
             try {
-                Cluster cluster = new Cluster(sample.getPosition(), this.stopConditions);
-                cluster.addLeftIterator(sampleList.backwardIterator(index));
-                cluster.addRightIterator(sampleList.forwardIterator(index));
+                Cluster cluster = new Cluster(site, this.stopConditions);
+                cluster.addLeftIterator(siteList.backwardIterator(index));
+                cluster.addRightIterator(siteList.forwardIterator(index));
                 cluster.detect();
                 if (cluster.isRelevant())
                     clusters.addCluster(cluster);
             } catch (Exception e) {
-                logger.error("Failed to create cluster around position " + sample.getPosition(),e);
+                logger.error("Failed to create cluster around position " + site.getPosition(),e);
             }
         }
         return clusters;

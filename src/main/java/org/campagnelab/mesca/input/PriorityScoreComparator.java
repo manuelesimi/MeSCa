@@ -5,12 +5,12 @@ package org.campagnelab.mesca.input;
  *
  * @author manuele
  */
-public class PriorityScoreComparator extends SampleComparator {
+public class PriorityScoreComparator extends SiteComparator {
 
     @Override
-    protected int compareElement(Sample sample1, Sample sample2) {
-        return sample1.getPriorityScore() < sample2.getPriorityScore() ? -1
-                : sample1.getPriorityScore() > sample2.getPriorityScore() ? 1
+    protected int compareElement(Site site1, Site site2) {
+        return site1.getPriorityScore() < site2.getPriorityScore() ? -1
+                : site1.getPriorityScore() > site2.getPriorityScore() ? 1
                 : 0;
     }
 }

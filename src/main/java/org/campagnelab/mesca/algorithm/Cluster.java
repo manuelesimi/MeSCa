@@ -3,17 +3,19 @@ package org.campagnelab.mesca.algorithm;
 import it.unimi.dsi.fastutil.floats.FloatCollection;
 import it.unimi.dsi.fastutil.ints.Int2FloatArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2FloatMap;
-import org.campagnelab.mesca.input.Sample;
+import org.campagnelab.mesca.input.Site;
 
 import java.util.*;
 
 /**
- * A cluster of samples in a region matching a set of {@link org.campagnelab.mesca.algorithm.StopCondition}s.
+ * A cluster of sites in a region matching a set of {@link org.campagnelab.mesca.algorithm.StopCondition}s.
  *
  * @author manuele
  */
 public class Cluster {
 
+
+    private final String name;
 
     protected static enum DIRECTION {
         LEFT,
@@ -33,11 +35,6 @@ public class Cluster {
      * Highest priority score in the cluster.
      */
     private float maxPriorityScore = 0;
-
-    /**
-     * The position around which the cluster is built.
-     */
-    private final long startPosition;
 
     private Int2FloatMap priorityScoreAtPosition = new Int2FloatArrayMap();
 
@@ -66,15 +63,22 @@ public class Cluster {
      */
     private long leftEnd;
 
-    private ListIterator<Sample> rightListIterator;
+    private ListIterator<Site> rightListIterator;
 
-    private ListIterator<Sample> leftListIterator;
+    private ListIterator<Site> leftListIterator;
 
     protected float rank = 0F;
 
-    protected Cluster(long startPosition, final List<StopCondition> stopConditions) {
-        this.startPosition = startPosition;
+    protected Cluster(Site startSite, final List<StopCondition> stopConditions) {
+        this.name = "C" + startSite.getPosition() +"-" + startSite.getID();
         this.stopConditions = stopConditions;
+        uniquePatients.add(startSite.getName());
+        this.leftEnd = startSite.getPosition();
+        this.rightEnd = startSite.getPosition();
+        this.maxPriorityScore = startSite.getPriorityScore();
+        this.minPriorityScore = startSite.getPriorityScore();
+        priorityScoreAtPosition.put(startSite.getPosition(), startSite.getPriorityScore());
+
     }
 
     /**
@@ -105,55 +109,55 @@ public class Cluster {
         return priorityScoreAtPosition.values();
     }
 
-    protected int getNumOfSamples() {
+    protected int getNumOfSites() {
         return priorityScoreAtPosition.values().size();
     }
     /**
-     * Adds the samples to the cluster.
-     * @param samples
+     * Adds the sites to the cluster.
+     * @param sites
      * @param direction
      */
-    private void addSamples(Sample[] samples, DIRECTION direction) {
-        for (Sample sample : samples) {
-            if (sample == null)
+    private void addSites(Site[] sites, DIRECTION direction) {
+        for (Site site : sites) {
+            if (site == null)
                 continue;
             //calculate if there is a new unique patient
-            uniquePatients.add(sample.getName());
+            uniquePatients.add(site.getName());
 
             //extend the cluster according to the position
             switch (direction) {
                 case LEFT:
-                        this.leftEnd = sample.getPosition();
+                        this.leftEnd = site.getPosition();
                     break;
                 case RIGHT:
-                        this.rightEnd = sample.getPosition();
+                        this.rightEnd = site.getPosition();
                     break;
             }
 
-            //record if the sample has the lowest or highest priority
-            if (sample.getPriorityScore() > this.maxPriorityScore)
-                this.maxPriorityScore = sample.getPriorityScore();
-            if (sample.getPriorityScore() < this.minPriorityScore)
-                this.minPriorityScore = sample.getPriorityScore();
+            //record if the site has the lowest or highest priority
+            if (site.getPriorityScore() > this.maxPriorityScore)
+                this.maxPriorityScore = site.getPriorityScore();
+            if (site.getPriorityScore() < this.minPriorityScore)
+                this.minPriorityScore = site.getPriorityScore();
 
-            priorityScoreAtPosition.put(sample.getPosition(),sample.getPriorityScore());
+            priorityScoreAtPosition.put(site.getPosition(), site.getPriorityScore());
         }
     }
 
     /**
      * Iterator to extend the cluster in the right direction.
-     * @param sampleListIterator
+     * @param siteListIterator
      */
-    protected void addRightIterator(ListIterator<Sample> sampleListIterator) {
-        this.rightListIterator = sampleListIterator;
+    protected void addRightIterator(ListIterator<Site> siteListIterator) {
+        this.rightListIterator = siteListIterator;
     }
 
     /**
      * Iterator to extend the cluster in the left direction.
-     * @param sampleListIterator
+     * @param siteListIterator
      */
-    protected void addLeftIterator(ListIterator<Sample> sampleListIterator) {
-        this.leftListIterator = sampleListIterator;
+    protected void addLeftIterator(ListIterator<Site> siteListIterator) {
+        this.leftListIterator = siteListIterator;
     }
 
     protected void detect() {
@@ -177,16 +181,16 @@ public class Cluster {
         if (!leftListIterator.hasPrevious())
             return true;
         int positionInSteps = 0;
-        Sample[] samples = new Sample[DEGREE_OF_PROXIMITY];
+        Site[] sites = new Site[DEGREE_OF_PROXIMITY];
         while (leftListIterator.hasPrevious() && positionInSteps < DEGREE_OF_PROXIMITY)
-            samples[positionInSteps++] = leftListIterator.previous();
+            sites[positionInSteps++] = leftListIterator.previous();
         for (StopCondition condition : this.stopConditions) {
-            if (condition.apply(this, samples, DIRECTION.LEFT)) {
+            if (condition.apply(this, sites, DIRECTION.LEFT)) {
                 //skip the sample
                 return true;
             }
         }
-        this.addSamples(samples, DIRECTION.LEFT);
+        this.addSites(sites, DIRECTION.LEFT);
         return false;
     }
 
@@ -198,18 +202,18 @@ public class Cluster {
         if (!rightListIterator.hasNext())
             return true;
         int positionInSteps = 0;
-        Sample[] samples = new Sample[DEGREE_OF_PROXIMITY];
+        Site[] sites = new Site[DEGREE_OF_PROXIMITY];
         while (rightListIterator.hasNext() && positionInSteps < DEGREE_OF_PROXIMITY) {
-            samples[positionInSteps++] = rightListIterator.next();
+            sites[positionInSteps++] = rightListIterator.next();
 
         }
         for (StopCondition condition : this.stopConditions) {
-            if (condition.apply(this,samples, DIRECTION.RIGHT)) {
+            if (condition.apply(this, sites, DIRECTION.RIGHT)) {
                 //skip the sample
                 return true;
             }
         }
-        this.addSamples(samples, DIRECTION.RIGHT);
+        this.addSites(sites, DIRECTION.RIGHT);
         return false;
     }
 
@@ -218,7 +222,7 @@ public class Cluster {
     }
 
     public String getName() {
-        return "C" + startPosition;
+        return name;
     }
 
     public int getUniquePatients() {
