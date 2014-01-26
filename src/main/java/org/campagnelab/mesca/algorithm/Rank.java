@@ -28,9 +28,9 @@ public class Rank extends BaseStopCondition {
     }
 
     @Override
-    public boolean apply(Cluster cluster, Sample sample, Cluster.DIRECTION direction) {
+    public boolean apply(Cluster cluster, Sample[] samples, Cluster.DIRECTION direction) {
         Operands operands = analyzeCluster(cluster);
-        float newRank = calculateNewRank(operands,cluster, sample);
+        float newRank = calculateNewRank(operands,cluster, samples);
         if (cluster.rank < newRank || cluster.getNumOfSamples()==0) {
             cluster.rank = newRank;
             return false;
@@ -43,16 +43,20 @@ public class Rank extends BaseStopCondition {
         return true;//this.calculateRank(this.analyzeCluster(cluster)) > MIN_RELEVANT_RANK;
     }
 
-    private float calculateNewRank(Operands operands, Cluster cluster, Sample sample) {
-        operands.totalPriorityScores += sample.getPriorityScore();
-        if (operands.leftEnd > sample.getPosition())
-            operands.leftEnd = sample.getPosition();
-        if (operands.rightEnd < sample.getPosition())
-            operands.rightEnd = sample.getPosition();
-        if (!cluster.hasPatient(sample.getName())) {
-            operands.uniquePatients++;
-        }
-        return this.calculateRank(operands);
+    private float calculateNewRank(Operands operands, Cluster cluster, Sample[] samples) {
+       for (Sample sample : samples) {
+           if (sample == null)
+               continue;
+           operands.totalPriorityScores += sample.getPriorityScore();
+           if (operands.leftEnd > sample.getPosition())
+               operands.leftEnd = sample.getPosition();
+           if (operands.rightEnd < sample.getPosition())
+               operands.rightEnd = sample.getPosition();
+           if (!cluster.hasPatient(sample.getName())) {
+               operands.uniquePatients++;
+           }
+       }
+       return this.calculateRank(operands);
     }
 
     /**

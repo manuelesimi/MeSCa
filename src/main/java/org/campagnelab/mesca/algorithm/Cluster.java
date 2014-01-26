@@ -41,6 +41,9 @@ public class Cluster {
 
     private Int2FloatMap priorityScoreAtPosition = new Int2FloatArrayMap();
 
+    /**
+     * Stop conditions to apply to each extension's iteration.
+     */
     private final List<StopCondition> stopConditions;
 
     /**
@@ -48,8 +51,19 @@ public class Cluster {
      */
     private static final int MIN_RELEVANT_PATIENTS = 2;   //TODO: will be a parameter in the command line
 
+    /**
+     * How many neighboring positions are considered in a direction for each iteration.
+     */
+    private static final int DEGREE_OF_PROXIMITY = 5;
+
+    /**
+     * The most right position in the cluster.
+     */
     private long rightEnd;
 
+    /**
+     * The most left position in the cluster.
+     */
     private long leftEnd;
 
     private ListIterator<Sample> rightListIterator;
@@ -95,32 +109,35 @@ public class Cluster {
         return priorityScoreAtPosition.values().size();
     }
     /**
-     * Adds the sample to the cluster.
-     * @param sample
+     * Adds the samples to the cluster.
+     * @param samples
      * @param direction
      */
-    private void addSample(Sample sample, DIRECTION direction) {
+    private void addSamples(Sample[] samples, DIRECTION direction) {
+        for (Sample sample : samples) {
+            if (sample == null)
+                continue;
+            //calculate if there is a new unique patient
+            uniquePatients.add(sample.getName());
 
-        //calculate if there is a new unique patient
-        uniquePatients.add(sample.getName());
+            //extend the cluster according to the position
+            switch (direction) {
+                case LEFT:
+                        this.leftEnd = sample.getPosition();
+                    break;
+                case RIGHT:
+                        this.rightEnd = sample.getPosition();
+                    break;
+            }
 
-        //extend the cluster according to the position
-        switch (direction) {
-            case LEFT:
-                    this.leftEnd = sample.getPosition();
-                break;
-            case RIGHT:
-                    this.rightEnd = sample.getPosition();
-                break;
+            //record if the sample has the lowest or highest priority
+            if (sample.getPriorityScore() > this.maxPriorityScore)
+                this.maxPriorityScore = sample.getPriorityScore();
+            if (sample.getPriorityScore() < this.minPriorityScore)
+                this.minPriorityScore = sample.getPriorityScore();
+
+            priorityScoreAtPosition.put(sample.getPosition(),sample.getPriorityScore());
         }
-
-        //record if the sample has the lowest or highest priority
-        if (sample.getPriorityScore() > this.maxPriorityScore)
-            this.maxPriorityScore = sample.getPriorityScore();
-        if (sample.getPriorityScore() < this.minPriorityScore)
-            this.minPriorityScore = sample.getPriorityScore();
-
-        priorityScoreAtPosition.put(sample.getPosition(),sample.getPriorityScore());
     }
 
     /**
@@ -145,39 +162,54 @@ public class Cluster {
        boolean haltLeftExpansion = false;
        while (! haltDetection) {
            if (!haltRightExpansion)
-            haltRightExpansion = addNextRightPosition();
+            haltRightExpansion = addRightNeighboringPositions();
            if(! haltLeftExpansion)
-            haltLeftExpansion =  addNextLeftPosition();
+            haltLeftExpansion =  addLeftNeighboringPositions();
            haltDetection = (haltRightExpansion && haltLeftExpansion);
        }
-
     }
 
-    private boolean addNextLeftPosition() {
+    /**
+     * Tries to add position at left according to DEGREE_OF_PROXIMITY
+     * @return true if the extension in the left direction is completed, false otherwise
+     */
+    private boolean addLeftNeighboringPositions() {
         if (!leftListIterator.hasPrevious())
             return true;
-        Sample previous = leftListIterator.previous();
+        int positionInSteps = 0;
+        Sample[] samples = new Sample[DEGREE_OF_PROXIMITY];
+        while (leftListIterator.hasPrevious() && positionInSteps < DEGREE_OF_PROXIMITY)
+            samples[positionInSteps++] = leftListIterator.previous();
         for (StopCondition condition : this.stopConditions) {
-            if (condition.apply(this,previous, DIRECTION.LEFT)) {
+            if (condition.apply(this, samples, DIRECTION.LEFT)) {
                 //skip the sample
                 return true;
             }
         }
-        this.addSample(previous, DIRECTION.LEFT);
+        this.addSamples(samples, DIRECTION.LEFT);
         return false;
     }
 
-    private boolean addNextRightPosition() {
+    /**
+     * Tries to add position at right according to DEGREE_OF_PROXIMITY
+     * @return true if the extension in the right direction is completed, false otherwise
+     */
+    private boolean addRightNeighboringPositions() {
         if (!rightListIterator.hasNext())
             return true;
-        Sample next = rightListIterator.next();
+        int positionInSteps = 0;
+        Sample[] samples = new Sample[DEGREE_OF_PROXIMITY];
+        while (rightListIterator.hasNext() && positionInSteps < DEGREE_OF_PROXIMITY) {
+            samples[positionInSteps++] = rightListIterator.next();
+
+        }
         for (StopCondition condition : this.stopConditions) {
-            if (condition.apply(this,next, DIRECTION.RIGHT)) {
+            if (condition.apply(this,samples, DIRECTION.RIGHT)) {
                 //skip the sample
                 return true;
             }
         }
-        this.addSample(next, DIRECTION.RIGHT);
+        this.addSamples(samples, DIRECTION.RIGHT);
         return false;
     }
 
@@ -222,7 +254,7 @@ public class Cluster {
 
         @Override
         public int compare(Cluster cluster1, Cluster cluster2) {
-            //TODO: refine the comparator to consider also the size and score of the cluster?
+            //TODO: refine the comparator to consider also the rank of the cluster?
             return cluster1.getUniquePatients() < cluster2.getUniquePatients() ? 1
                     : cluster1.getUniquePatients() > cluster2.getUniquePatients() ? -1
                     : 0;

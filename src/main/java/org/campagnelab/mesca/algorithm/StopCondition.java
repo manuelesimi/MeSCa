@@ -14,11 +14,11 @@ public interface StopCondition extends Comparable<StopCondition>{
      * Applies the stop condition to the cluster. When the cluster matches the condition, the
      * expansion in the given direction is halted.
      * @param cluster
-     * @param sample the sample that would be added to the cluster if the stop condition does not apply
+     * @param samples the samples that would be added to the cluster if the stop condition does not apply
      * @param direction the direction in which the sample would be added
      * @return true if the cluster match the condition, false otherwise.
      */
-    public boolean apply(Cluster cluster, Sample sample, Cluster.DIRECTION direction);
+    public boolean apply(Cluster cluster, Sample[] samples, Cluster.DIRECTION direction);
 
     /**
      * Checks if the cluster is relevant according to the condition.
