@@ -20,52 +20,52 @@ import static junit.framework.Assert.assertEquals;
 public class VCFReaderIntegrityTest {
 
     static VCFReader vcf;
-    static List<Sample> samplesList;
+    static List<Site> siteList;
 
     @BeforeClass
     public static void setUp() throws Exception {
-        samplesList = new ArrayList<Sample>();
+        siteList = new ArrayList<Site>();
         vcf = new VCFReader(new File("test-data/vcf/VCFReaderIntegrityInput.vcf"));
         while (vcf.hasNextPosition()) {
             try {
-                Sample[] samples = vcf.readNextPosition();
-                for (Sample sample : samples)
-                    samplesList.add(sample);
+                Site[] sites = vcf.readNextPosition();
+                for (Site site : sites)
+                    siteList.add(site);
             } catch (VCFReader.InvalidDataLine idl) {
                 idl.printStackTrace();
             }
         }
-        assertEquals("Invalid number of samples found", 12, samplesList.size());
+        assertEquals("Invalid number of samples found", 12, siteList.size());
     }
 
     @Test
     public void testDecodePosition() throws Exception {
-       assertEquals(881627, samplesList.get(0).getPosition());
-       assertEquals(881627, samplesList.get(1).getPosition());
-       assertEquals(883568, samplesList.get(2).getPosition());
-       assertEquals(883568, samplesList.get(3).getPosition());
-       assertEquals(65868310, samplesList.get(4).getPosition());
-       assertEquals(65868310, samplesList.get(5).getPosition());
+       assertEquals(881627, siteList.get(0).getPosition());
+       assertEquals(881627, siteList.get(1).getPosition());
+       assertEquals(883568, siteList.get(2).getPosition());
+       assertEquals(883568, siteList.get(3).getPosition());
+       assertEquals(65868310, siteList.get(4).getPosition());
+       assertEquals(65868310, siteList.get(5).getPosition());
     }
 
     @Test
     public void testDecodeChromosome() throws Exception {
-        assertEquals(1, samplesList.get(0).getChromosome());
-        assertEquals(1, samplesList.get(1).getChromosome());
-        assertEquals(1, samplesList.get(2).getChromosome());
-        assertEquals(1, samplesList.get(3).getChromosome());
-        assertEquals(10, samplesList.get(4).getChromosome());
-        assertEquals(10, samplesList.get(5).getChromosome());
+        assertEquals(1, siteList.get(0).getChromosome());
+        assertEquals(1, siteList.get(1).getChromosome());
+        assertEquals(1, siteList.get(2).getChromosome());
+        assertEquals(1, siteList.get(3).getChromosome());
+        assertEquals(10, siteList.get(4).getChromosome());
+        assertEquals(10, siteList.get(5).getChromosome());
     }
 
     @Test
-    public void testDecodeSampleID() throws Exception {
-        assertEquals("OCNQNMJ-Qtt1-LM1-29-F-HPN-blood-patient", samplesList.get(0).getName());
-        assertEquals("ADSRXBV-Q4c-LM6-33-M-HPN-blood-patient", samplesList.get(1).getName());
-        assertEquals("OCNQNMJ-Qtt1-LM1-29-F-HPN-blood-patient", samplesList.get(2).getName());
-        assertEquals("ADSRXBV-Q4c-LM6-33-M-HPN-blood-patient", samplesList.get(3).getName());
-        assertEquals("OCNQNMJ-Qtt1-LM1-29-F-HPN-blood-patient", samplesList.get(4).getName());
-        assertEquals("ADSRXBV-Q4c-LM6-33-M-HPN-blood-patient", samplesList.get(5).getName());
+    public void testDecodeSiteID() throws Exception {
+        assertEquals("OCNQNMJ-Qtt1-LM1-29-F-HPN-blood-patient", siteList.get(0).getName());
+        assertEquals("ADSRXBV-Q4c-LM6-33-M-HPN-blood-patient", siteList.get(1).getName());
+        assertEquals("OCNQNMJ-Qtt1-LM1-29-F-HPN-blood-patient", siteList.get(2).getName());
+        assertEquals("ADSRXBV-Q4c-LM6-33-M-HPN-blood-patient", siteList.get(3).getName());
+        assertEquals("OCNQNMJ-Qtt1-LM1-29-F-HPN-blood-patient", siteList.get(4).getName());
+        assertEquals("ADSRXBV-Q4c-LM6-33-M-HPN-blood-patient", siteList.get(5).getName());
     }
 
     @Test

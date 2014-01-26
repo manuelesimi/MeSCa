@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d2a3553-4c97-422b-9ac5-3d284844b2df" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/SiteComparator.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/SampleComparator.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/Sample.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/Site.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/BaseStopCondition.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/BaseStopCondition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterDetector.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterDetector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/list/DoublyLinkedListTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/list/DoublyLinkedListTest.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/input/VCFReaderIntegrityTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/input/VCFReaderIntegrityTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/PatientInfoIndexer.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/PatientInfoIndexer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/PriorityScoreComparator.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/PriorityScoreComparator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Rank.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Rank.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Size.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Size.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/StopCondition.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/StopCondition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/VCFReader.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/VCFReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test-data/vcf/VCFReaderIntegrityInput.vcf" afterPath="$PROJECT_DIR$/test-data/vcf/VCFReaderIntegrityInput.vcf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="VCFClusterDetector.iws" />
@@ -123,17 +109,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MescaTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="37" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="378">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="BaseStopCondition.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/BaseStopCondition.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -213,10 +188,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PatientInfoIndexer.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PatientInfoIndexer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/PatientInfoIndexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="38" selection-start="905" selection-end="905" vertical-scroll-proportion="0.8115942" vertical-offset="294" max-vertical-offset="770">
+            <state line="41" column="38" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0" vertical-offset="294" max-vertical-offset="770">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mesca.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="96" column="26" selection-start="3141" selection-end="3141" vertical-scroll-proportion="2.4272728" vertical-offset="965" max-vertical-offset="1428">
               <folding />
             </state>
           </provider>
@@ -277,15 +261,15 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterDetector.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/SampleComparator.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/SiteComparator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/BaseStopCondition.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Rank.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Size.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/StopCondition.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/VCFReader.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/input/VCFReaderIntegrityTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/PatientInfoIndexer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/VCFReader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java" />
       </list>
     </option>
   </component>
@@ -1013,7 +997,7 @@
       <workItem from="1389223258359" duration="8091000" />
       <workItem from="1389473699274" duration="7252000" />
       <workItem from="1389566241157" duration="20062000" />
-      <workItem from="1390600989910" duration="22739000" />
+      <workItem from="1390600989910" duration="25395000" />
     </task>
     <task id="LOCAL-00001" summary="Sketch java classes for the detection algorithm.&#10;">
       <created>1388237419699</created>
@@ -1187,11 +1171,15 @@
       <created>1390707565877</created>
       <updated>1390707565877</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Rename Sample to Site.">
+      <created>1390758611830</created>
+      <updated>1390758611830</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189636000" />
+    <option name="totallyTimeSpent" value="192292000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="668" extended-state="0" />
@@ -1214,11 +1202,11 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36545455" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.08642972" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.08642972" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.315832" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23818181" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.64181817" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1237,7 +1225,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Add iterator to navigate the DoublyLinked list following the natural order of its elements." />
     <MESSAGE value="Add reverse operation to DoublyLinkedList." />
     <MESSAGE value="Implement Iterable interface in DoublyLinkedList." />
     <MESSAGE value="Preliminary work on output formatters.&#10;" />
@@ -1262,7 +1249,8 @@
     <MESSAGE value="Print the cluster rank in the output list." />
     <MESSAGE value="Add Rank as stop condition to ClusterDetector. Print the cluster rank in the output record." />
     <MESSAGE value="Add concept of degree of proximity when extending a cluster." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add concept of degree of proximity when extending a cluster." />
+    <MESSAGE value="Rename Sample to Site." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename Sample to Site." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1558,15 +1546,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="42" selection-start="2000" selection-end="2000" vertical-scroll-proportion="0.8338762" vertical-offset="556" max-vertical-offset="1288">
-          <folding>
-            <element signature="e#1625#1631#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/BaseStopCondition.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="47" selection-start="736" selection-end="736" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="714">
@@ -1593,13 +1572,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/StopCondition.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="140" selection-start="1249" selection-end="1249" vertical-scroll-proportion="-0.13380282" vertical-offset="444" max-vertical-offset="728">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/VCFReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="24" selection-start="1904" selection-end="1904" vertical-scroll-proportion="-0.35915494" vertical-offset="970" max-vertical-offset="2184">
           <folding />
         </state>
       </provider>
@@ -1631,7 +1603,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/PatientInfoIndexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="38" selection-start="905" selection-end="905" vertical-scroll-proportion="0.8115942" vertical-offset="294" max-vertical-offset="770">
+        <state line="41" column="38" selection-start="905" selection-end="905" vertical-scroll-proportion="0.0" vertical-offset="294" max-vertical-offset="770">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/VCFReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="23" selection-start="2013" selection-end="2013" vertical-scroll-proportion="0.47887325" vertical-offset="760" max-vertical-offset="2184">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="26" selection-start="3141" selection-end="3141" vertical-scroll-proportion="2.4272728" vertical-offset="965" max-vertical-offset="1428">
           <folding />
         </state>
       </provider>

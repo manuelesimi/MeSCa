@@ -58,7 +58,8 @@ public class Mesca {
             try {
                 Site[] sites = vcfReader.readNextPosition();
                 for (Site site : sites)
-                    siteList.add(site);
+                    if (validateSite(site))
+                        siteList.add(site);
             } catch (VCFReader.InvalidDataLine idl) {
                 idl.printStackTrace();
             }
@@ -90,5 +91,14 @@ public class Mesca {
 
         logger.info(String.format("Detected cluster(s) are available in %s.", config.getFile("output-file").getAbsolutePath()));
 
+    }
+
+    /**
+     * Validates the site.
+     * @param site
+     * @return
+     */
+    private static boolean validateSite(Site site) {
+        return (site.getPriorityScore() >= 0F);
     }
 }
