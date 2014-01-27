@@ -3,6 +3,7 @@ package org.campagnelab.mesca.output;
 import org.campagnelab.mesca.algorithm.Cluster;
 import org.campagnelab.mesca.algorithm.ClusterQueue;
 import org.campagnelab.mesca.algorithm.DetectorWatcher;
+import org.campagnelab.mesca.algorithm.StopCondition;
 
 import java.io.File;
 import java.io.PrintStream;
@@ -22,6 +23,8 @@ public class TSVFormatter implements Formatter {
     public void format(DetectorWatcher watcher, ClusterQueue clusters, PrintStream stream) {
         for (String line : getStatistics(watcher))
             stream.println(line);
+        for (String desc : watcher.getDescriptionForStopConditions())
+            stream.println("#" + desc);
         stream.println(getHeader());
         Cluster cluster;
         while (clusters.size() > 0) {
@@ -56,8 +59,7 @@ public class TSVFormatter implements Formatter {
     private String[] getStatistics(DetectorWatcher watcher) {
         return new String[] {
                "#Input file: " + watcher.getInputFileName(),
-               "#Time elapsed: " + watcher.elapsedTime() + " sec"
-        };
+               "#Time elapsed: " + watcher.elapsedTime() + " sec"        };
     }
 
 

@@ -70,7 +70,7 @@ public class Cluster {
     protected float rank = 0F;
 
     protected Cluster(Site startSite, final List<StopCondition> stopConditions) {
-        this.name = "C" + startSite.getPosition() +"-" + startSite.getID();
+        this.name = "C" + startSite.getID() + startSite.getPosition();
         this.stopConditions = stopConditions;
         uniquePatients.add(startSite.getName());
         this.leftEnd = startSite.getPosition();

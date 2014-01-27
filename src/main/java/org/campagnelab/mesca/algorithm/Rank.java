@@ -66,7 +66,7 @@ public class Rank extends BaseStopCondition {
      */
     @Override
     public String asString() {
-        return "Rank: ";
+        return "Minimum relevant rank: " + MIN_RELEVANT_RANK;
     }
 
     /**
