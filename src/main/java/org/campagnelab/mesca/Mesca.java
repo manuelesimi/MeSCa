@@ -82,6 +82,7 @@ public class Mesca {
         watcher.addStopCondition(size);
         watcher.addStopCondition(rank);
         watcher.setDegreeOfProximity(Cluster.DEGREE_OF_PROXIMITY);
+        watcher.setSiteSize(siteList.size());
         //invoke ClusterDetector
         ClusterQueue clusters = detector.run();
         logger.info(String.format("%d cluster(s) have been detected.", clusters.size()));

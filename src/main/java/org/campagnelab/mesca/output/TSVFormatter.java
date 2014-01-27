@@ -21,6 +21,7 @@ public class TSVFormatter implements Formatter {
     public void format(DetectorWatcher watcher, ClusterQueue clusters, PrintStream stream) {
         for (String line : getStatistics(watcher))
             stream.println(line);
+        stream.println("#Sites analyzed: " + watcher.getSiteSize());
         for (String desc : watcher.getDescriptionForStopConditions())
             stream.println("#" + desc);
         stream.println("#Degree of proximity: " + watcher.getDegreeOfProximity());
@@ -37,6 +38,7 @@ public class TSVFormatter implements Formatter {
         PrintWriter writer = new PrintWriter(file, "UTF-8");
         for (String line : getStatistics(watcher))
             writer.println(line);
+        writer.println("#Sites analyzed: " + watcher.getSiteSize());
         for (String desc : watcher.getDescriptionForStopConditions())
             writer.println("#" + desc);
         writer.println("#Degree of proximity: " + watcher.getDegreeOfProximity());
