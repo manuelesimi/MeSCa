@@ -1,9 +1,8 @@
 package org.campagnelab.mesca.algorithm;
-;
+
 import it.unimi.dsi.fastutil.floats.FloatCollection;
 import it.unimi.dsi.fastutil.floats.FloatIterator;
 import org.campagnelab.mesca.input.Site;
-import org.campagnelab.mesca.list.DoublyLinkedList;
 
 /**
  *
@@ -19,12 +18,12 @@ public class Rank extends BaseStopCondition {
 
     private static final float MIN_RELEVANT_RANK = 0F;
 
-    public Rank(final DoublyLinkedList<Site> siteList) {
-        super(siteList);
+    public Rank() {
+        super();
     }
 
-    public Rank(final DoublyLinkedList<Site> siteList, int order) {
-        super(siteList, order);
+    public Rank(int order) {
+        super(order);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class TSVFormatter implements Formatter {
     public void format(DetectorWatcher watcher, ClusterQueue clusters, PrintStream stream) {
         for (String line : getStatistics(watcher))
             stream.println(line);
-        stream.println("#Sites analyzed: " + watcher.getSiteSize());
+        stream.println("#Sites analyzed: " + watcher.getNumOfSites());
         for (String desc : watcher.getDescriptionForStopConditions())
             stream.println("#" + desc);
         stream.println("#Degree of proximity: " + watcher.getDegreeOfProximity());
@@ -38,7 +38,7 @@ public class TSVFormatter implements Formatter {
         PrintWriter writer = new PrintWriter(file, "UTF-8");
         for (String line : getStatistics(watcher))
             writer.println(line);
-        writer.println("#Sites analyzed: " + watcher.getSiteSize());
+        writer.println("#Sites analyzed: " + watcher.getNumOfSites());
         for (String desc : watcher.getDescriptionForStopConditions())
             writer.println("#" + desc);
         writer.println("#Degree of proximity: " + watcher.getDegreeOfProximity());
@@ -52,9 +52,10 @@ public class TSVFormatter implements Formatter {
     }
 
     private String buildLine(Cluster cluster) {
-        return String.format("%s%s[%d:%d]%s%d%s%s%s[%f:%f]%s%f",
+        return String.format("%s%s[%s:%d:%d]%s%d%s%s%s[%f:%f]%s%f",
                 cluster.getName(),
                 separator,
+                cluster.getChromosome(),
                 cluster.leftEnd(),
                 cluster.rightEnd(),
                 separator,

@@ -3,6 +3,7 @@ package org.campagnelab.mesca.algorithm;
 import it.unimi.dsi.fastutil.floats.FloatCollection;
 import it.unimi.dsi.fastutil.ints.Int2FloatArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2FloatMap;
+import org.campagnelab.mesca.input.ChromosomeIndexer;
 import org.campagnelab.mesca.input.Site;
 
 import java.util.*;
@@ -16,6 +17,11 @@ public class Cluster {
 
 
     private final String name;
+    private int chromosome;
+
+    public String getChromosome() {
+        return ChromosomeIndexer.decode(chromosome);
+    }
 
     protected static enum DIRECTION {
         LEFT,
@@ -71,6 +77,7 @@ public class Cluster {
 
     protected Cluster(Site startSite, final List<StopCondition> stopConditions) {
         this.name = "C" + startSite.getID() + startSite.getPosition();
+        this.chromosome = startSite.getChromosomeAsInt();
         this.stopConditions = stopConditions;
         uniquePatients.add(startSite.getName());
         this.leftEnd = startSite.getPosition();

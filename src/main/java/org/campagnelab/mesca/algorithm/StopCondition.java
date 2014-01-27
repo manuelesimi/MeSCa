@@ -26,6 +26,7 @@ public interface StopCondition extends Comparable<StopCondition>{
      * @return  true if the cluster is relevant, false otherwise
      */
     public boolean isRelevant(Cluster cluster);
+
     /**
      * Gets the message from the last {@link org.campagnelab.mesca.algorithm.StopCondition#apply(Cluster, org.campagnelab.mesca.input.Site[], Cluster.DIRECTION)} invocation.
      * @return the message

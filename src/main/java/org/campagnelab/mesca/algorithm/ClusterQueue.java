@@ -1,5 +1,6 @@
 package org.campagnelab.mesca.algorithm;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectArrayPriorityQueue;
 
 import java.util.Comparator;
@@ -17,17 +18,27 @@ public class ClusterQueue {
     /**
      *
      */
-    protected ClusterQueue() {
+    public ClusterQueue() {
         outputQueue = new ObjectArrayPriorityQueue<Cluster>(new Cluster.ClusterComparator());
     }
 
     /**
-     * Enqueues a new cluster.
+     * Enqueues a cluster.
      *
      * @param cluster
      */
-    protected void addCluster(Cluster cluster) {
+    public void addCluster(Cluster cluster) {
        outputQueue.enqueue(cluster);
+    }
+
+    /**
+     * Enqueues a list of clusters.
+     *
+     * @param clusters
+     */
+    public void addClusters(ObjectArrayList<Cluster> clusters) {
+        for (Cluster cluster : clusters)
+            this.addCluster(cluster);
     }
 
     /**

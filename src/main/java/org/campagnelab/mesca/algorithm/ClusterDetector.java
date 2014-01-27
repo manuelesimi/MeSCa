@@ -1,8 +1,9 @@
 package org.campagnelab.mesca.algorithm;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.apache.log4j.Logger;
+import org.campagnelab.mesca.input.LinkedSiteList;
 import org.campagnelab.mesca.input.Site;
-import org.campagnelab.mesca.list.DoublyLinkedList;
 
 import java.util.*;
 
@@ -20,12 +21,12 @@ public final class ClusterDetector {
 
     private List<StopCondition> stopConditions = new ArrayList<StopCondition>();
 
-    private final DoublyLinkedList<Site> siteList;
+    private final LinkedSiteList siteList;
 
     /**
      * @param siteList the list of sites to clusterize.
      */
-    public ClusterDetector(DoublyLinkedList<Site> siteList) {
+    public ClusterDetector(final LinkedSiteList siteList) {
         this.siteList = siteList;
     }
 
@@ -37,9 +38,9 @@ public final class ClusterDetector {
      * Detects the clusters in the siteList.
      * @return
      */
-    public ClusterQueue run() {
+    public ObjectArrayList<Cluster> run() {
         Collections.sort(stopConditions);
-        ClusterQueue clusters = new ClusterQueue();
+        ObjectArrayList<Cluster> clusters = new ObjectArrayList<Cluster>();
         for (int index = 0; index < siteList.size(); index++) {
             Site site = siteList.get(index);
             //try to build a cluster around the site
@@ -50,7 +51,7 @@ public final class ClusterDetector {
                 cluster.addRightIterator(siteList.forwardIterator(index));
                 cluster.detect();
                 if (cluster.isRelevant())
-                    clusters.addCluster(cluster);
+                    clusters.add(cluster);
             } catch (Exception e) {
                 logger.error("Failed to create cluster around position " + site.getPosition(),e);
             }

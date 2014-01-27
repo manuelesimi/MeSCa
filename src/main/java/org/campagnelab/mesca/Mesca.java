@@ -1,8 +1,10 @@
 package org.campagnelab.mesca;
 
 import com.martiansoftware.jsap.JSAPResult;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.apache.log4j.Logger;
 import org.campagnelab.mesca.algorithm.*;
+import org.campagnelab.mesca.input.LinkedSiteList;
 import org.campagnelab.mesca.input.Site;
 import org.campagnelab.mesca.list.DoublyLinkedList;
 import org.campagnelab.mesca.input.VCFReader;
@@ -53,43 +55,46 @@ public class Mesca {
         if (config == null)
             System.exit(1);
         VCFReader vcfReader = new VCFReader(config.getFile("input-file"));
-        DoublyLinkedList<Site> siteList = new DoublyLinkedList<Site>();
+        SiteChromosomeMap siteChromosomeMap = new SiteChromosomeMap();
         while (vcfReader.hasNextPosition()) {
             try {
                 Site[] sites = vcfReader.readNextPosition();
                 for (Site site : sites)
                     if (validateSite(site))
-                        siteList.add(site);
+                        siteChromosomeMap.add(site);
             } catch (VCFReader.InvalidDataLine idl) {
                 idl.printStackTrace();
             }
         }
 
-        logger.info(String.format("%d site(s) have been loaded from the input file.", siteList.size()));
+        //logger.info(String.format("%d site(s) have been loaded from the input file.", siteList.size()));
 
         vcfReader.close();
 
-        ClusterDetector detector = new ClusterDetector(siteList);
-
+        ClusterQueue qclusters = new ClusterQueue();
         //create stop conditions
-        Size size = new Size(siteList,10000);
-        detector.addStopCondition(size);
-        Rank rank = new Rank(siteList);
-        detector.addStopCondition(rank);
-
+        Size size = new Size(10000);
+        Rank rank = new Rank();
         DetectorWatcher watcher = new DetectorWatcher();
         watcher.recordVCFInputFile(config.getFile("input-file"));
         watcher.addStopCondition(size);
         watcher.addStopCondition(rank);
         watcher.setDegreeOfProximity(Cluster.DEGREE_OF_PROXIMITY);
-        watcher.setSiteSize(siteList.size());
-        //invoke ClusterDetector
-        ClusterQueue clusters = detector.run();
-        logger.info(String.format("%d cluster(s) have been detected.", clusters.size()));
 
+        for (int chromosome : siteChromosomeMap.keySet()) {
+            LinkedSiteList siteList = siteChromosomeMap.getSites(chromosome);
+            ClusterDetector detector = new ClusterDetector(siteList);
+            detector.addStopCondition(size);
+            detector.addStopCondition(rank);
+            watcher.setAddSites(siteList.size());
+            //invoke ClusterDetector
+            ObjectArrayList<Cluster> clusters = detector.run();
+            logger.info(String.format("%d cluster(s) have been detected for chromosome %s.", clusters.size(), siteList.get(0).getChromosome()));
+            qclusters.addClusters(clusters);
+        }
         //print the output
         TSVFormatter formatter = new TSVFormatter();
-        formatter.format(watcher, clusters, config.getFile("output-file"));
+        formatter.format(watcher, qclusters, config.getFile("output-file"));
         //formatter.format(watcher, clusters, System.out);
 
         logger.info(String.format("Detected cluster(s) are available in %s.", config.getFile("output-file").getAbsolutePath()));

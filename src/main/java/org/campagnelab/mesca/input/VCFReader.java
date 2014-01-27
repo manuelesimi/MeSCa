@@ -74,12 +74,12 @@ public class VCFReader {
                 sites = new Site[PatientInfoIndexer.size()];
                 for (PatientInfoIndexer.PatientInfo patientInfo : PatientInfoIndexer.getPatients())
                     sites[patientInfo.index] = new Site(patientInfo.index);
-                int chromosome = 0;
+                String chromosome = "";
                 int position = 0;
                 for (int i = 0; i < parser.countAllFields(); i++) {
                     final String name = parser.getFieldName(i);
                     if (name.equals(chromosomeFieldName)) {
-                        chromosome = Integer.valueOf(parser.getFieldValue(i).toString());
+                        chromosome = parser.getFieldValue(i).toString();
                     } else  if (name.equals(positionFieldName)) {
                         position = Integer.valueOf(parser.getFieldValue(i).toString());
                     } else if (name.startsWith("INFO[priority")) {

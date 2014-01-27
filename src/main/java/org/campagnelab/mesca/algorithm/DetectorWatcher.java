@@ -18,7 +18,7 @@ public class DetectorWatcher {
     private List<StopCondition> stopConditions = new ArrayList<StopCondition>();
 
     private int degree;
-    private int siteSize;
+    private int totalSites;
 
     /**
      * Create a stopwatch object.
@@ -62,11 +62,11 @@ public class DetectorWatcher {
         return this.degree;
     }
 
-    public void setSiteSize(int siteSize) {
-        this.siteSize = siteSize;
+    public void setAddSites(int siteSize) {
+        this.totalSites += siteSize;
     }
 
-    public int getSiteSize() {
-        return siteSize;
+    public int getNumOfSites() {
+        return totalSites;
     }
 }

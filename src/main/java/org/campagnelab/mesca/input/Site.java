@@ -15,17 +15,20 @@ public class Site {
 
     private int chromosome;
 
-
     protected Site(int id) {
         this.ID = id;
     }
 
-    public int getChromosome() {
+    public String getChromosome() {
+        return ChromosomeIndexer.decode(this.chromosome);
+    }
+
+    public int getChromosomeAsInt() {
         return this.chromosome;
     }
 
-    protected void setChromosome(int chromosome) {
-        this.chromosome = chromosome;
+    protected void setChromosome(String chromosome) {
+        this.chromosome = ChromosomeIndexer.encode(chromosome);
     }
 
     protected void setPriorityScore(float priorityScore) {

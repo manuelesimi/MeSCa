@@ -1,7 +1,7 @@
 package org.campagnelab.mesca.algorithm;
 
-import org.campagnelab.mesca.input.Site;
-import org.campagnelab.mesca.list.DoublyLinkedList;
+import org.campagnelab.mesca.input.LinkedSiteList;
+
 
 /**
  * Base implementation for stop conditions.
@@ -20,14 +20,9 @@ public abstract class BaseStopCondition implements StopCondition {
 
     protected String message = "";
 
-    protected final DoublyLinkedList<Site> siteList;
+    public BaseStopCondition() {}
 
-    public BaseStopCondition(final DoublyLinkedList<Site> siteList) {
-        this.siteList = siteList;
-    }
-
-    public BaseStopCondition(final DoublyLinkedList<Site> siteList, int order) {
-        this.siteList = siteList;
+    public BaseStopCondition(int order) {
         this.order = order;
     }
 
@@ -35,7 +30,6 @@ public abstract class BaseStopCondition implements StopCondition {
     public int getOrder() {
         return this.order;
     }
-
 
     @Override
     public String getMessage() {
