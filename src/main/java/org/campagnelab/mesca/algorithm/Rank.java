@@ -16,14 +16,17 @@ import org.campagnelab.mesca.input.Site;
  */
 public class Rank extends BaseStopCondition {
 
-    private static final float MIN_RELEVANT_RANK = 0F;
 
-    public Rank() {
+    private final float min_relevant_rank;
+
+    public Rank(float min_relevant_rank) {
         super();
+        this.min_relevant_rank = min_relevant_rank;
     }
 
-    public Rank(int order) {
+    public Rank(float min_relevant_rank, int order) {
         super(order);
+        this.min_relevant_rank = min_relevant_rank;
     }
 
     @Override
@@ -39,7 +42,7 @@ public class Rank extends BaseStopCondition {
 
     @Override
     public boolean isRelevant(Cluster cluster) {
-        return cluster.rank > MIN_RELEVANT_RANK;
+        return cluster.rank > min_relevant_rank;
     }
 
     private float calculateNewRank(Operands operands, Cluster cluster, Site[] sites) {
@@ -65,7 +68,7 @@ public class Rank extends BaseStopCondition {
      */
     @Override
     public String asString() {
-        return "Minimum relevant rank: " + MIN_RELEVANT_RANK;
+        return "Minimum relevant rank: " + min_relevant_rank;
     }
 
     /**

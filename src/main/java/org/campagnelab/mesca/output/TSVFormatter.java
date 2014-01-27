@@ -52,7 +52,8 @@ public class TSVFormatter implements Formatter {
     }
 
     private String buildLine(Cluster cluster) {
-        return String.format("%s%s[%s:%d-%d]%s%d%s%s%s[%f:%f]%s%f",
+
+        return String.format("%s%s%s:%d-%d%s%d%s%s%s[%f:%f]%s%f",
                 cluster.getName(),
                 separator,
                 cluster.getChromosome(),
@@ -61,7 +62,7 @@ public class TSVFormatter implements Formatter {
                 separator,
                 cluster.getUniquePatients(),
                 separator,
-                Arrays.toString(cluster.getUniquePatientNames().toArray(new String[0])),
+                Arrays.toString(cluster.getSortedUniquePatientNames()),
                 separator,
                 cluster.getMinPriorityScore(),
                 cluster.getMaxPriorityScore(),

@@ -3,6 +3,7 @@ package org.campagnelab.mesca.algorithm;
 import it.unimi.dsi.fastutil.floats.FloatCollection;
 import it.unimi.dsi.fastutil.ints.Int2FloatArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2FloatMap;
+import org.apache.log4j.Logger;
 import org.campagnelab.mesca.input.ChromosomeIndexer;
 import org.campagnelab.mesca.input.Site;
 
@@ -15,13 +16,12 @@ import java.util.*;
  */
 public class Cluster {
 
+    protected static final org.apache.log4j.Logger logger = Logger.getLogger(Cluster.class);
+
 
     private final String name;
-    private int chromosome;
 
-    public String getChromosome() {
-        return ChromosomeIndexer.decode(chromosome);
-    }
+    private int chromosome;
 
     protected static enum DIRECTION {
         LEFT,
@@ -30,7 +30,7 @@ public class Cluster {
     /**
      * Number of unique patients in the cluster.
      */
-    private Set<String> uniquePatients = new HashSet<String>();
+    private Map<String, PatientScore> uniquePatients = new HashMap<String, PatientScore>();
 
     /**
      * Lowest priority score in the cluster.
@@ -79,7 +79,12 @@ public class Cluster {
         this.name = "C" + startSite.getID() + startSite.getPosition();
         this.chromosome = startSite.getChromosomeAsInt();
         this.stopConditions = stopConditions;
-        uniquePatients.add(startSite.getName());
+        if (!uniquePatients.containsKey(startSite.getName()))   {
+            uniquePatients.put(startSite.getName(), new PatientScore(startSite.getName(), startSite.getPriorityScore()));
+        } else {
+            if (uniquePatients.get(startSite.getName()).priorityScore < startSite.getPriorityScore())
+                uniquePatients.get(startSite.getName()).priorityScore = startSite.getPriorityScore();
+        }
         this.leftEnd = startSite.getPosition();
         this.rightEnd = startSite.getPosition();
         this.maxPriorityScore = startSite.getPriorityScore();
@@ -105,7 +110,17 @@ public class Cluster {
     }
 
     public Set<String> getUniquePatientNames() {
-        return Collections.unmodifiableSet(this.uniquePatients);
+        return Collections.unmodifiableSet(this.uniquePatients.keySet());
+    }
+
+    public String[] getSortedUniquePatientNames() {
+        List<PatientScore> list = new ArrayList<PatientScore>(this.uniquePatients.values());
+        Collections.sort(list);
+        String[] sortedList = new String[list.size()];
+        int i =0;
+        for (PatientScore patientScore : list)
+            sortedList[i++] = patientScore.name;
+        return sortedList;
     }
 
     /**
@@ -129,8 +144,13 @@ public class Cluster {
             if (site == null)
                 continue;
             //calculate if there is a new unique patient
-            uniquePatients.add(site.getName());
-
+            logger.info(this.name + ": adding site " + site.toString());
+            if (!uniquePatients.containsKey(site.getName()))   {
+                uniquePatients.put(site.getName(), new PatientScore(site.getName(), site.getPriorityScore()));
+            } else {
+                if (uniquePatients.get(site.getName()).priorityScore < site.getPriorityScore())
+                    uniquePatients.get(site.getName()).priorityScore = site.getPriorityScore();
+            }
             //extend the cluster according to the position
             switch (direction) {
                 case LEFT:
@@ -225,7 +245,7 @@ public class Cluster {
     }
 
     public boolean hasPatient(String name) {
-        return this.uniquePatients.contains(name);
+        return this.uniquePatients.containsKey(name);
     }
 
     public String getName() {
@@ -248,6 +268,9 @@ public class Cluster {
         return this.rank;
     }
 
+    public String getChromosome() {
+        return ChromosomeIndexer.decode(chromosome);
+    }
     /**
      * Gets whether this cluster is relevant or not.
      * A relevant cluster is included in the output queue.
@@ -277,5 +300,23 @@ public class Cluster {
                     : 0;
         }
 
+    }
+
+    class PatientScore implements Comparable<PatientScore> {
+
+        String name;
+
+        float priorityScore;
+
+        public PatientScore(String name, float priorityScore) {
+            this.name = name;
+            this.priorityScore = priorityScore;
+        }
+
+        @Override
+        public int compareTo(PatientScore patient) {
+            return this.priorityScore < patient.priorityScore ? 1
+                    : this.priorityScore > patient.priorityScore ? -1
+                    : 0;        }
     }
 }

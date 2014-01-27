@@ -75,8 +75,8 @@ public class Mesca {
         watcher.stopRecordParser();
         ClusterQueue qclusters = new ClusterQueue();
         //create stop conditions
-        Size size = new Size(10000);
-        Rank rank = new Rank();
+        Size size = new Size(5000);
+        Rank rank = new Rank(1F);
         watcher.recordVCFInputFile(config.getFile("input-file"));
         watcher.addStopCondition(size);
         watcher.addStopCondition(rank);
@@ -109,6 +109,6 @@ public class Mesca {
      * @return
      */
     private static boolean validateSite(Site site) {
-        return (site.getPriorityScore() >= 0F);
+        return (site.getPriorityScore() >= 5F);
     }
 }
