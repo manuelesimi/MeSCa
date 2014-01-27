@@ -4,6 +4,7 @@ import org.campagnelab.mesca.algorithm.ClusterQueue;
 import org.campagnelab.mesca.algorithm.DetectorWatcher;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 
 /**
@@ -13,5 +14,5 @@ public interface Formatter {
 
     public void format(DetectorWatcher watcher, ClusterQueue clusters, PrintStream stream);
 
-    public void format(DetectorWatcher watcher, ClusterQueue clusters, File file);
+    public void format(DetectorWatcher watcher, ClusterQueue clusters, File file) throws IOException;
 }

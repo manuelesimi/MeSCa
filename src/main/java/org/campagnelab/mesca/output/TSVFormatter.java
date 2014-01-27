@@ -5,12 +5,11 @@ import org.campagnelab.mesca.algorithm.ClusterQueue;
 import org.campagnelab.mesca.algorithm.DetectorWatcher;
 import org.campagnelab.mesca.algorithm.StopCondition;
 
-import java.io.File;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.Arrays;
 
 /**
- * Created by mas2182 on 1/8/14.
+ * Formatter for TSV output.
  */
 public class TSVFormatter implements Formatter {
 
@@ -31,11 +30,22 @@ public class TSVFormatter implements Formatter {
             cluster = clusters.getCluster();
             stream.println(buildLine(cluster));
         }
-
     }
 
     @Override
-    public void format(DetectorWatcher watcher, ClusterQueue clusters, File file) {
+    public void format(DetectorWatcher watcher, ClusterQueue clusters, File file) throws IOException{
+        PrintWriter writer = new PrintWriter(file, "UTF-8");
+        for (String line : getStatistics(watcher))
+            writer.println(line);
+        for (String desc : watcher.getDescriptionForStopConditions())
+            writer.println("#" + desc);
+        writer.println(getHeader());
+        Cluster cluster;
+        while (clusters.size() > 0) {
+            cluster = clusters.getCluster();
+            writer.println(buildLine(cluster));
+        }
+        writer.close();
     }
 
     private String buildLine(Cluster cluster) {
