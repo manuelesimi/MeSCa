@@ -52,7 +52,7 @@ public class TSVFormatter implements Formatter {
     }
 
     private String buildLine(Cluster cluster) {
-        return String.format("%s%s[%s:%d:%d]%s%d%s%s%s[%f:%f]%s%f",
+        return String.format("%s%s[%s:%d-%d]%s%d%s%s%s[%f:%f]%s%f",
                 cluster.getName(),
                 separator,
                 cluster.getChromosome(),
@@ -73,7 +73,8 @@ public class TSVFormatter implements Formatter {
     private String[] getStatistics(DetectorWatcher watcher) {
         return new String[] {
                "#Input file: " + watcher.getInputFileName(),
-               "#Time elapsed: " + watcher.elapsedTime() + " sec"        };
+                "#Time elapsed to parse the input file: " + watcher.parserElapsedTime() + " sec",
+               "#Time elapsed for cluster detection: " + watcher.detectorElapsedTime() + " sec"  };
     }
 
 

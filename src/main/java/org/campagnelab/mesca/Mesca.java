@@ -54,6 +54,8 @@ public class Mesca {
         JSAPResult config = jsapHelper.configure(args);
         if (config == null)
             System.exit(1);
+        DetectorWatcher watcher = new DetectorWatcher();
+        watcher.startRecordParser();
         VCFReader vcfReader = new VCFReader(config.getFile("input-file"));
         SiteChromosomeMap siteChromosomeMap = new SiteChromosomeMap();
         while (vcfReader.hasNextPosition()) {
@@ -70,17 +72,16 @@ public class Mesca {
         //logger.info(String.format("%d site(s) have been loaded from the input file.", siteList.size()));
 
         vcfReader.close();
-
+        watcher.stopRecordParser();
         ClusterQueue qclusters = new ClusterQueue();
         //create stop conditions
         Size size = new Size(10000);
         Rank rank = new Rank();
-        DetectorWatcher watcher = new DetectorWatcher();
         watcher.recordVCFInputFile(config.getFile("input-file"));
         watcher.addStopCondition(size);
         watcher.addStopCondition(rank);
         watcher.setDegreeOfProximity(Cluster.DEGREE_OF_PROXIMITY);
-
+        watcher.startRecordDetector();
         for (int chromosome : siteChromosomeMap.keySet()) {
             LinkedSiteList siteList = siteChromosomeMap.getSites(chromosome);
             ClusterDetector detector = new ClusterDetector(siteList);
@@ -92,6 +93,7 @@ public class Mesca {
             logger.info(String.format("%d cluster(s) have been detected for chromosome %s.", clusters.size(), siteList.get(0).getChromosome()));
             qclusters.addClusters(clusters);
         }
+        watcher.stopRecordDetector();
         //print the output
         TSVFormatter formatter = new TSVFormatter();
         formatter.format(watcher, qclusters, config.getFile("output-file"));

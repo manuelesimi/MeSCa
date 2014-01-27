@@ -5,13 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Measure an execution of {@link org.campagnelab.mesca.algorithm.ClusterDetector}
+ * Measure an execution a Mesca analysis
  *
  * @author manuele
  */
 public class DetectorWatcher {
 
-    private final long start;
+    private long detectorStart;
+
+    private double detectorElapsed;
+
+
+    private long parserStart;
 
     private String filename;
 
@@ -20,19 +25,43 @@ public class DetectorWatcher {
     private int degree;
     private int totalSites;
 
+    private double parserElapsed;
+
     /**
      * Create a stopwatch object.
      */
     public DetectorWatcher() {
-        start = System.currentTimeMillis();
+    }
+
+    public void startRecordParser() {
+        parserStart = System.currentTimeMillis();
+    }
+
+    public void stopRecordParser() {
+        long now = System.currentTimeMillis();
+        parserElapsed = (now - parserStart) / 1000.0;
+    }
+
+    public void startRecordDetector() {
+        detectorStart = System.currentTimeMillis();
+    }
+
+    public void stopRecordDetector() {
+        long now = System.currentTimeMillis();
+        detectorElapsed = (now - detectorStart) / 1000.0;
+    }
+    /**
+     * Return elapsed time (in seconds) that took to run the algorithm.
+     */
+    public double detectorElapsedTime() {
+        return this.detectorElapsed;
     }
 
     /**
-     * Return elapsed time (in seconds) since this object was created.
+     * Return elapsed time (in seconds) that took to parse the input file.
      */
-    public double elapsedTime() {
-        long now = System.currentTimeMillis();
-        return (now - start) / 1000.0;
+    public double parserElapsedTime() {
+        return this.parserElapsed;
     }
 
     public void recordVCFInputFile(File file) {
