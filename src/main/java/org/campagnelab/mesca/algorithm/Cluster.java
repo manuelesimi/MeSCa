@@ -258,7 +258,9 @@ public class Cluster {
         boolean relevant = true;
         for (StopCondition condition : this.stopConditions)
             if (!condition.isRelevant(this)) relevant = false;
-        return (relevant && this.uniquePatients.size() >= MIN_RELEVANT_PATIENTS);
+        return (relevant
+                && this.uniquePatients.size() >= MIN_RELEVANT_PATIENTS
+                && this.getNumOfSites() > this.uniquePatients.size()); //this makes sure that more than one position is in the cluster
     }
 
     public static class ClusterComparator implements Comparator<Cluster> {
