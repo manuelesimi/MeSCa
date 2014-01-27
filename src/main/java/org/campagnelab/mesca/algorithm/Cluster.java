@@ -258,8 +258,12 @@ public class Cluster {
 
         @Override
         public int compare(Cluster cluster1, Cluster cluster2) {
-            //TODO: refine the comparator to consider also the rank of the cluster?
-            return cluster1.getUniquePatients() < cluster2.getUniquePatients() ? 1
+            if (cluster1.getUniquePatients() == cluster2.getUniquePatients()) {
+                return cluster1.getRank() < cluster2.getRank() ? 1
+                        : cluster1.getRank() > cluster2.getRank() ? -1
+                        : 0;
+            } else
+                return cluster1.getUniquePatients() < cluster2.getUniquePatients() ? 1
                     : cluster1.getUniquePatients() > cluster2.getUniquePatients() ? -1
                     : 0;
         }
