@@ -6,13 +6,13 @@ import org.campagnelab.mesca.input.LinkedSiteList;
 import org.campagnelab.mesca.input.Site;
 
 /**
- * Map each site with the chromosome it belongs to.
+ * Map a chromosome with its sites.
  *
  * @author manuele
  */
 public class SiteChromosomeMap {
 
-    private Int2ObjectMap<LinkedSiteList> map = new Int2ObjectArrayMap<LinkedSiteList>(26);//26 possible chromosomes
+    private Int2ObjectMap<LinkedSiteList> map = new Int2ObjectArrayMap<LinkedSiteList>();
 
     /**
      * Adds a site to the chromosome.
