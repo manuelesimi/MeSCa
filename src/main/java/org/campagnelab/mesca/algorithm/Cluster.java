@@ -51,7 +51,7 @@ public class Cluster {
     /**
      * How many neighboring positions are considered in a direction for each iteration.
      */
-    private static final int DEGREE_OF_PROXIMITY = 5;
+    public static final int DEGREE_OF_PROXIMITY = 5;
 
     /**
      * The most right position in the cluster.

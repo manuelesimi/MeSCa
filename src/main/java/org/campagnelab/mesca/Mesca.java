@@ -81,6 +81,7 @@ public class Mesca {
         watcher.recordVCFInputFile(config.getFile("input-file"));
         watcher.addStopCondition(size);
         watcher.addStopCondition(rank);
+        watcher.setDegreeOfProximity(Cluster.DEGREE_OF_PROXIMITY);
         //invoke ClusterDetector
         ClusterQueue clusters = detector.run();
         logger.info(String.format("%d cluster(s) have been detected.", clusters.size()));

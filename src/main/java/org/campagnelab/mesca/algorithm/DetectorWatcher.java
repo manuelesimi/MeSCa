@@ -17,6 +17,8 @@ public class DetectorWatcher {
 
     private List<StopCondition> stopConditions = new ArrayList<StopCondition>();
 
+    private int degree;
+
     /**
      * Create a stopwatch object.
      */
@@ -44,10 +46,18 @@ public class DetectorWatcher {
         this.stopConditions.add(condition);
     }
 
+    public void setDegreeOfProximity(int degree) {
+        this.degree = degree;
+    }
+
     public String[] getDescriptionForStopConditions(){
         String[] descriptions = new String[stopConditions.size()];
         for (int i=0; i < stopConditions.size(); i++)
             descriptions[i] = stopConditions.get(i).asString();
         return descriptions;
+    }
+
+    public int getDegreeOfProximity() {
+        return this.degree;
     }
 }

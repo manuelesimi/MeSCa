@@ -3,7 +3,6 @@ package org.campagnelab.mesca.output;
 import org.campagnelab.mesca.algorithm.Cluster;
 import org.campagnelab.mesca.algorithm.ClusterQueue;
 import org.campagnelab.mesca.algorithm.DetectorWatcher;
-import org.campagnelab.mesca.algorithm.StopCondition;
 
 import java.io.*;
 import java.util.Arrays;
@@ -24,6 +23,7 @@ public class TSVFormatter implements Formatter {
             stream.println(line);
         for (String desc : watcher.getDescriptionForStopConditions())
             stream.println("#" + desc);
+        stream.println("#Degree of proximity: " + watcher.getDegreeOfProximity());
         stream.println(getHeader());
         Cluster cluster;
         while (clusters.size() > 0) {
@@ -39,6 +39,7 @@ public class TSVFormatter implements Formatter {
             writer.println(line);
         for (String desc : watcher.getDescriptionForStopConditions())
             writer.println("#" + desc);
+        writer.println("#Degree of proximity: " + watcher.getDegreeOfProximity());
         writer.println(getHeader());
         Cluster cluster;
         while (clusters.size() > 0) {
