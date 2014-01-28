@@ -15,6 +15,8 @@ public class Site {
 
     private int chromosome;
 
+    private static final float MIN_RELEVANT_PRIORITY_SCORE = 5F;   //TODO: will be a parameter in the command line
+
     protected Site(int id) {
         this.ID = id;
     }
@@ -57,6 +59,13 @@ public class Site {
         return this.position;
     }
 
+    /**
+     * Checks if the site is relevant for the algorithm.
+     * @return
+     */
+    public boolean isRelevant() {
+        return (this.getPriorityScore() >= MIN_RELEVANT_PRIORITY_SCORE);
+    }
 
     @Override
     public String toString() {

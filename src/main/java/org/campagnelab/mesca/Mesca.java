@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import org.campagnelab.mesca.algorithm.*;
 import org.campagnelab.mesca.input.LinkedSiteList;
 import org.campagnelab.mesca.input.Site;
-import org.campagnelab.mesca.list.DoublyLinkedList;
 import org.campagnelab.mesca.input.VCFReader;
 import org.campagnelab.mesca.output.TSVFormatter;
 
@@ -58,12 +57,15 @@ public class Mesca {
         watcher.startRecordParser();
         VCFReader vcfReader = new VCFReader(config.getFile("input-file"));
         SiteChromosomeMap siteChromosomeMap = new SiteChromosomeMap();
+        int totalSites = 0;
         while (vcfReader.hasNextPosition()) {
             try {
                 Site[] sites = vcfReader.readNextPosition();
-                for (Site site : sites)
-                    if (validateSite(site))
+                for (Site site : sites) {
+                    if (site.isRelevant())
                         siteChromosomeMap.add(site);
+                }
+                totalSites += sites.length;
             } catch (VCFReader.InvalidDataLine idl) {
                 idl.printStackTrace();
             }
@@ -73,6 +75,7 @@ public class Mesca {
 
         vcfReader.close();
         watcher.stopRecordParser();
+        watcher.setTotalSitesAnalyzed(totalSites);
         ClusterQueue qclusters = new ClusterQueue();
         //create stop conditions
         Size size = new Size(5000);
@@ -87,7 +90,7 @@ public class Mesca {
             ClusterDetector detector = new ClusterDetector(siteList);
             detector.addStopCondition(size);
             detector.addStopCondition(rank);
-            watcher.setAddSites(siteList.size());
+            watcher.setRelevantSites(siteList.size());
             //invoke ClusterDetector
             ObjectArrayList<Cluster> clusters = detector.run();
             logger.info(String.format("%d cluster(s) have been detected for chromosome %s.", clusters.size(), siteList.get(0).getChromosome()));
@@ -103,12 +106,4 @@ public class Mesca {
 
     }
 
-    /**
-     * Validates the site.
-     * @param site
-     * @return
-     */
-    private static boolean validateSite(Site site) {
-        return (site.getPriorityScore() >= 5F);
-    }
 }

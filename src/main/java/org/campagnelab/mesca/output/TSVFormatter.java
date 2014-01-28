@@ -21,10 +21,8 @@ public class TSVFormatter implements Formatter {
     public void format(DetectorWatcher watcher, ClusterQueue clusters, PrintStream stream) {
         for (String line : getStatistics(watcher))
             stream.println(line);
-        stream.println("#Sites analyzed: " + watcher.getNumOfSites());
         for (String desc : watcher.getDescriptionForStopConditions())
             stream.println("#" + desc);
-        stream.println("#Degree of proximity: " + watcher.getDegreeOfProximity());
         stream.println(getHeader());
         Cluster cluster;
         while (clusters.size() > 0) {
@@ -38,10 +36,8 @@ public class TSVFormatter implements Formatter {
         PrintWriter writer = new PrintWriter(file, "UTF-8");
         for (String line : getStatistics(watcher))
             writer.println(line);
-        writer.println("#Sites analyzed: " + watcher.getNumOfSites());
         for (String desc : watcher.getDescriptionForStopConditions())
             writer.println("#" + desc);
-        writer.println("#Degree of proximity: " + watcher.getDegreeOfProximity());
         writer.println(getHeader());
         Cluster cluster;
         while (clusters.size() > 0) {
@@ -74,8 +70,11 @@ public class TSVFormatter implements Formatter {
     private String[] getStatistics(DetectorWatcher watcher) {
         return new String[] {
                "#Input file: " + watcher.getInputFileName(),
-                "#Time elapsed to parse the input file: " + watcher.parserElapsedTime() + " sec",
-               "#Time elapsed for cluster detection: " + watcher.detectorElapsedTime() + " sec"  };
+               "#Time elapsed to parse the input file: " + watcher.parserElapsedTime() + " sec",
+               "#Time elapsed for cluster detection: " + watcher.detectorElapsedTime() + " sec",
+               "#Sites analyzed: " + watcher.getTotalSitesAnalyzed(),
+               "#Relevant Sites: " + watcher.getNumOfSites(),
+               "#Degree of proximity: " + watcher.getDegreeOfProximity() };
     }
 
 

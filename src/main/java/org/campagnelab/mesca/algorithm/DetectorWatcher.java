@@ -26,6 +26,7 @@ public class DetectorWatcher {
     private int totalSites;
 
     private double parserElapsed;
+    private int totalSitesAnalyzed;
 
     /**
      * Create a stopwatch object.
@@ -91,11 +92,19 @@ public class DetectorWatcher {
         return this.degree;
     }
 
-    public void setAddSites(int siteSize) {
+    public void setRelevantSites(int siteSize) {
         this.totalSites += siteSize;
     }
 
     public int getNumOfSites() {
         return totalSites;
+    }
+
+    public void setTotalSitesAnalyzed(int totalSitesAnalyzed) {
+        this.totalSitesAnalyzed = totalSitesAnalyzed;
+    }
+
+    public int getTotalSitesAnalyzed() {
+        return totalSitesAnalyzed;
     }
 }
