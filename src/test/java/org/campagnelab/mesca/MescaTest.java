@@ -23,7 +23,7 @@ public class MescaTest {
     @Test
     public void testProcess() throws Exception {
         Mesca.process(new String[] {
-           "--input-file", new File("/Users/mas2182/Lab/Projects/FSGS-Laurent/Data/RZAADYE-FSGSR-Somatic-9-3-31exomes-9-Patients-BWAstats.vcf").getAbsolutePath(),
+           "--input-file", new File("test-data/vcf/MLWQHLM-GIR-KAN-BWA-3-15stats-first-500.vcf").getAbsolutePath(),
           // "--input-file", new File("test-data/vcf/MLWQHLM-GIR-KAN-BWA-3-15stats-first-500.vcf").getAbsolutePath(),
            "--output-file", new File("test-results/RZAADYE-clusters.tsv").getAbsolutePath()
         });

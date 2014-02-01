@@ -50,12 +50,12 @@ public class VCFReaderIntegrityTest {
 
     @Test
     public void testDecodeChromosome() throws Exception {
-        assertEquals(1, siteList.get(0).getChromosome());
-        assertEquals(1, siteList.get(1).getChromosome());
-        assertEquals(1, siteList.get(2).getChromosome());
-        assertEquals(1, siteList.get(3).getChromosome());
-        assertEquals(10, siteList.get(4).getChromosome());
-        assertEquals(10, siteList.get(5).getChromosome());
+        assertEquals("1", siteList.get(0).getChromosome());
+        assertEquals("1", siteList.get(1).getChromosome());
+        assertEquals("1", siteList.get(2).getChromosome());
+        assertEquals("1", siteList.get(3).getChromosome());
+        assertEquals("10", siteList.get(4).getChromosome());
+        assertEquals("10", siteList.get(5).getChromosome());
     }
 
     @Test
