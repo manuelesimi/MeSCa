@@ -57,7 +57,7 @@ public class Cluster {
     /**
      * How many neighboring positions are considered in a direction for each iteration.
      */
-    public static final int DEGREE_OF_PROXIMITY = 10;
+    public static final int DEGREE_OF_PROXIMITY = 5;
 
     /**
      * The most right position in the cluster.
@@ -119,7 +119,8 @@ public class Cluster {
         String[] sortedList = new String[list.size()];
         int i =0;
         for (PatientScore patientScore : list)
-            sortedList[i++] = String.format("%s(%d)",patientScore.name,patientScore.position);
+            sortedList[i++] = String.format("%s(%s:%d)",patientScore.name,
+                    this.getChromosome(),patientScore.position);
         return sortedList;
     }
 
