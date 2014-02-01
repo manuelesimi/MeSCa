@@ -85,6 +85,7 @@ public class Mesca {
         watcher.addStopCondition(size);
         watcher.addStopCondition(decreasingScore);
         watcher.setDegreeOfProximity(Cluster.DEGREE_OF_PROXIMITY);
+        watcher.setMinPriorityScore(Site.MIN_RELEVANT_PRIORITY_SCORE);
         watcher.startRecordDetector();
         for (int chromosome : siteChromosomeMap.keySet()) {
             LinkedSiteList siteList = siteChromosomeMap.getSites(chromosome);

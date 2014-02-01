@@ -74,7 +74,9 @@ public class TSVFormatter implements Formatter {
                "#Time elapsed for cluster detection: " + watcher.detectorElapsedTime() + " sec",
                "#Sites analyzed: " + watcher.getTotalSitesAnalyzed(),
                "#Relevant Sites: " + watcher.getNumOfSites(),
-               "#Degree of proximity: " + watcher.getDegreeOfProximity() };
+               "#Degree of proximity: " + watcher.getDegreeOfProximity(),
+               "#Min priority score: " + watcher.getMinPriorityScore()
+        };
     }
 
 

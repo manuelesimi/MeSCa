@@ -15,7 +15,7 @@ public class Site {
 
     private int chromosome;
 
-    private static final float MIN_RELEVANT_PRIORITY_SCORE = 5F;   //TODO: will be a parameter in the command line
+    public static final float MIN_RELEVANT_PRIORITY_SCORE = 5F;   //TODO: will be a parameter in the command line
 
     protected Site(int id) {
         this.ID = id;

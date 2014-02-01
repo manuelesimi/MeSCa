@@ -27,6 +27,7 @@ public class DetectorWatcher {
 
     private double parserElapsed;
     private int totalSitesAnalyzed;
+    private float minPriorityScore;
 
     /**
      * Create a stopwatch object.
@@ -106,5 +107,13 @@ public class DetectorWatcher {
 
     public int getTotalSitesAnalyzed() {
         return totalSitesAnalyzed;
+    }
+
+    public float getMinPriorityScore() {
+        return minPriorityScore;
+    }
+
+    public void setMinPriorityScore(float minPriorityScore) {
+        this.minPriorityScore = minPriorityScore;
     }
 }
