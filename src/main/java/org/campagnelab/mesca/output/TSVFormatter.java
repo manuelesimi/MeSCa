@@ -63,7 +63,7 @@ public class TSVFormatter implements Formatter {
                 cluster.getMinPriorityScore(),
                 cluster.getMaxPriorityScore(),
                 separator,
-                cluster.getRank()
+                cluster.getScore()
         );
     }
 
@@ -79,7 +79,7 @@ public class TSVFormatter implements Formatter {
 
 
     private String getHeader() {
-        return String.format("cluster-name%s[start_position:end_position]%snum_of_patients%ssample(s)%s[min_priority_score:max_priority_score]%srank",
+        return String.format("cluster-name%s[start_position:end_position]%snum_of_patients%ssample(s)%s[min_priority_score:max_priority_score]%sscore",
                 separator, separator,separator, separator, separator);
     }
 }

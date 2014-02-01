@@ -73,7 +73,7 @@ public class Cluster {
 
     private ListIterator<Site> leftListIterator;
 
-    protected float rank = 0F;
+    protected float score = 0F;
 
     protected Cluster(Site startSite, final List<StopCondition> stopConditions) {
         this.name = "C" + startSite.getID() + startSite.getPosition();
@@ -170,6 +170,7 @@ public class Cluster {
                 this.minPriorityScore = site.getPriorityScore();
 
             priorityScoreAtPosition.put(site.getPosition(), site.getPriorityScore());
+            this.score = new MescaScore(this).calculate();
         }
     }
 
@@ -266,8 +267,8 @@ public class Cluster {
         return minPriorityScore;
     }
 
-    public float getRank() {
-        return this.rank;
+    public float getScore() {
+        return this.score;
     }
 
     public String getChromosome() {
@@ -293,8 +294,8 @@ public class Cluster {
         @Override
         public int compare(Cluster cluster1, Cluster cluster2) {
             if (cluster1.getUniquePatients() == cluster2.getUniquePatients()) {
-                return cluster1.getRank() < cluster2.getRank() ? 1
-                        : cluster1.getRank() > cluster2.getRank() ? -1
+                return cluster1.getScore() < cluster2.getScore() ? 1
+                        : cluster1.getScore() > cluster2.getScore() ? -1
                         : 0;
             } else
                 return cluster1.getUniquePatients() < cluster2.getUniquePatients() ? 1

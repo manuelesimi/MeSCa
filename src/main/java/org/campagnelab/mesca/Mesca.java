@@ -79,7 +79,7 @@ public class Mesca {
         ClusterQueue qclusters = new ClusterQueue();
         //create stop conditions
         Size size = new Size(5000);
-        Rank rank = new Rank(1F);
+        DecreasingScore rank = new DecreasingScore(1F);
         watcher.recordVCFInputFile(config.getFile("input-file"));
         watcher.addStopCondition(size);
         watcher.addStopCondition(rank);
