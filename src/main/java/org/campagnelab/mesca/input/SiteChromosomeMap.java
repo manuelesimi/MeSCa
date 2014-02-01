@@ -1,4 +1,4 @@
-package org.campagnelab.mesca.algorithm;
+package org.campagnelab.mesca.input;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -6,7 +6,7 @@ import org.campagnelab.mesca.input.LinkedSiteList;
 import org.campagnelab.mesca.input.Site;
 
 /**
- * Map a chromosome with its sites.
+ * Map chromosomes to their sites.
  *
  * @author manuele
  */

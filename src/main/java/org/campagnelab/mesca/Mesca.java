@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.campagnelab.mesca.algorithm.*;
 import org.campagnelab.mesca.input.LinkedSiteList;
 import org.campagnelab.mesca.input.Site;
+import org.campagnelab.mesca.input.SiteChromosomeMap;
 import org.campagnelab.mesca.input.VCFReader;
 import org.campagnelab.mesca.output.TSVFormatter;
 
