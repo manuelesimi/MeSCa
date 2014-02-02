@@ -75,8 +75,11 @@ public class VCFReader {
                 for (PatientInfoIndexer.PatientInfo patientInfo : PatientInfoIndexer.getPatients())
                     sites[patientInfo.index] = new Site(patientInfo.index);
                 String chromosome = "";
+                String gene = "";
                 int position = 0;
                 for (int i = 0; i < parser.countAllFields(); i++) {
+                    logger.info(String.format("Field %s - Value %s",
+                            parser.getFieldName(i),parser.getFieldValue(i) ));
                     final String name = parser.getFieldName(i);
                     if (name.equals(chromosomeFieldName)) {
                         chromosome = parser.getFieldValue(i).toString();
@@ -88,6 +91,8 @@ public class VCFReader {
                                sites[patientInfo.index].setPriorityScore(Float.valueOf(parser.getFieldValue(i).toString()));
                             }
                         }
+                    } else if (name.equalsIgnoreCase("INFO[GENE_NAME]")) {
+                        gene = parser.getFieldValue(i).toString();
                     }
                 }
                 /*if (chromosome != currentChromosome) {
@@ -98,6 +103,7 @@ public class VCFReader {
                 for (int s = 0; s < sites.length;s++) {
                     sites[s].setPosition(position);
                     sites[s].setChromosome(chromosome);
+                    sites[s].setGene(gene);
                 }
                 //currentEndPosition = position;
             } catch (Exception e) {

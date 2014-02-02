@@ -17,6 +17,8 @@ public class Site {
 
     public static final float MIN_RELEVANT_PRIORITY_SCORE = 1F;   //TODO: will be a parameter in the command line
 
+    private int gene;
+
     protected Site(int id) {
         this.ID = id;
     }
@@ -73,8 +75,21 @@ public class Site {
                 "priorityScore=" + priorityScore +
                 ", ID=" + ID +
                 ", position=" + position +
-                ", chromosome=" + chromosome +
+                ", chromosome=" + this.getChromosome() +
+                ", gene=" + this.getGene() +
                 ", name=" + this.getName() +
                 '}';
+    }
+
+    public void setGene(String gene) {
+        this.gene = GeneIndexer.encode(gene);
+    }
+
+    public String getGene() {
+        return GeneIndexer.decode(this.gene);
+    }
+
+    public int getGeneAsInt() {
+        return this.gene;
     }
 }

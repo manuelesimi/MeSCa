@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.ints.Int2FloatArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2FloatMap;
 import org.apache.log4j.Logger;
 import org.campagnelab.mesca.input.ChromosomeIndexer;
+import org.campagnelab.mesca.input.GeneIndexer;
 import org.campagnelab.mesca.input.Site;
 
 import java.util.*;
@@ -22,6 +23,8 @@ public class Cluster {
     private final String name;
 
     private int chromosome;
+
+    private int gene;
 
     protected static enum DIRECTION {
         LEFT,
@@ -78,6 +81,7 @@ public class Cluster {
     protected Cluster(Site startSite, final List<StopCondition> stopConditions) {
         this.name = "C" + startSite.getID() + startSite.getPosition();
         this.chromosome = startSite.getChromosomeAsInt();
+        this.gene = startSite.getGeneAsInt();
         this.stopConditions = stopConditions;
         if (!uniquePatients.containsKey(startSite.getName()))   {
             uniquePatients.put(startSite.getName(), new PatientScore(startSite.getName(), startSite.getPriorityScore(), startSite.getPosition()));
@@ -119,8 +123,8 @@ public class Cluster {
         String[] sortedList = new String[list.size()];
         int i =0;
         for (PatientScore patientScore : list)
-            sortedList[i++] = String.format("%s(%s:%d)",patientScore.name,
-                    this.getChromosome(),patientScore.position);
+            sortedList[i++] = String.format("%s(position:%s:%d,gene:%s)",patientScore.name,
+                    this.getChromosome(),patientScore.position, this.getGene());
         return sortedList;
     }
 
@@ -274,6 +278,10 @@ public class Cluster {
 
     public String getChromosome() {
         return ChromosomeIndexer.decode(chromosome);
+    }
+
+    public String getGene() {
+        return GeneIndexer.decode(gene);
     }
     /**
      * Gets whether this cluster is relevant or not.

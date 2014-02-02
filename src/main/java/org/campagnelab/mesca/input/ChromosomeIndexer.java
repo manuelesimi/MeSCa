@@ -14,19 +14,19 @@ public class ChromosomeIndexer {
     static Int2ObjectMap<String> customMappings = new Int2ObjectArrayMap<String>();
     static int index = 25;
 
-    public static String decode(int chromosome) {
-        if (chromosome <= 22)
-            return String.format("%s",chromosome);
-        else if (chromosome == 23)
+    public static String decode(int index) {
+        if (index <= 22)
+            return String.format("%s",index);
+        else if (index == 23)
             return "X";
-        else if (chromosome == 24)
+        else if (index == 24)
             return "Y";
-        else if (chromosome == 25)
+        else if (index == 25)
             return "MT";
-        else if (customMappings.containsKey(chromosome))
-            return String.format("%s",customMappings.get(chromosome));
+        else if (customMappings.containsKey(index))
+            return String.format("%s",customMappings.get(index));
         else
-            throw new IllegalArgumentException("Invalid chromosome code: " + chromosome);
+            throw new IllegalArgumentException("Invalid chromosome index: " + index);
     }
 
     public static int encode(String chromosome) {
