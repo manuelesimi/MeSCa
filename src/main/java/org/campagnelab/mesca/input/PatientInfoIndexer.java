@@ -39,11 +39,14 @@ public class PatientInfoIndexer {
         protected String name;
         protected int index;
         protected String infoFieldName;
+        protected String somaticFrequencyFieldName;
 
         protected PatientInfo(int index, String name) {
             this.name = name;
             this.index = index;
             this.infoFieldName = String.format("INFO[priority[%s]]",name);
+            this.somaticFrequencyFieldName = String.format("INFO[somatic-frequency[%s]]",name);
+
         }
     }
 }

@@ -19,6 +19,8 @@ public class Site {
 
     private int gene;
 
+    private float somaticFrequency;
+
     protected Site(int id) {
         this.ID = id;
     }
@@ -74,8 +76,9 @@ public class Site {
         return "Site{" +
                 "priorityScore=" + priorityScore +
                 ", ID=" + ID +
-                ", position=" + position +
                 ", chromosome=" + this.getChromosome() +
+                ", position=" + position +
+                ", somatic frequency=" + somaticFrequency +
                 ", gene=" + this.getGene() +
                 ", name=" + this.getName() +
                 '}';
@@ -91,5 +94,13 @@ public class Site {
 
     public int getGeneAsInt() {
         return this.gene;
+    }
+
+    public void setSomaticFrequency(Float somaticFrequency) {
+        this.somaticFrequency = somaticFrequency;
+    }
+
+    public Float getSomaticFrequency() {
+        return somaticFrequency;
     }
 }

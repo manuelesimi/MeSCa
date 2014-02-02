@@ -84,7 +84,8 @@ public class Cluster {
         this.gene = startSite.getGeneAsInt();
         this.stopConditions = stopConditions;
         if (!uniquePatients.containsKey(startSite.getName()))   {
-            uniquePatients.put(startSite.getName(), new PatientScore(startSite.getName(), startSite.getPriorityScore(), startSite.getPosition()));
+            uniquePatients.put(startSite.getName(), new PatientScore(startSite.getName(),
+                    startSite.getPriorityScore(), startSite.getPosition(),startSite.getSomaticFrequency()));
         } else {
             if (uniquePatients.get(startSite.getName()).priorityScore < startSite.getPriorityScore())
                 uniquePatients.get(startSite.getName()).priorityScore = startSite.getPriorityScore();
@@ -123,8 +124,8 @@ public class Cluster {
         String[] sortedList = new String[list.size()];
         int i =0;
         for (PatientScore patientScore : list)
-            sortedList[i++] = String.format("%s(position:%s:%d,gene:%s)",patientScore.name,
-                    this.getChromosome(),patientScore.position, this.getGene());
+            sortedList[i++] = String.format("%s(%s:%d|%s|%f)",patientScore.name,
+                    this.getChromosome(),patientScore.position, this.getGene(),patientScore.somaticFrequency);
         return sortedList;
     }
 
@@ -151,11 +152,15 @@ public class Cluster {
             //calculate if there is a new unique patient
             logger.info(this.name + ": adding site " + site.toString());
             if (!uniquePatients.containsKey(site.getName()))   {
-                uniquePatients.put(site.getName(), new PatientScore(site.getName(), site.getPriorityScore(),site.getPosition()));
+                uniquePatients.put(site.getName(),
+                        new PatientScore(site.getName(),
+                            site.getPriorityScore(),site.getPosition(),
+                                site.getSomaticFrequency()));
             } else {
                 if (uniquePatients.get(site.getName()).priorityScore < site.getPriorityScore())  {
                     uniquePatients.get(site.getName()).priorityScore = site.getPriorityScore();
                     uniquePatients.get(site.getName()).position = site.getPosition();
+                    uniquePatients.get(site.getName()).somaticFrequency = site.getSomaticFrequency();
                 }
             }
             //extend the cluster according to the position
@@ -322,10 +327,13 @@ public class Cluster {
 
         long position;
 
-        public PatientScore(String name, float priorityScore, int position) {
+        float somaticFrequency;
+
+        public PatientScore(String name, float priorityScore, int position, float somaticFrequency) {
             this.name = name;
             this.priorityScore = priorityScore;
             this.position = position;
+            this.somaticFrequency = somaticFrequency;
         }
 
         @Override

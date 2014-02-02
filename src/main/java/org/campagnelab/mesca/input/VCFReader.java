@@ -91,7 +91,14 @@ public class VCFReader {
                                sites[patientInfo.index].setPriorityScore(Float.valueOf(parser.getFieldValue(i).toString()));
                             }
                         }
-                    } else if (name.equalsIgnoreCase("INFO[GENE_NAME]")) {
+                    } else if (name.startsWith("INFO[somatic-frequency")) {
+                        for (PatientInfoIndexer.PatientInfo patientInfo : PatientInfoIndexer.getPatients()) {
+                            if (name.equals(patientInfo.somaticFrequencyFieldName)) {
+                                sites[patientInfo.index].setSomaticFrequency(Float.valueOf(parser.getFieldValue(i).toString()));
+                            }
+                        }
+                    } else {
+                    } if (name.equalsIgnoreCase("INFO[GENE_NAME]")) {
                         gene = parser.getFieldValue(i).toString();
                     }
                 }
