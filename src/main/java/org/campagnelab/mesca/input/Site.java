@@ -17,6 +17,8 @@ public class Site {
 
     public static final float MIN_RELEVANT_PRIORITY_SCORE = 1F;   //TODO: will be a parameter in the command line
 
+    public static final float MIN_RELEVANT_SOMATIC_FREQUENCY = 5F;   //TODO: will be a parameter in the command line
+
     private int gene;
 
     private float somaticFrequency;
@@ -68,7 +70,8 @@ public class Site {
      * @return
      */
     public boolean isRelevant() {
-        return (this.getPriorityScore() >= MIN_RELEVANT_PRIORITY_SCORE);
+        return ((this.getPriorityScore() >= MIN_RELEVANT_PRIORITY_SCORE)
+                &&(this.getSomaticFrequency() >= MIN_RELEVANT_SOMATIC_FREQUENCY));
     }
 
     @Override
@@ -96,11 +99,11 @@ public class Site {
         return this.gene;
     }
 
-    public void setSomaticFrequency(Float somaticFrequency) {
+    public void setSomaticFrequency(float somaticFrequency) {
         this.somaticFrequency = somaticFrequency;
     }
 
-    public Float getSomaticFrequency() {
+    public float getSomaticFrequency() {
         return somaticFrequency;
     }
 }

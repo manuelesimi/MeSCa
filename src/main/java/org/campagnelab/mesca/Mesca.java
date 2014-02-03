@@ -79,19 +79,21 @@ public class Mesca {
         watcher.setTotalSitesAnalyzed(totalSites);
         ClusterQueue qclusters = new ClusterQueue();
         //create stop conditions
-        Size size = new Size(5000);
-        DecreasingScore decreasingScore = new DecreasingScore(1F);
+        Size size = new Size(10000);
+        //DecreasingScore decreasingScore = new DecreasingScore(1F);
         watcher.recordVCFInputFile(config.getFile("input-file"));
         watcher.addStopCondition(size);
-        watcher.addStopCondition(decreasingScore);
+        //watcher.addStopCondition(decreasingScore);
         watcher.setDegreeOfProximity(Cluster.DEGREE_OF_PROXIMITY);
         watcher.setMinPriorityScore(Site.MIN_RELEVANT_PRIORITY_SCORE);
+        watcher.setMinSomaticFrequency(Site.MIN_RELEVANT_SOMATIC_FREQUENCY);
+
         watcher.startRecordDetector();
         for (int chromosome : siteChromosomeMap.keySet()) {
             LinkedSiteList siteList = siteChromosomeMap.getSites(chromosome);
             ClusterDetector detector = new ClusterDetector(siteList);
             detector.addStopCondition(size);
-            detector.addStopCondition(decreasingScore);
+            //detector.addStopCondition(decreasingScore);
             watcher.setRelevantSites(siteList.size());
             //invoke ClusterDetector
             ObjectArrayList<Cluster> clusters = detector.run();

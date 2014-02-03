@@ -75,7 +75,9 @@ public class TSVFormatter implements Formatter {
                "#Sites analyzed: " + watcher.getTotalSitesAnalyzed(),
                "#Relevant Sites: " + watcher.getNumOfSites(),
                "#Degree of proximity: " + watcher.getDegreeOfProximity(),
-               "#Min priority score: " + watcher.getMinPriorityScore()
+               "#Min priority score: " + watcher.getMinPriorityScore(),
+               "#Min somatic frequency: " + watcher.getMinSomaticFrequency()
+
         };
     }
 

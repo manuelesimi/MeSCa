@@ -69,6 +69,30 @@ public class VCFReaderIntegrityTest {
     }
 
     @Test
+    public void testSomaticFrequency() throws Exception {
+        assertEquals(0.70298773F, siteList.get(0).getSomaticFrequency());
+        assertEquals(0.5154639F, siteList.get(1).getSomaticFrequency());
+        assertEquals(0.0F, siteList.get(2).getSomaticFrequency());
+        assertEquals(0.9090909F, siteList.get(3).getSomaticFrequency());
+
+    }
+
+
+    @Test
+    public void testDecodeGene() throws Exception {
+        assertEquals("CD248", siteList.get(0).getGene());
+        assertEquals("CD248", siteList.get(1).getGene());
+        assertEquals("NOC2L", siteList.get(2).getGene());
+        assertEquals("NOC2L", siteList.get(3).getGene());
+        assertEquals("PACS1", siteList.get(4).getGene());
+        assertEquals("PACS1", siteList.get(5).getGene());
+        assertEquals("PACS1", siteList.get(6).getGene());
+        assertEquals("PACS1", siteList.get(7).getGene());
+        assertEquals("CNIH2", siteList.get(8).getGene());
+        assertEquals("CNIH2", siteList.get(9).getGene());
+    }
+
+    @Test
     public void testGetNumOfPatients() throws Exception {
         assertEquals("Unexpected number of patients found", 2, vcf.getNumOfPatients());
     }

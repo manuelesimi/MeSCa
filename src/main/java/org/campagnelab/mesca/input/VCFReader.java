@@ -78,8 +78,8 @@ public class VCFReader {
                 String gene = "";
                 int position = 0;
                 for (int i = 0; i < parser.countAllFields(); i++) {
-                    logger.info(String.format("Field %s - Value %s",
-                            parser.getFieldName(i),parser.getFieldValue(i) ));
+                    //logger.info(String.format("Field %s - Value %s",
+                     //       parser.getFieldName(i),parser.getFieldValue(i) ));
                     final String name = parser.getFieldName(i);
                     if (name.equals(chromosomeFieldName)) {
                         chromosome = parser.getFieldValue(i).toString();

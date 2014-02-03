@@ -28,6 +28,7 @@ public class DetectorWatcher {
     private double parserElapsed;
     private int totalSitesAnalyzed;
     private float minPriorityScore;
+    private float minSomaticFrequency;
 
     /**
      * Create a stopwatch object.
@@ -115,5 +116,13 @@ public class DetectorWatcher {
 
     public void setMinPriorityScore(float minPriorityScore) {
         this.minPriorityScore = minPriorityScore;
+    }
+
+    public void setMinSomaticFrequency(float minSomaticFrequency) {
+        this.minSomaticFrequency = minSomaticFrequency;
+    }
+
+    public float getMinSomaticFrequency() {
+        return minSomaticFrequency;
     }
 }
