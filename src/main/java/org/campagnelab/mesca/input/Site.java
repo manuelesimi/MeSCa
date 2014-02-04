@@ -70,8 +70,8 @@ public class Site {
      * @return
      */
     public boolean isRelevant() {
-        return ((this.getPriorityScore() >= MIN_RELEVANT_PRIORITY_SCORE)
-                &&(this.getSomaticFrequency() >= MIN_RELEVANT_SOMATIC_FREQUENCY));
+        return ((this.getPriorityScore() >= MIN_RELEVANT_PRIORITY_SCORE)/*
+                &&(this.getSomaticFrequency() >= MIN_RELEVANT_SOMATIC_FREQUENCY)*/);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class Site {
     }
 
     public String getGene() {
-        return GeneIndexer.decode(this.gene);
+        return "";//GeneIndexer.decode(this.gene);
     }
 
     public int getGeneAsInt() {

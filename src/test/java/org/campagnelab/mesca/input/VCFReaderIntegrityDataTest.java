@@ -17,7 +17,7 @@ import static junit.framework.Assert.assertEquals;
  * @author manuele
  */
 @RunWith(JUnit4.class)
-public class VCFReaderIntegrityTest {
+public class VCFReaderIntegrityDataTest {
 
     static VCFReader vcf;
     static List<Site> siteList;

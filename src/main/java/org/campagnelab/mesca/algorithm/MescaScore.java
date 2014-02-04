@@ -58,12 +58,7 @@ public class MescaScore {
 
     private Operands analyzeCluster(Cluster cluster) {
         Operands operands = new Operands();
-        //sum all the priority scores in the cluster
-        FloatCollection collection = cluster.getAllPriorityScores();
-        FloatIterator iterator = collection.iterator();
-        while (iterator.hasNext())
-            operands.totalPriorityScores += iterator.nextFloat();
-
+        operands.totalPriorityScores = cluster.totalPriorityScores;
         operands.rightEnd = cluster.rightEnd();
         operands.leftEnd = cluster.leftEnd();
         operands.uniquePatients = cluster.getUniquePatients();

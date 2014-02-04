@@ -47,6 +47,8 @@ public class Cluster {
 
     private Int2FloatMap priorityScoreAtPosition = new Int2FloatArrayMap();
 
+    protected float totalPriorityScores = 0F;
+
     /**
      * Stop conditions to apply to each extension's iteration.
      */
@@ -157,10 +159,11 @@ public class Cluster {
                             site.getPriorityScore(),site.getPosition(),
                                 site.getSomaticFrequency()));
             } else {
-                if (uniquePatients.get(site.getName()).priorityScore < site.getPriorityScore())  {
-                    uniquePatients.get(site.getName()).priorityScore = site.getPriorityScore();
-                    uniquePatients.get(site.getName()).position = site.getPosition();
-                    uniquePatients.get(site.getName()).somaticFrequency = site.getSomaticFrequency();
+                PatientScore patientScore = uniquePatients.get(site.getName());
+                if (patientScore.priorityScore <= site.getPriorityScore())  {
+                    patientScore.priorityScore = site.getPriorityScore();
+                    patientScore.position = site.getPosition();
+                    patientScore.somaticFrequency = site.getSomaticFrequency();
                 }
             }
             //extend the cluster according to the position
@@ -180,8 +183,9 @@ public class Cluster {
                 this.minPriorityScore = site.getPriorityScore();
 
             priorityScoreAtPosition.put(site.getPosition(), site.getPriorityScore());
-            this.score = new MescaScore(this).calculate();
+            this.totalPriorityScores +=  site.getPriorityScore();
         }
+        this.score = new MescaScore(this).calculate();
     }
 
     /**
