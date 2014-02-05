@@ -19,6 +19,8 @@ public class MescaScore {
 
     private final Cluster cluster;
 
+    private static final double UNIQUE_PATIENTS_WEIGHT = 2;
+
     protected MescaScore(Cluster cluster) {
         this.operands = analyzeCluster(cluster);
         this.cluster = cluster;
@@ -53,7 +55,7 @@ public class MescaScore {
     protected float calculate() {
         //calculate the score
         return ((operands.totalPriorityScores / (operands.rightEnd - operands.leftEnd))
-                * operands.uniquePatients);
+                * (int)Math.pow(UNIQUE_PATIENTS_WEIGHT,operands.uniquePatients));
     }
 
     private Operands analyzeCluster(Cluster cluster) {
@@ -69,6 +71,6 @@ public class MescaScore {
         float totalPriorityScores = 0F;
         float leftEnd = 0F;
         float rightEnd = 0F;
-        int uniquePatients = 0;
+        double uniquePatients = 0;
     }
 }
