@@ -45,7 +45,10 @@ public class Cluster {
      */
     private float maxPriorityScore = 0;
 
-    private Int2FloatMap priorityScoreAtPosition = new Int2FloatArrayMap();
+    /**
+     * Record the priority score at each site in the cluster.
+     */
+    private Int2FloatMap priorityScoreAtSite = new Int2FloatArrayMap();
 
     protected float totalPriorityScores = 0F;
 
@@ -96,7 +99,7 @@ public class Cluster {
         this.rightEnd = startSite.getPosition();
         this.maxPriorityScore = startSite.getPriorityScore();
         this.minPriorityScore = startSite.getPriorityScore();
-        priorityScoreAtPosition.put(startSite.getPosition(), startSite.getPriorityScore());
+        priorityScoreAtSite.put(startSite.getPosition(), startSite.getPriorityScore());
 
     }
 
@@ -136,11 +139,11 @@ public class Cluster {
      * @return
      */
     protected FloatCollection getAllPriorityScores() {
-        return priorityScoreAtPosition.values();
+        return priorityScoreAtSite.values();
     }
 
     protected int getNumOfSites() {
-        return priorityScoreAtPosition.values().size();
+        return priorityScoreAtSite.values().size();
     }
     /**
      * Adds the sites to the cluster.
@@ -182,7 +185,7 @@ public class Cluster {
             if (site.getPriorityScore() < this.minPriorityScore)
                 this.minPriorityScore = site.getPriorityScore();
 
-            priorityScoreAtPosition.put(site.getPosition(), site.getPriorityScore());
+            priorityScoreAtSite.put(site.getPosition(), site.getPriorityScore());
             this.totalPriorityScores +=  site.getPriorityScore();
         }
         this.score = new MescaScore(this).calculate();
@@ -210,55 +213,59 @@ public class Cluster {
        boolean haltLeftExpansion = false;
        while (! haltDetection) {
            if (!haltRightExpansion)
-            haltRightExpansion = addRightNeighboringPositions();
+            haltRightExpansion = addRightNeighboringSites();
            if(! haltLeftExpansion)
-            haltLeftExpansion =  addLeftNeighboringPositions();
+            haltLeftExpansion =  addLeftNeighboringSites();
            haltDetection = (haltRightExpansion && haltLeftExpansion);
        }
     }
 
     /**
-     * Tries to add position at left according to DEGREE_OF_PROXIMITY
+     * Tries to add sites at left according to DEGREE_OF_PROXIMITY
      * @return true if the extension in the left direction is completed, false otherwise
      */
-    private boolean addLeftNeighboringPositions() {
+    private boolean addLeftNeighboringSites() {
         if (!leftListIterator.hasPrevious())
             return true;
-        int positionInSteps = 0;
+        int sitesInSteps = 0;
         Site[] sites = new Site[DEGREE_OF_PROXIMITY];
-        while (leftListIterator.hasPrevious() && positionInSteps < DEGREE_OF_PROXIMITY)
-            sites[positionInSteps++] = leftListIterator.previous();
+        while (leftListIterator.hasPrevious() && sitesInSteps < DEGREE_OF_PROXIMITY)
+            sites[sitesInSteps++] = leftListIterator.previous();
+        boolean closed = false;
         for (StopCondition condition : this.stopConditions) {
             if (condition.apply(this, sites, DIRECTION.LEFT)) {
-                //skip the sample
-                return true;
+                //skip the sites
+                closed = true;
+                break;
             }
         }
-        this.addSites(sites, DIRECTION.LEFT);
-        return false;
+        if (!closed)
+            this.addSites(sites, DIRECTION.LEFT);
+        return closed;
     }
 
     /**
-     * Tries to add position at right according to DEGREE_OF_PROXIMITY
-     * @return true if the extension in the right direction is completed, false otherwise
+     * Tries to add sites at right according to DEGREE_OF_PROXIMITY
+     * @return true if the extension in the right direction is closed, false otherwise
      */
-    private boolean addRightNeighboringPositions() {
+    private boolean addRightNeighboringSites() {
         if (!rightListIterator.hasNext())
             return true;
-        int positionInSteps = 0;
+        int sitesInSteps = 0;
         Site[] sites = new Site[DEGREE_OF_PROXIMITY];
-        while (rightListIterator.hasNext() && positionInSteps < DEGREE_OF_PROXIMITY) {
-            sites[positionInSteps++] = rightListIterator.next();
-
-        }
+        while (rightListIterator.hasNext() && sitesInSteps < DEGREE_OF_PROXIMITY)
+            sites[sitesInSteps++] = rightListIterator.next();
+        boolean closed = false;
         for (StopCondition condition : this.stopConditions) {
             if (condition.apply(this, sites, DIRECTION.RIGHT)) {
-                //skip the sample
-                return true;
+                //skip the sites
+                closed = true;
+                break;
             }
         }
-        this.addSites(sites, DIRECTION.RIGHT);
-        return false;
+        if (!closed)
+            this.addSites(sites, DIRECTION.RIGHT);
+        return closed;
     }
 
     public boolean hasPatient(String name) {
@@ -307,6 +314,10 @@ public class Cluster {
                 && this.getNumOfSites() > this.uniquePatients.size()); //this makes sure that more than one position is in the cluster
     }
 
+    /**
+     * Primary criteria: unique patients
+     * Secondary criteria: score
+     */
     public static class ClusterComparator implements Comparator<Cluster> {
 
         @Override
