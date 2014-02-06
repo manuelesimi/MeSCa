@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d2a3553-4c97-422b-9ac5-3d284844b2df" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/DecreasingScore.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/DecreasingScore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/DetectorWatcher.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/DetectorWatcher.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/GeneIndexer.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/GeneIndexer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/MescaScore.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/MescaScore.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/Site.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/Site.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="VCFClusterDetector.iws" />
@@ -78,7 +75,26 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/Site.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="19" column="74" selection-start="456" selection-end="456" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1425">
-              <folding />
+              <folding>
+                <element signature="e#755#756#0" expanded="false" />
+                <element signature="e#793#794#0" expanded="false" />
+                <element signature="e#978#979#0" expanded="false" />
+                <element signature="e#1028#1029#0" expanded="false" />
+                <element signature="e#1067#1068#0" expanded="false" />
+                <element signature="e#1103#1104#0" expanded="false" />
+                <element signature="e#1129#1130#0" expanded="false" />
+                <element signature="e#1154#1155#0" expanded="false" />
+                <element signature="e#1286#1287#0" expanded="false" />
+                <element signature="e#1328#1329#0" expanded="false" />
+                <element signature="e#1360#1361#0" expanded="false" />
+                <element signature="e#1396#1397#0" expanded="false" />
+                <element signature="e#2331#2332#0" expanded="false" />
+                <element signature="e#2363#2364#0" expanded="false" />
+                <element signature="e#2426#2427#0" expanded="false" />
+                <element signature="e#2482#2483#0" expanded="false" />
+                <element signature="e#2524#2525#0" expanded="false" />
+                <element signature="e#2563#2564#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -131,22 +147,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UKTQZBB-clusters-3-perc.tsv" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="UKTQZBB-clusters-3-perc.tsv" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test-results/UKTQZBB-clusters-3-perc.tsv">
           <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="208" selection-end="415" vertical-scroll-proportion="0.0608931" vertical-offset="0" max-vertical-offset="15780">
+            <state line="23" column="86" selection-start="7318" selection-end="7318" vertical-scroll-proportion="-12.777778" vertical-offset="0" max-vertical-offset="15780">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MLWQHLM-clusters.tsv" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test-results/MLWQHLM-clusters.tsv">
+      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="108" selection-start="3281" selection-end="3281" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+            <state line="67" column="21" selection-start="2052" selection-end="2052" vertical-scroll-proportion="0.8267009" vertical-offset="361" max-vertical-offset="1140">
               <folding />
             </state>
           </provider>
@@ -200,7 +216,6 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterList.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.jsap" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/QualityScore.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/list/DoublyLinkedListTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterTooBig.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/StopWatch.java" />
@@ -237,6 +252,7 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/Site.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -318,6 +334,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="mesca" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mesca" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: colt:colt:1.2.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="colt-1.2.0.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1029,7 +1067,7 @@
       <workItem from="1391439997496" duration="10869000" />
       <workItem from="1391524599784" duration="8381000" />
       <workItem from="1391611503323" duration="8293000" />
-      <workItem from="1391627472145" duration="14340000" />
+      <workItem from="1391627472145" duration="15353000" />
     </task>
     <task id="LOCAL-00001" summary="Sketch java classes for the detection algorithm.&#10;">
       <created>1388237419699</created>
@@ -1287,15 +1325,23 @@
       <created>1391698696602</created>
       <updated>1391698696602</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Calculate if the decrease of the score after the expansion is acceptable with a percentage of the original score.">
+      <created>1391710198055</created>
+      <updated>1391710198055</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Tweak code in Cluster class. Fix a bug that prevents the correct expansion of a Cluster.">
+      <created>1391710284909</created>
+      <updated>1391710284909</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="280347000" />
+    <option name="totallyTimeSpent" value="281360000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27454546" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1317,7 +1363,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2319301" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31572676" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31572676" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31518152" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1338,8 +1384,6 @@
       <TodoPanelSettings />
     </option>
     <option name="SHOW_FILE_HISTORY_DETAILS" value="false" />
-    <MESSAGE value="Keep the current rank in the Cluster instance, avoiding to recalculate it at each iteration." />
-    <MESSAGE value="Print the cluster rank in the output list." />
     <MESSAGE value="Add Rank as stop condition to ClusterDetector. Print the cluster rank in the output record." />
     <MESSAGE value="Add concept of degree of proximity when extending a cluster." />
     <MESSAGE value="Rename Sample to Site." />
@@ -1363,7 +1407,9 @@
     <MESSAGE value="Limit the capacity of the output cluster queue." />
     <MESSAGE value="Expose top clusters returned as parameter.&#10;" />
     <MESSAGE value="Add number of top clusters returned to output statistics.&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add number of top clusters returned to output statistics.&#10;" />
+    <MESSAGE value="Calculate if the decrease of the score after the expansion is acceptable with a percentage of the original score." />
+    <MESSAGE value="Tweak code in Cluster class. Fix a bug that prevents the correct expansion of a Cluster." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tweak code in Cluster class. Fix a bug that prevents the correct expansion of a Cluster." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1622,13 +1668,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="0" selection-start="1894" selection-end="1894" vertical-scroll-proportion="0.0" vertical-offset="192" max-vertical-offset="1050">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test-results/MLWQHLM-clusters.tsv">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="108" selection-start="3281" selection-end="3281" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
@@ -1687,7 +1726,26 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/Site.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="74" selection-start="456" selection-end="456" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1425">
-          <folding />
+          <folding>
+            <element signature="e#755#756#0" expanded="false" />
+            <element signature="e#793#794#0" expanded="false" />
+            <element signature="e#978#979#0" expanded="false" />
+            <element signature="e#1028#1029#0" expanded="false" />
+            <element signature="e#1067#1068#0" expanded="false" />
+            <element signature="e#1103#1104#0" expanded="false" />
+            <element signature="e#1129#1130#0" expanded="false" />
+            <element signature="e#1154#1155#0" expanded="false" />
+            <element signature="e#1286#1287#0" expanded="false" />
+            <element signature="e#1328#1329#0" expanded="false" />
+            <element signature="e#1360#1361#0" expanded="false" />
+            <element signature="e#1396#1397#0" expanded="false" />
+            <element signature="e#2331#2332#0" expanded="false" />
+            <element signature="e#2363#2364#0" expanded="false" />
+            <element signature="e#2426#2427#0" expanded="false" />
+            <element signature="e#2482#2483#0" expanded="false" />
+            <element signature="e#2524#2525#0" expanded="false" />
+            <element signature="e#2563#2564#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1710,7 +1768,14 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="208" selection-end="415" vertical-scroll-proportion="0.0608931" vertical-offset="0" max-vertical-offset="15780">
+        <state line="23" column="86" selection-start="7318" selection-end="7318" vertical-scroll-proportion="-12.777778" vertical-offset="0" max-vertical-offset="15780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="21" selection-start="2052" selection-end="2052" vertical-scroll-proportion="0.8267009" vertical-offset="361" max-vertical-offset="1140">
           <folding />
         </state>
       </provider>
