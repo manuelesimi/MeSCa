@@ -19,7 +19,6 @@ public class Cluster {
 
     protected static final org.apache.log4j.Logger logger = Logger.getLogger(Cluster.class);
 
-
     private final String name;
 
     private int chromosome;
@@ -60,6 +59,12 @@ public class Cluster {
      */
     private static final int MIN_RELEVANT_PATIENTS = 2;   //TODO: will be a parameter in the command line
 
+
+    /**
+     * Max somatic frequency in the cluster that make it relevant.
+     */
+    public static final float MIN_RELEVANT_SOMATIC_FREQUENCY = 5F;
+
     /**
      * How many neighboring positions are considered in a direction for each iteration.
      */
@@ -81,6 +86,9 @@ public class Cluster {
 
     protected float score = 0F;
 
+    protected float maxSomaticFrequency = 0F;
+
+
     protected Cluster(Site startSite, final List<StopCondition> stopConditions) {
         this.name = "C" + startSite.getID() + startSite.getPosition();
         this.chromosome = startSite.getChromosomeAsInt();
@@ -97,6 +105,7 @@ public class Cluster {
         this.rightEnd = startSite.getPosition();
         this.maxPriorityScore = startSite.getPriorityScore();
         this.minPriorityScore = startSite.getPriorityScore();
+        this.maxSomaticFrequency = startSite.getSomaticFrequency();
         priorityScoreAtSite.put(startSite.getPosition(), startSite.getPriorityScore());
 
     }
@@ -192,7 +201,8 @@ public class Cluster {
                 this.maxPriorityScore = site.getPriorityScore();
             if (site.getPriorityScore() < this.minPriorityScore)
                 this.minPriorityScore = site.getPriorityScore();
-
+            if (site.getSomaticFrequency() > this.maxSomaticFrequency)
+                this.maxSomaticFrequency = site.getSomaticFrequency();
             priorityScoreAtSite.put(site.getPosition(), site.getPriorityScore());
             this.totalPriorityScores +=  site.getPriorityScore();
         }
@@ -316,6 +326,7 @@ public class Cluster {
             if (!condition.isRelevant(this)) relevant = false;
         return (relevant
                 && this.uniquePatients.size() >= MIN_RELEVANT_PATIENTS
+                && this.maxSomaticFrequency >= MIN_RELEVANT_SOMATIC_FREQUENCY
                 && this.getNumOfSites() > this.uniquePatients.size()); //this makes sure that more than one position is in the cluster
     }
 

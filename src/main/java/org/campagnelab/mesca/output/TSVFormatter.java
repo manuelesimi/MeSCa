@@ -75,10 +75,10 @@ public class TSVFormatter implements Formatter {
                "#Time elapsed to parse the input file: " + watcher.parserElapsedTime() + " sec",
                "#Time elapsed for cluster detection: " + watcher.detectorElapsedTime() + " sec",
                "#Sites analyzed: " + watcher.getTotalSitesAnalyzed(),
-               "#Relevant Sites: " + watcher.getNumOfSites(),
+               "#Relevant sites: " + watcher.getNumOfSites(),
                "#Degree of proximity: " + watcher.getDegreeOfProximity(),
                "#Min priority score: " + watcher.getMinPriorityScore(),
-               "#Min somatic frequency: " + watcher.getMinSomaticFrequency(),
+               "#Relevant somatic frequency for top sites: " + watcher.getMinSomaticFrequency(),
                "#Max returned clusters: " + watcher.getMaxReturnedClusters()
 
         };
@@ -86,7 +86,7 @@ public class TSVFormatter implements Formatter {
 
 
     private String getHeader() {
-        return String.format("cluster-name%sstart_position:end_position%snum_of_patients%ssample(chromosome:position|gene|somatic frequency))%sunique genes at top samples%smin_priority_score:max_priority_score%sscore",
+        return String.format("cluster-name%sstart_position:end_position%snum_of_patients%ssample(chromosome:position|gene|somatic frequency))%sunique genes at top sites%smin_priority_score:max_priority_score%sscore",
                 separator, separator,separator, separator, separator, separator);
     }
 }
