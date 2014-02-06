@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Measure an execution a Mesca analysis
+ * Watch an execution of the detection algorithm.
  *
  * @author manuele
  */
@@ -14,7 +14,6 @@ public class DetectorWatcher {
     private long detectorStart;
 
     private double detectorElapsed;
-
 
     private long parserStart;
 
@@ -29,6 +28,7 @@ public class DetectorWatcher {
     private int totalSitesAnalyzed;
     private float minPriorityScore;
     private float minSomaticFrequency;
+    private int maxReturnedClusters;
 
     /**
      * Create a stopwatch object.
@@ -124,5 +124,13 @@ public class DetectorWatcher {
 
     public float getMinSomaticFrequency() {
         return minSomaticFrequency;
+    }
+
+    public void setMaxReturnedClusters(int maxReturnedClusters) {
+        this.maxReturnedClusters = maxReturnedClusters;
+    }
+
+    public int getMaxReturnedClusters() {
+        return maxReturnedClusters;
     }
 }

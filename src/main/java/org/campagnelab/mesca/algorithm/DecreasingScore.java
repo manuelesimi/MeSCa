@@ -13,6 +13,8 @@ import org.campagnelab.mesca.input.Site;
 public class DecreasingScore extends BaseStopCondition {
 
 
+    private static final float MAX_PERCENTAGE_DECREASE = 30;
+
     private final float min_relevant_score;
 
     public DecreasingScore(float min_relevant_score) {
@@ -29,10 +31,16 @@ public class DecreasingScore extends BaseStopCondition {
     public boolean apply(Cluster cluster, Site[] sites, Cluster.DIRECTION direction) {
         MescaScore mescaScore = new MescaScore(cluster);
         float newScore = mescaScore.calculateWithSites(sites);
-        if (cluster.score < newScore || cluster.getNumOfSites()==0) {
+        if (cluster.score < newScore || (cluster.getNumOfSites()==0)) {
             return false;
+        } else {
+            //calculate how big is the decrease in the score and if it is acceptable
+            float decrease = (((cluster.score - newScore) * 100)/cluster.score);
+            if (decrease > MAX_PERCENTAGE_DECREASE)
+                return true;
+            else
+                return false;
         }
-        return true;
     }
 
     @Override
