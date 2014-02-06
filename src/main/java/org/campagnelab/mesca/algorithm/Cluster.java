@@ -24,8 +24,6 @@ public class Cluster {
 
     private int chromosome;
 
-    private int gene;
-
     protected static enum DIRECTION {
         LEFT,
         RIGHT
@@ -86,11 +84,11 @@ public class Cluster {
     protected Cluster(Site startSite, final List<StopCondition> stopConditions) {
         this.name = "C" + startSite.getID() + startSite.getPosition();
         this.chromosome = startSite.getChromosomeAsInt();
-        this.gene = startSite.getGeneAsInt();
         this.stopConditions = stopConditions;
         if (!uniquePatients.containsKey(startSite.getName()))   {
             uniquePatients.put(startSite.getName(), new PatientScore(startSite.getName(),
-                    startSite.getPriorityScore(), startSite.getPosition(),startSite.getSomaticFrequency()));
+                    startSite.getPriorityScore(), startSite.getPosition(),startSite.getSomaticFrequency(),
+                    startSite.getGeneAsInt()));
         } else {
             if (uniquePatients.get(startSite.getName()).priorityScore < startSite.getPriorityScore())
                 uniquePatients.get(startSite.getName()).priorityScore = startSite.getPriorityScore();
@@ -130,9 +128,18 @@ public class Cluster {
         int i =0;
         for (PatientScore patientScore : list)
             sortedList[i++] = String.format("%s(%s:%d|%s|%f)",patientScore.name,
-                    this.getChromosome(),patientScore.position, this.getGene(),patientScore.somaticFrequency);
+                    this.getChromosome(),patientScore.position, GeneIndexer.decode(patientScore.gene),patientScore.somaticFrequency);
         return sortedList;
     }
+
+    public String[] getUniqueGenes() {
+        Set<String> genes = new HashSet<String>();
+        for (PatientScore patientScore : this.uniquePatients.values()) {
+            genes.add(GeneIndexer.decode(patientScore.gene));
+        }
+        return genes.toArray(new String[0]);
+    }
+
 
     /**
      * Gets all the priority scores of the samples in the cluster,
@@ -160,13 +167,14 @@ public class Cluster {
                 uniquePatients.put(site.getName(),
                         new PatientScore(site.getName(),
                             site.getPriorityScore(),site.getPosition(),
-                                site.getSomaticFrequency()));
+                                site.getSomaticFrequency(), site.getGeneAsInt()));
             } else {
                 PatientScore patientScore = uniquePatients.get(site.getName());
                 if (patientScore.priorityScore <= site.getPriorityScore())  {
                     patientScore.priorityScore = site.getPriorityScore();
                     patientScore.position = site.getPosition();
                     patientScore.somaticFrequency = site.getSomaticFrequency();
+                    patientScore.gene = site.getGeneAsInt();
                 }
             }
             //extend the cluster according to the position
@@ -296,9 +304,6 @@ public class Cluster {
         return ChromosomeIndexer.decode(chromosome);
     }
 
-    public String getGene() {
-        return GeneIndexer.decode(gene);
-    }
     /**
      * Gets whether this cluster is relevant or not.
      * A relevant cluster is included in the output queue.
@@ -344,10 +349,13 @@ public class Cluster {
 
         float somaticFrequency;
 
-        public PatientScore(String name, float priorityScore, int position, float somaticFrequency) {
+        int gene;
+
+        public PatientScore(String name, float priorityScore, int position, float somaticFrequency, int gene) {
             this.name = name;
             this.priorityScore = priorityScore;
             this.position = position;
+            this.gene = gene;
             this.somaticFrequency = somaticFrequency;
         }
 

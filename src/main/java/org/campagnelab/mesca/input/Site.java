@@ -15,9 +15,9 @@ public class Site {
 
     private int chromosome;
 
-    public static final float MIN_RELEVANT_PRIORITY_SCORE = 1F;   //TODO: will be a parameter in the command line
+    public static final float MIN_RELEVANT_PRIORITY_SCORE = 5F;   //TODO: will be a parameter in the command line
 
-    public static final float MIN_RELEVANT_SOMATIC_FREQUENCY = 5F;   //TODO: will be a parameter in the command line
+    public static final float MIN_RELEVANT_SOMATIC_FREQUENCY = 0F;   //TODO: will be a parameter in the command line
 
     private int gene;
 
@@ -70,8 +70,8 @@ public class Site {
      * @return
      */
     public boolean isRelevant() {
-        return ((this.getPriorityScore() >= MIN_RELEVANT_PRIORITY_SCORE)/*
-                &&(this.getSomaticFrequency() >= MIN_RELEVANT_SOMATIC_FREQUENCY)*/);
+        return ((this.getPriorityScore() >= MIN_RELEVANT_PRIORITY_SCORE)/* &&
+                (this.getSomaticFrequency() >= MIN_RELEVANT_SOMATIC_FREQUENCY)*/);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class Site {
     }
 
     public String getGene() {
-        return "";//GeneIndexer.decode(this.gene);
+        return GeneIndexer.decode(this.gene);
     }
 
     public int getGeneAsInt() {

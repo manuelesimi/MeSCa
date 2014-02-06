@@ -99,9 +99,9 @@ public class VCFReader {
                                 sites[patientInfo.index].setSomaticFrequency(Float.valueOf(parser.getFieldValue(i).toString()));
                             }
                         }
-                    } /*else if (name.equalsIgnoreCase("INFO[GENE_NAME]")) {
+                    } else if (name.equalsIgnoreCase("INFO[GENE_NAME]")) {
                         gene = parser.getFieldValue(i).toString();
-                    }  */
+                    }
                 }
                 /*if (chromosome != currentChromosome) {
                     PositionCodeCalculator.closeChromosome(currentEndPosition);
@@ -111,7 +111,7 @@ public class VCFReader {
                 for (int s = 0; s < sites.length;s++) {
                     sites[s].setPosition(position);
                     sites[s].setChromosome(chromosome);
-                    //sites[s].setGene(gene);
+                    sites[s].setGene(gene);
                 }
                 //currentEndPosition = position;
             } catch (Exception e) {
