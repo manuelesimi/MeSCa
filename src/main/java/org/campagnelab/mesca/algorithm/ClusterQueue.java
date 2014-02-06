@@ -15,13 +15,18 @@ public class ClusterQueue {
 
     private ObjectArrayPriorityQueue<Cluster> outputQueue;
 
-    private final int TOP_CLUSTERS_RETURNED = 100;
+    private static final int TOP_CLUSTERS_RETURNED = 100;
 
     /**
      *
      */
     public ClusterQueue() {
+        this(TOP_CLUSTERS_RETURNED);
+    }
+
+    public ClusterQueue(int topClusterReturned) {
         outputQueue = new ObjectArrayPriorityQueue<Cluster>(TOP_CLUSTERS_RETURNED,new Cluster.ClusterComparator());
+
     }
 
     /**
