@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d2a3553-4c97-422b-9ac5-3d284844b2df" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/ChromosomeIndexer.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/ChromosomeIndexer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="VCFClusterDetector.iws" />
@@ -138,21 +138,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cluster.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Cluster.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="151" column="19" selection-start="4784" selection-end="4784" vertical-scroll-proportion="0.0" vertical-offset="2114" max-vertical-offset="5390">
+            <state line="65" column="30" selection-start="1782" selection-end="1782" vertical-scroll-proportion="0.8117647" vertical-offset="660" max-vertical-offset="5222">
               <folding>
-                <marker date="1391771367000" expanded="true" signature="1046:1230" placeholder="/**...*/" />
-                <marker date="1391771367000" expanded="true" signature="1067:1089" placeholder="&lt;~&gt;" />
-                <marker date="1391771367000" expanded="true" signature="1346:1358" placeholder="/**...*/" />
-                <marker date="1391771367000" expanded="true" signature="1928:1985" placeholder="/**...*/" />
-                <marker date="1391771367000" expanded="true" signature="2135:2165" placeholder="/**...*/" />
-                <marker date="1391771367000" expanded="true" signature="3675:3958" placeholder="/**...*/" />
-                <marker date="1391771367000" expanded="true" signature="4543:4557" placeholder="&lt;~&gt;" />
-                <marker date="1391771367000" expanded="true" signature="5134:5252" placeholder="/**...*/" />
-                <marker date="1391771367000" expanded="true" signature="8421:8525" placeholder="/**...*/" />
-                <marker date="1391771367000" expanded="true" signature="9159:9325" placeholder="/**...*/" />
+                <marker date="1391773508000" expanded="true" signature="1046:1230" placeholder="/**...*/" />
+                <marker date="1391773508000" expanded="true" signature="1067:1089" placeholder="&lt;~&gt;" />
+                <marker date="1391773508000" expanded="true" signature="1346:1358" placeholder="/**...*/" />
+                <marker date="1391773508000" expanded="true" signature="1928:1985" placeholder="/**...*/" />
+                <marker date="1391773508000" expanded="true" signature="2135:2165" placeholder="/**...*/" />
+                <marker date="1391773508000" expanded="true" signature="3755:4038" placeholder="/**...*/" />
+                <marker date="1391773508000" expanded="true" signature="4623:4637" placeholder="&lt;~&gt;" />
+                <marker date="1391773508000" expanded="true" signature="5214:5332" placeholder="/**...*/" />
+                <marker date="1391773508000" expanded="true" signature="8668:8772" placeholder="/**...*/" />
+                <marker date="1391773508000" expanded="true" signature="9406:9572" placeholder="/**...*/" />
               </folding>
             </state>
           </provider>
@@ -176,10 +176,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MescaTest.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MescaTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="21" selection-start="394" selection-end="394" vertical-scroll-proportion="0.29927006" vertical-offset="170" max-vertical-offset="588">
+            <state line="23" column="21" selection-start="394" selection-end="394" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="588">
               <folding />
             </state>
           </provider>
@@ -247,8 +247,8 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/output/TSVFormatter.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/VCFReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/ChromosomeIndexer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java" />
       </list>
     </option>
   </component>
@@ -1006,7 +1006,7 @@
       <workItem from="1391254099840" duration="32284000" />
       <workItem from="1391472492134" duration="594000" />
       <workItem from="1391626053197" duration="352000" />
-      <workItem from="1391772823319" duration="322000" />
+      <workItem from="1391772823319" duration="718000" />
     </task>
     <task id="LOCAL-00001" summary="Sketch java classes for the detection algorithm.&#10;">
       <created>1388237419699</created>
@@ -1248,11 +1248,15 @@
       <created>1391394570866</created>
       <updated>1391394570866</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Fix chromosome indexer (improved performances).&#10;">
+      <created>1391773182738</created>
+      <updated>1391773182738</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240713000" />
+    <option name="totallyTimeSpent" value="241109000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="668" extended-state="0" />
@@ -1278,7 +1282,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.315832" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34363636" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48545456" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1298,7 +1302,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Add watcher to create  output statistics on the detector execution." />
     <MESSAGE value="More work on cluster detection." />
     <MESSAGE value="Manage relevant flag in a cluster. A relevant cluster is included in the output list." />
     <MESSAGE value="Improve relevant clusters detection. Now it's up to the stop condition to determine when a cluster is relevant or not." />
@@ -1323,7 +1326,8 @@
     <MESSAGE value="Read the gene name from the VCF. Add the gene name to the top scored position for each patient in the output list. Add a new related test case.&#10;" />
     <MESSAGE value="Read the somatic frequency from the VCF. Add the somatic frequency  to the top scored position for each patient in the output list. Add a new related test case.&#10;" />
     <MESSAGE value="Add a filter on somatic frequency. Sites with a frequency below a configured threshold are discarded. Add a test case for verifying the correct loading of somatic frequencies from the VCF." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add a filter on somatic frequency. Sites with a frequency below a configured threshold are discarded. Add a test case for verifying the correct loading of somatic frequencies from the VCF." />
+    <MESSAGE value="Fix chromosome indexer (improved performances).&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix chromosome indexer (improved performances).&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1351,16 +1355,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="151" column="19" selection-start="4784" selection-end="4784" vertical-scroll-proportion="0.0" vertical-offset="2114" max-vertical-offset="5390">
           <folding>
-            <marker date="1391771367000" expanded="true" signature="1046:1230" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="1067:1089" placeholder="&lt;~&gt;" />
-            <marker date="1391771367000" expanded="true" signature="1346:1358" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="1928:1985" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="2135:2165" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="3675:3958" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="4543:4557" placeholder="&lt;~&gt;" />
-            <marker date="1391771367000" expanded="true" signature="5134:5252" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="8421:8525" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="9159:9325" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="1046:1230" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="1067:1089" placeholder="&lt;~&gt;" />
+            <marker date="1391773508000" expanded="true" signature="1346:1358" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="1928:1985" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="2135:2165" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="3755:4038" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="4623:4637" placeholder="&lt;~&gt;" />
+            <marker date="1391773508000" expanded="true" signature="5214:5332" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="8668:8772" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="9406:9572" placeholder="/**...*/" />
           </folding>
         </state>
       </provider>
@@ -1661,24 +1665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="19" selection-start="4784" selection-end="4784" vertical-scroll-proportion="0.0" vertical-offset="2114" max-vertical-offset="5278">
-          <folding>
-            <marker date="1391771367000" expanded="true" signature="1046:1230" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="1067:1089" placeholder="&lt;~&gt;" />
-            <marker date="1391771367000" expanded="true" signature="1346:1358" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="1928:1985" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="2135:2165" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="3675:3958" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="4543:4557" placeholder="&lt;~&gt;" />
-            <marker date="1391771367000" expanded="true" signature="5134:5252" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="8421:8525" placeholder="/**...*/" />
-            <marker date="1391771367000" expanded="true" signature="9159:9325" placeholder="/**...*/" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/GeneIndexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="26" selection-start="905" selection-end="1172" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="574">
@@ -1695,8 +1681,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="21" selection-start="394" selection-end="394" vertical-scroll-proportion="0.29927006" vertical-offset="170" max-vertical-offset="588">
+        <state line="23" column="21" selection-start="394" selection-end="394" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="588">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="30" selection-start="1782" selection-end="1782" vertical-scroll-proportion="0.8117647" vertical-offset="660" max-vertical-offset="5222">
+          <folding>
+            <marker date="1391773508000" expanded="true" signature="1046:1230" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="1067:1089" placeholder="&lt;~&gt;" />
+            <marker date="1391773508000" expanded="true" signature="1346:1358" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="1928:1985" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="2135:2165" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="3755:4038" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="4623:4637" placeholder="&lt;~&gt;" />
+            <marker date="1391773508000" expanded="true" signature="5214:5332" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="8668:8772" placeholder="/**...*/" />
+            <marker date="1391773508000" expanded="true" signature="9406:9572" placeholder="/**...*/" />
+          </folding>
         </state>
       </provider>
     </entry>

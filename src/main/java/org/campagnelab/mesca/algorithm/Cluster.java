@@ -86,7 +86,7 @@ public class Cluster {
 
     protected float score = 0F;
 
-    protected float maxSomaticFrequency = 0F;
+    protected float topSomaticFrequency = 0F;
 
 
     protected Cluster(Site startSite, final List<StopCondition> stopConditions) {
@@ -97,15 +97,16 @@ public class Cluster {
             uniquePatients.put(startSite.getName(), new PatientScore(startSite.getName(),
                     startSite.getPriorityScore(), startSite.getPosition(),startSite.getSomaticFrequency(),
                     startSite.getGeneAsInt()));
+            this.topSomaticFrequency = startSite.getSomaticFrequency();
         } else {
             if (uniquePatients.get(startSite.getName()).priorityScore < startSite.getPriorityScore())
                 uniquePatients.get(startSite.getName()).priorityScore = startSite.getPriorityScore();
+                this.topSomaticFrequency = startSite.getSomaticFrequency();
         }
         this.leftEnd = startSite.getPosition();
         this.rightEnd = startSite.getPosition();
         this.maxPriorityScore = startSite.getPriorityScore();
         this.minPriorityScore = startSite.getPriorityScore();
-        this.maxSomaticFrequency = startSite.getSomaticFrequency();
         priorityScoreAtSite.put(startSite.getPosition(), startSite.getPriorityScore());
 
     }
@@ -177,6 +178,8 @@ public class Cluster {
                         new PatientScore(site.getName(),
                             site.getPriorityScore(),site.getPosition(),
                                 site.getSomaticFrequency(), site.getGeneAsInt()));
+                if (site.getSomaticFrequency() > this.topSomaticFrequency)
+                    this.topSomaticFrequency = site.getSomaticFrequency();
             } else {
                 PatientScore patientScore = uniquePatients.get(site.getName());
                 if (patientScore.priorityScore <= site.getPriorityScore())  {
@@ -184,6 +187,9 @@ public class Cluster {
                     patientScore.position = site.getPosition();
                     patientScore.somaticFrequency = site.getSomaticFrequency();
                     patientScore.gene = site.getGeneAsInt();
+                    if (site.getSomaticFrequency() > this.topSomaticFrequency)
+                        this.topSomaticFrequency = site.getSomaticFrequency();
+
                 }
             }
             //extend the cluster according to the position
@@ -201,8 +207,6 @@ public class Cluster {
                 this.maxPriorityScore = site.getPriorityScore();
             if (site.getPriorityScore() < this.minPriorityScore)
                 this.minPriorityScore = site.getPriorityScore();
-            if (site.getSomaticFrequency() > this.maxSomaticFrequency)
-                this.maxSomaticFrequency = site.getSomaticFrequency();
             priorityScoreAtSite.put(site.getPosition(), site.getPriorityScore());
             this.totalPriorityScores +=  site.getPriorityScore();
         }
@@ -326,7 +330,7 @@ public class Cluster {
             if (!condition.isRelevant(this)) relevant = false;
         return (relevant
                 && this.uniquePatients.size() >= MIN_RELEVANT_PATIENTS
-                && this.maxSomaticFrequency >= MIN_RELEVANT_SOMATIC_FREQUENCY
+                && this.topSomaticFrequency >= MIN_RELEVANT_SOMATIC_FREQUENCY
                 && this.getNumOfSites() > this.uniquePatients.size()); //this makes sure that more than one position is in the cluster
     }
 
