@@ -17,7 +17,7 @@
                 </properties>
             </stringParser>
             <required>true</required>
-            <shortFlag>f</shortFlag>
+            <shortFlag>i</shortFlag>
             <longFlag>input-file</longFlag>
             <help>The file in VCF format to process.</help>
         </flaggedOption>
