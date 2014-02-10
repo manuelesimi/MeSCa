@@ -22,6 +22,7 @@ public final class ClusterDetector {
     private List<StopCondition> stopConditions = new ArrayList<StopCondition>();
 
     private final LinkedSiteList siteList;
+    private float minSomaticFrequency;
 
     /**
      * @param siteList the list of sites to clusterize.
@@ -46,7 +47,7 @@ public final class ClusterDetector {
             //try to build a cluster around the site
             logger.info("Trying to cluster around position " + site.getPosition());
             try {
-                Cluster cluster = new Cluster(site, this.stopConditions);
+                Cluster cluster = new Cluster(site, this.stopConditions, this.minSomaticFrequency);
                 cluster.addLeftIterator(siteList.backwardIterator(index));
                 cluster.addRightIterator(siteList.forwardIterator(index));
                 cluster.detect();
@@ -57,5 +58,13 @@ public final class ClusterDetector {
             }
         }
         return clusters;
+    }
+
+    /**
+     *
+     * @param minSomaticFrequency
+     */
+    public void setMinSomaticFrequency(float minSomaticFrequency) {
+        this.minSomaticFrequency = minSomaticFrequency;
     }
 }

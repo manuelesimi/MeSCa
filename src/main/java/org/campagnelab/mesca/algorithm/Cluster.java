@@ -61,9 +61,9 @@ public class Cluster {
 
 
     /**
-     * Max somatic frequency in the cluster that make it relevant.
+     * Max somatic frequency in the cluster that makes it relevant.
      */
-    public static final float MIN_RELEVANT_SOMATIC_FREQUENCY = 10F;
+    public final float minSomaticFrequency;
 
     /**
      * How many neighboring positions are considered in a direction for each iteration.
@@ -86,11 +86,11 @@ public class Cluster {
 
     protected float score = 0F;
 
-
-    protected Cluster(Site startSite, final List<StopCondition> stopConditions) {
+    protected Cluster(final Site startSite, final List<StopCondition> stopConditions, float minSomaticFrequency) {
         this.name = "C" + startSite.getID() + startSite.getPosition();
         this.chromosome = startSite.getChromosomeAsInt();
         this.stopConditions = stopConditions;
+        this.minSomaticFrequency  = minSomaticFrequency;
         if (!uniquePatients.containsKey(startSite.getName()))   {
             uniquePatients.put(startSite.getName(), new PatientScore(startSite.getName(),
                     startSite.getPriorityScore(), startSite.getPosition(),startSite.getSomaticFrequency(),
@@ -337,7 +337,7 @@ public class Cluster {
             if (!condition.isRelevant(this)) relevant = false;
         return (relevant
                 && this.uniquePatients.size() >= MIN_RELEVANT_PATIENTS
-                && this.getTopSomaticFrequency() >= MIN_RELEVANT_SOMATIC_FREQUENCY
+                && this.getTopSomaticFrequency() >= this.minSomaticFrequency
                 && this.getNumOfSites() > this.uniquePatients.size()); //this makes sure that more than one position is in the cluster
     }
 

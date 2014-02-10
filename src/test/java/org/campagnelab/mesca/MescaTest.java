@@ -25,6 +25,7 @@ public class MescaTest {
         Mesca.process(new String[] {
            "--input-file", new File("test-data/vcf/MLWQHLM-GIR-KAN-BWA-3-15stats-first-500.vcf").getAbsolutePath(),
            "--max-cluster-size", "1000",
+           "--min-relevant-somatic-frequency", "1",
            "--output-file", new File("test-results/MLWQHLM-clusters.tsv").getAbsolutePath()
         });
     }

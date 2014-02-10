@@ -36,6 +36,21 @@
         </flaggedOption>
 
         <flaggedOption>
+            <id>min-relevant-somatic-frequency</id>
+            <shortFlag>y</shortFlag>
+            <longFlag>min-relevant-somatic-frequency</longFlag>
+            <stringParser>
+                <classname>FloatStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <defaults>
+                <string>5</string>
+            </defaults>
+            <help>Clusters having all top sites with less somatic frequency are discarded.</help>
+        </flaggedOption>
+
+
+        <flaggedOption>
             <id>output-file</id>
             <stringParser>
                 <classname>FileStringParser</classname>

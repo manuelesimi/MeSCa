@@ -86,7 +86,7 @@ public class Mesca {
        // watcher.addStopCondition(decreasingScore);
         watcher.setDegreeOfProximity(Cluster.DEGREE_OF_PROXIMITY);
         watcher.setMinPriorityScore(Site.MIN_RELEVANT_PRIORITY_SCORE);
-        watcher.setMinSomaticFrequency(Cluster.MIN_RELEVANT_SOMATIC_FREQUENCY);
+        watcher.setMinSomaticFrequency(config.getFloat("min-relevant-somatic-frequency"));
         watcher.setMaxReturnedClusters(100);
 
         watcher.startRecordDetector();
@@ -94,6 +94,7 @@ public class Mesca {
             LinkedSiteList siteList = siteChromosomeMap.getSites(chromosome);
             ClusterDetector detector = new ClusterDetector(siteList);
             detector.addStopCondition(size);
+            detector.setMinSomaticFrequency(config.getFloat("min-relevant-somatic-frequency"));
             //detector.addStopCondition(decreasingScore);
             watcher.setRelevantSites(siteList.size());
             //invoke ClusterDetector
