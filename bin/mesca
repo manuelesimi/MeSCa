@@ -11,7 +11,7 @@ TARGET_DIR=${PARENT_DIR}/target
 SNAPSHOT_JAR="${TARGET_DIR}/mesca-dist.jar"
 JAVA_OPTIONS="-Xms1g -Xmx4g -XX:PermSize=4g -XX:MaxPermSize=4g"
 
-java $JAVA_OPTIONS -Dlog4j.configuration=file:${CONFIG_DIR}/log4j.properties -cp ${LIB_DIR}/mesca*.jar:${SNAPSHOT_JAR} \
+java $JAVA_OPTIONS -Dlog4j.configuration=file:${CONFIG_DIR}/log4j.properties -cp ${LIB_DIR}/mesca-dist.jar:${SNAPSHOT_JAR} \
 org.campagnelab.mesca.Mesca "$@"
 
 
