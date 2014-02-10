@@ -15,10 +15,6 @@ public class Site {
 
     private int chromosome;
 
-    public static final float MIN_RELEVANT_PRIORITY_SCORE = 5F;   //TODO: will be a parameter in the command line
-
-    public static final float MIN_RELEVANT_SOMATIC_FREQUENCY = 0F;   //TODO: will be a parameter in the command line
-
     private int gene;
 
     private float somaticFrequency;
@@ -65,14 +61,6 @@ public class Site {
         return this.position;
     }
 
-    /**
-     * Checks if the site is relevant for the algorithm.
-     * @return
-     */
-    public boolean isRelevant() {
-        return ((this.getPriorityScore() >= MIN_RELEVANT_PRIORITY_SCORE)/* &&
-                (this.getSomaticFrequency() >= MIN_RELEVANT_SOMATIC_FREQUENCY)*/);
-    }
 
     @Override
     public String toString() {

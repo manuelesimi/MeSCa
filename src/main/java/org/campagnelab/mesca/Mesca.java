@@ -54,6 +54,7 @@ public class Mesca {
         JSAPResult config = jsapHelper.configure(args);
         if (config == null)
             System.exit(1);
+        float minPriorityScore = config.getFloat("min-priority-score");
         DetectorWatcher watcher = new DetectorWatcher();
         watcher.startRecordParser();
         VCFReader vcfReader = new VCFReader(config.getFile("input-file"));
@@ -63,7 +64,7 @@ public class Mesca {
             try {
                 Site[] sites = vcfReader.readNextPosition();
                 for (Site site : sites) {
-                    if (site.isRelevant())
+                    if (site.getPriorityScore() >= minPriorityScore)
                         siteChromosomeMap.add(site);
                 }
                 totalSites += sites.length;
@@ -85,7 +86,7 @@ public class Mesca {
         watcher.addStopCondition(size);
        // watcher.addStopCondition(decreasingScore);
         watcher.setDegreeOfProximity(Cluster.DEGREE_OF_PROXIMITY);
-        watcher.setMinPriorityScore(Site.MIN_RELEVANT_PRIORITY_SCORE);
+        watcher.setMinPriorityScore(config.getFloat("min-priority-score"));
         watcher.setMinSomaticFrequency(config.getFloat("min-relevant-somatic-frequency"));
         watcher.setMaxReturnedClusters(100);
 

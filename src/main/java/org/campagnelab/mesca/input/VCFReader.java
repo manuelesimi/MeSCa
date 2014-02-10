@@ -144,7 +144,6 @@ public class VCFReader {
         }
     }
 
-
     /**
      * Invalid data line detected.
      */

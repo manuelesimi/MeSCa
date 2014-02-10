@@ -21,6 +21,21 @@
             <longFlag>input-file</longFlag>
             <help>The file in VCF format to process.</help>
         </flaggedOption>
+
+        <flaggedOption>
+            <id>min-priority-score</id>
+            <shortFlag>p</shortFlag>
+            <longFlag>min-priority-score</longFlag>
+            <stringParser>
+                <classname>FloatStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <defaults>
+                <string>1</string>
+            </defaults>
+            <help>Sites with less priority are not considered.</help>
+        </flaggedOption>
+
         <flaggedOption>
             <id>max-cluster-size</id>
             <shortFlag>s</shortFlag>
