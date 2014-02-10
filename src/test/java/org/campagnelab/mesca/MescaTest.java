@@ -30,7 +30,7 @@ public class MescaTest {
     }
 
 
-    @Test
+   // @Test
     public void testCompleteProcess() throws Exception {
         Mesca.process(new String[] {
                 "--input-file", new File("/Users/mas2182/Lab/Projects/FSGS-Laurent/Data/UKTQZBB-SomaticV2_analysis_3-3-11_triosstats.vcf").getAbsolutePath(),

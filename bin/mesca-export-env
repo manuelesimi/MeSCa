@@ -1,0 +1,11 @@
+#!/bin/sh
+#This script add mesca commands to the PATH.
+
+WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [[ $OSTYPE == "cygwin" ]]; then
+    WORKING_DIR=`cygpath -m "${WORKING_DIR}"`
+fi
+
+export PATH=${WORKING_DIR}:${PATH}
+
+
