@@ -66,9 +66,9 @@ public class Cluster {
     public final float minSomaticFrequency;
 
     /**
-     * How many neighboring positions are considered in a direction for each iteration.
+     * How many neighboring sites are considered in a direction for each iteration.
      */
-    public static final int DEGREE_OF_PROXIMITY = 5;
+    public final int degreeOfProximity;
 
     /**
      * The most right position in the cluster.
@@ -86,11 +86,12 @@ public class Cluster {
 
     protected float score = 0F;
 
-    protected Cluster(final Site startSite, final List<StopCondition> stopConditions, float minSomaticFrequency) {
+    protected Cluster(final Site startSite, final List<StopCondition> stopConditions, float minSomaticFrequency, int degreeOfProximity) {
         this.name = "C" + startSite.getID() + startSite.getPosition();
         this.chromosome = startSite.getChromosomeAsInt();
         this.stopConditions = stopConditions;
         this.minSomaticFrequency  = minSomaticFrequency;
+        this.degreeOfProximity = degreeOfProximity;
         if (!uniquePatients.containsKey(startSite.getName()))   {
             uniquePatients.put(startSite.getName(), new PatientScore(startSite.getName(),
                     startSite.getPriorityScore(), startSite.getPosition(),startSite.getSomaticFrequency(),
@@ -242,8 +243,8 @@ public class Cluster {
         if (!leftListIterator.hasPrevious())
             return true;
         int sitesInSteps = 0;
-        Site[] sites = new Site[DEGREE_OF_PROXIMITY];
-        while (leftListIterator.hasPrevious() && sitesInSteps < DEGREE_OF_PROXIMITY)
+        Site[] sites = new Site[this.degreeOfProximity];
+        while (leftListIterator.hasPrevious() && sitesInSteps < this.degreeOfProximity)
             sites[sitesInSteps++] = leftListIterator.previous();
         boolean closed = false;
         for (StopCondition condition : this.stopConditions) {
@@ -266,8 +267,8 @@ public class Cluster {
         if (!rightListIterator.hasNext())
             return true;
         int sitesInSteps = 0;
-        Site[] sites = new Site[DEGREE_OF_PROXIMITY];
-        while (rightListIterator.hasNext() && sitesInSteps < DEGREE_OF_PROXIMITY)
+        Site[] sites = new Site[this.degreeOfProximity];
+        while (rightListIterator.hasNext() && sitesInSteps < this.degreeOfProximity)
             sites[sitesInSteps++] = rightListIterator.next();
         boolean closed = false;
         for (StopCondition condition : this.stopConditions) {

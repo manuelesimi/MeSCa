@@ -33,7 +33,21 @@
             <defaults>
                 <string>1</string>
             </defaults>
-            <help>Sites with less priority are not considered.</help>
+            <help>Sites with less priority score are not considered.</help>
+        </flaggedOption>
+
+        <flaggedOption>
+            <id>degree-of-proximity</id>
+            <shortFlag>d</shortFlag>
+            <longFlag>degree-of-proximity</longFlag>
+            <stringParser>
+                <classname>IntegerStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <defaults>
+                <string>5</string>
+            </defaults>
+            <help>Neighboring sites considered when expanding a cluster in a direction.</help>
         </flaggedOption>
 
         <flaggedOption>
@@ -80,7 +94,7 @@
                     </property>
                 </properties>
             </stringParser>
-            <required>false</required>
+            <required>true</required>
             <shortFlag>o</shortFlag>
             <longFlag>output-file</longFlag>
             <help>The file where detected clusters are printed.</help>

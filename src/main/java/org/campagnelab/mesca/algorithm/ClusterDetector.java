@@ -23,6 +23,7 @@ public final class ClusterDetector {
 
     private final LinkedSiteList siteList;
     private float minSomaticFrequency;
+    private int degreeOfProximity;
 
     /**
      * @param siteList the list of sites to clusterize.
@@ -47,7 +48,7 @@ public final class ClusterDetector {
             //try to build a cluster around the site
             logger.info("Trying to cluster around position " + site.getPosition());
             try {
-                Cluster cluster = new Cluster(site, this.stopConditions, this.minSomaticFrequency);
+                Cluster cluster = new Cluster(site, this.stopConditions, this.minSomaticFrequency, this.degreeOfProximity);
                 cluster.addLeftIterator(siteList.backwardIterator(index));
                 cluster.addRightIterator(siteList.forwardIterator(index));
                 cluster.detect();
@@ -67,4 +68,14 @@ public final class ClusterDetector {
     public void setMinSomaticFrequency(float minSomaticFrequency) {
         this.minSomaticFrequency = minSomaticFrequency;
     }
+
+    /**
+     * How many neighboring sites are considered in a direction for each iteration.
+     * @param degreeOfProximity
+     */
+    public void setDegreeOfProximity(int degreeOfProximity) {
+        this.degreeOfProximity = degreeOfProximity;
+    }
+
+
 }

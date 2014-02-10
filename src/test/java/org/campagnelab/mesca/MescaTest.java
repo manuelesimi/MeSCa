@@ -24,9 +24,10 @@ public class MescaTest {
     public void testProcess() throws Exception {
         Mesca.process(new String[] {
            "--input-file", new File("test-data/vcf/MLWQHLM-GIR-KAN-BWA-3-15stats-first-500.vcf").getAbsolutePath(),
-           "--min-priority-score", "34",
+           "--min-priority-score", "0",
+           "--degree-of-proximity", "5",
            "--max-cluster-size", "1000",
-           "--min-relevant-somatic-frequency", "1",
+           "--min-relevant-somatic-frequency", "0",
            "--output-file", new File("test-results/MLWQHLM-clusters.tsv").getAbsolutePath()
         });
     }

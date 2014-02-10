@@ -85,7 +85,7 @@ public class Mesca {
         watcher.recordVCFInputFile(config.getFile("input-file"));
         watcher.addStopCondition(size);
        // watcher.addStopCondition(decreasingScore);
-        watcher.setDegreeOfProximity(Cluster.DEGREE_OF_PROXIMITY);
+        watcher.setDegreeOfProximity(config.getInt("degree-of-proximity"));
         watcher.setMinPriorityScore(config.getFloat("min-priority-score"));
         watcher.setMinSomaticFrequency(config.getFloat("min-relevant-somatic-frequency"));
         watcher.setMaxReturnedClusters(100);
@@ -96,6 +96,7 @@ public class Mesca {
             ClusterDetector detector = new ClusterDetector(siteList);
             detector.addStopCondition(size);
             detector.setMinSomaticFrequency(config.getFloat("min-relevant-somatic-frequency"));
+            detector.setDegreeOfProximity(config.getInt("degree-of-proximity"));
             //detector.addStopCondition(decreasingScore);
             watcher.setRelevantSites(siteList.size());
             //invoke ClusterDetector
