@@ -79,7 +79,7 @@ public class Mesca {
         watcher.setTotalSitesAnalyzed(totalSites);
         ClusterQueue qclusters = new ClusterQueue(100);
         //create stop conditions
-        Size size = new Size(15000);
+        Size size = new Size(config.getInt("max-cluster-size"));
         //DecreasingScore decreasingScore = new DecreasingScore(1F);
         watcher.recordVCFInputFile(config.getFile("input-file"));
         watcher.addStopCondition(size);

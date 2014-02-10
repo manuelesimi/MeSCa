@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d2a3553-4c97-422b-9ac5-3d284844b2df" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/assemble/distribution.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/mesca" afterPath="$PROJECT_DIR$/bin/mesca" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.jsap" afterPath="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.jsap" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="VCFClusterDetector.iws" />
@@ -86,28 +86,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ObjectArrayPriorityQueue.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/org/campagnelab/goby/goby/2.3.3/goby-2.3.3.jar!/it/unimi/dsi/fastutil/objects/ObjectArrayPriorityQueue.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="37" selection-start="172" selection-end="196" vertical-scroll-proportion="-3.0" vertical-offset="0" max-vertical-offset="765">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Mesca.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="96" column="14" selection-start="3452" selection-end="3452" vertical-scroll-proportion="0.0" vertical-offset="852" max-vertical-offset="1650">
+            <state line="88" column="35" selection-start="3083" selection-end="3083" vertical-scroll-proportion="0.0" vertical-offset="852" max-vertical-offset="1650">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Mesca.jsap" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Mesca.jsap" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.jsap">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="63" selection-start="1498" selection-end="1498" vertical-scroll-proportion="0.9685864" vertical-offset="75" max-vertical-offset="885">
+            <state line="26" column="22" selection-start="891" selection-end="907" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1080">
               <folding />
             </state>
           </provider>
@@ -155,10 +146,17 @@
       <file leaf-file-name="MescaTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="119" selection-start="372" selection-end="372" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-              <folding>
-                <element signature="method#testProcess#0;class#MescaTest#0" expanded="false" />
-              </folding>
+            <state line="26" column="35" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="630">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MLWQHLM-clusters.tsv" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test-results/MLWQHLM-clusters.tsv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="32" selection-start="583" selection-end="583" vertical-scroll-proportion="0.29464287" vertical-offset="0" max-vertical-offset="560">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -178,7 +176,9 @@
         <entry file="file://$PROJECT_DIR$/src/assemble/distribution.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state line="29" column="97" selection-start="1145" selection-end="1145" vertical-scroll-proportion="0.0" vertical-offset="117" max-vertical-offset="690">
-              <folding />
+              <folding>
+                <marker date="1392045192000" expanded="true" signature="750:963" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -205,7 +205,6 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/list/NodeComparator.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/output/ClusterList.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterList.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.jsap" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/QualityScore.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/list/DoublyLinkedListTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/ClusterQueue.java" />
@@ -238,15 +237,16 @@
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/DetectorWatcher.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/output/TSVFormatter.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/VCFReader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/input/ChromosomeIndexer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/algorithm/Cluster.java" />
         <option value="$PROJECT_DIR$/bin/mesca-export-env" />
         <option value="$PROJECT_DIR$/config/log4j.properties" />
-        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/assemble/distribution.xml" />
         <option value="$PROJECT_DIR$/bin/mesca" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.jsap" />
+        <option value="$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java" />
       </list>
     </option>
   </component>
@@ -506,7 +506,7 @@
       <recent name="$PROJECT_DIR$/src/test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MescaTest.testCompleteProcess">
+  <component name="RunManager" selected="JUnit.MescaTest.testProcess">
     <configuration default="false" name="VCFReaderIntegrityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -912,8 +912,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.MescaTest.testCompleteProcess" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.MescaTest.testProcess" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.MescaTest.testProcess" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.MescaTest.testCompleteProcess" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.MescaTest" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.VCFReaderIntegrityTest.testSomaticFrequency" />
         <item index="4" class="java.lang.String" itemvalue="JUnit.VCFReaderIntegrityTest" />
@@ -969,7 +969,7 @@
       <workItem from="1391472492134" duration="594000" />
       <workItem from="1391626053197" duration="352000" />
       <workItem from="1391772823319" duration="718000" />
-      <workItem from="1391785583561" duration="11643000" />
+      <workItem from="1391785583561" duration="13579000" />
     </task>
     <task id="LOCAL-00001" summary="Sketch java classes for the detection algorithm.&#10;">
       <created>1388237419699</created>
@@ -1223,11 +1223,15 @@
       <created>1392044956107</created>
       <updated>1392044956107</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Create the distribution package with the assembly plugin.">
+      <created>1392047342968</created>
+      <updated>1392047342968</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="252752000" />
+    <option name="totallyTimeSpent" value="254688000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="2560" height="1330" extended-state="6" />
@@ -1253,7 +1257,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2366958" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31572676" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31572676" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48514852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1273,7 +1277,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Improve relevant clusters detection. Now it's up to the stop condition to determine when a cluster is relevant or not." />
     <MESSAGE value="Keep the current rank in the Cluster instance, avoiding to recalculate it at each iteration." />
     <MESSAGE value="Print the cluster rank in the output list." />
     <MESSAGE value="Add Rank as stop condition to ClusterDetector. Print the cluster rank in the output record." />
@@ -1298,7 +1301,8 @@
     <MESSAGE value="Fix chromosome indexer (improved performances).&#10;" />
     <MESSAGE value="Fix top somatic frequency in a Cluster." />
     <MESSAGE value="Add shade plugin, log4j configuration and binary scripts for the distribution package." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add shade plugin, log4j configuration and binary scripts for the distribution package." />
+    <MESSAGE value="Create the distribution package with the assembly plugin." />
+    <option name="LAST_COMMIT_MESSAGE" value="Create the distribution package with the assembly plugin." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1308,11 +1312,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/campagnelab/goby/goby/2.3.3/goby-2.3.3.jar!/edu/cornell/med/icb/goby/readers/vcf/VCFParser.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="0" selection-start="6059" selection-end="6059" vertical-scroll-proportion="-24.6" vertical-offset="1245" max-vertical-offset="1950" />
-      </provider>
-    </entry>
     <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar!/java/util/ArrayList.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="53" column="19" selection-start="1714" selection-end="1714" vertical-scroll-proportion="0.6613546" vertical-offset="282" max-vertical-offset="1035" />
@@ -1637,15 +1636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="119" selection-start="372" selection-end="372" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-          <folding>
-            <element signature="method#testProcess#0;class#MescaTest#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="83" column="57" selection-start="3369" selection-end="3385" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="2145">
@@ -1658,7 +1648,9 @@
     <entry file="file://$PROJECT_DIR$/src/assemble/distribution.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="97" selection-start="1145" selection-end="1145" vertical-scroll-proportion="0.0" vertical-offset="117" max-vertical-offset="690">
-          <folding />
+          <folding>
+            <marker date="1392045192000" expanded="true" signature="750:963" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1669,16 +1661,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.jsap">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="14" selection-start="3452" selection-end="3452" vertical-scroll-proportion="0.0" vertical-offset="852" max-vertical-offset="1650">
+        <state line="26" column="22" selection-start="891" selection-end="907" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1080">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.jsap">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/campagnelab/mesca/Mesca.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="63" selection-start="1498" selection-end="1498" vertical-scroll-proportion="0.9685864" vertical-offset="75" max-vertical-offset="885">
+        <state line="88" column="35" selection-start="3083" selection-end="3083" vertical-scroll-proportion="0.0" vertical-offset="852" max-vertical-offset="1650">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/campagnelab/mesca/MescaTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="35" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="630">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test-results/MLWQHLM-clusters.tsv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="32" selection-start="583" selection-end="583" vertical-scroll-proportion="0.29464287" vertical-offset="0" max-vertical-offset="560">
           <folding />
         </state>
       </provider>

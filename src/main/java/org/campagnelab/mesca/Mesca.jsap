@@ -21,6 +21,19 @@
             <longFlag>input-file</longFlag>
             <help>The file in VCF format to process.</help>
         </flaggedOption>
+        <flaggedOption>
+            <id>max-cluster-size</id>
+            <shortFlag>s</shortFlag>
+            <longFlag>max-cluster-size</longFlag>
+            <stringParser>
+                <classname>IntegerStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <defaults>
+                <string>5000</string>
+            </defaults>
+            <help>Cluster expansion is halted when this size is reached (if not halted before because of another stop condition)</help>
+        </flaggedOption>
 
         <flaggedOption>
             <id>output-file</id>
