@@ -36,8 +36,9 @@ public class MescaTest {
     @Test
     public void testCompleteProcess() throws Exception {
         Mesca.process(new String[] {
+                //"--input-file", new File("/Users/mas2182/temp/MFWSYOQ-stats.vcf").getAbsolutePath(),
                 "--input-file", new File("test-data/vcf/MFWSYOQ-stats-sliced.vcf").getAbsolutePath(),
-                "--min-priority-score", "10", "--degree-of-proximity", "1", "--max-cluster-size", "22000", "--min-relevant-somatic-frequency", "9",
+                "--min-priority-score", "10", "--degree-of-proximity", "5", "--max-cluster-size", "100000", "--min-relevant-somatic-frequency", "5",
                 "--min-unique-patients", "1",
                 "--output-file", new File("test-results/MFWSYOQ.tsv").getAbsolutePath()
         });
