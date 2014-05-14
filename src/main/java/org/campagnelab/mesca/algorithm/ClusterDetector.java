@@ -24,6 +24,7 @@ public final class ClusterDetector {
     private final LinkedSiteList siteList;
     private float minSomaticFrequency;
     private int degreeOfProximity;
+    private int minUniquePatients;
 
     /**
      * @param siteList the list of sites to clusterize.
@@ -48,7 +49,7 @@ public final class ClusterDetector {
             //try to build a cluster around the site
             logger.info("Trying to cluster around position " + site.getPosition());
             try {
-                Cluster cluster = new Cluster(site, this.stopConditions, this.minSomaticFrequency, this.degreeOfProximity);
+                Cluster cluster = new Cluster(site, this.stopConditions, this.minSomaticFrequency, this.degreeOfProximity,this.minUniquePatients);
                 cluster.addLeftIterator(siteList.backwardIterator(index));
                 cluster.addRightIterator(siteList.forwardIterator(index));
                 cluster.detect();
@@ -78,4 +79,7 @@ public final class ClusterDetector {
     }
 
 
+    public void setMinUniquePatients(int minUniquePatients) {
+        this.minUniquePatients = minUniquePatients;
+    }
 }

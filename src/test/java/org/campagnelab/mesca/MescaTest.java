@@ -33,12 +33,13 @@ public class MescaTest {
     }
 
 
-   // @Test
+    @Test
     public void testCompleteProcess() throws Exception {
         Mesca.process(new String[] {
-                "--input-file", new File("/Users/mas2182/Lab/Projects/FSGS-Laurent/Data/UKTQZBB-SomaticV2_analysis_3-3-11_triosstats.vcf").getAbsolutePath(),
-                // "--input-file", new File("test-data/vcf/MLWQHLM-GIR-KAN-BWA-3-15stats-first-500.vcf").getAbsolutePath(),
-                "--output-file", new File("test-results/UKTQZBB-somaticf-filter-10.tsv").getAbsolutePath()
+                "--input-file", new File("test-data/vcf/MFWSYOQ-stats-sliced.vcf").getAbsolutePath(),
+                "--min-priority-score", "10", "--degree-of-proximity", "1", "--max-cluster-size", "22000", "--min-relevant-somatic-frequency", "9",
+                "--min-unique-patients", "1",
+                "--output-file", new File("test-results/MFWSYOQ.tsv").getAbsolutePath()
         });
     }
 }

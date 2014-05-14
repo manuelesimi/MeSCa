@@ -78,6 +78,20 @@
             <help>Clusters having all top sites with less somatic frequency are discarded.</help>
         </flaggedOption>
 
+        <flaggedOption>
+            <id>min-unique-patients</id>
+            <shortFlag>u</shortFlag>
+            <longFlag>min-unique-patients</longFlag>
+            <stringParser>
+                <classname>IntegerStringParser</classname>
+            </stringParser>
+            <required>true</required>
+            <defaults>
+                <string>2</string>
+            </defaults>
+            <help>Minimum number of unique patients that need to be in a cluster to be considered as relevant for the results.</help>
+        </flaggedOption>
+
 
         <flaggedOption>
             <id>output-file</id>

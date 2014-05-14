@@ -97,6 +97,7 @@ public class Mesca {
             detector.addStopCondition(size);
             detector.setMinSomaticFrequency(config.getFloat("min-relevant-somatic-frequency"));
             detector.setDegreeOfProximity(config.getInt("degree-of-proximity"));
+            detector.setMinUniquePatients(config.getInt("min-unique-patients"));
             //detector.addStopCondition(decreasingScore);
             watcher.setRelevantSites(siteList.size());
             //invoke ClusterDetector

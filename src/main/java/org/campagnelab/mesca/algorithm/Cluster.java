@@ -54,11 +54,6 @@ public class Cluster {
      */
     private final List<StopCondition> stopConditions;
 
-    /**
-     * Min number of patients in the cluster that make it relevant.
-     */
-    private static final int MIN_RELEVANT_PATIENTS = 2;   //TODO: will be a parameter in the command line
-
 
     /**
      * Max somatic frequency in the cluster that makes it relevant.
@@ -86,12 +81,19 @@ public class Cluster {
 
     protected float score = 0F;
 
-    protected Cluster(final Site startSite, final List<StopCondition> stopConditions, float minSomaticFrequency, int degreeOfProximity) {
+    /**
+     * Min number of patients in the cluster that make it relevant.
+     */
+    protected int minUniquePatients = 2;
+
+    protected Cluster(final Site startSite, final List<StopCondition> stopConditions, float minSomaticFrequency, int degreeOfProximity,
+                      int minUniquePatients) {
         this.name = "C" + startSite.getID() + startSite.getPosition();
         this.chromosome = startSite.getChromosomeAsInt();
         this.stopConditions = stopConditions;
         this.minSomaticFrequency  = minSomaticFrequency;
         this.degreeOfProximity = degreeOfProximity;
+        this.minUniquePatients = minUniquePatients;
         if (!uniquePatients.containsKey(startSite.getName()))   {
             uniquePatients.put(startSite.getName(), new PatientScore(startSite.getName(),
                     startSite.getPriorityScore(), startSite.getPosition(),startSite.getSomaticFrequency(),
@@ -337,7 +339,7 @@ public class Cluster {
         for (StopCondition condition : this.stopConditions)
             if (!condition.isRelevant(this)) relevant = false;
         return (relevant
-                && this.uniquePatients.size() >= MIN_RELEVANT_PATIENTS
+                && this.uniquePatients.size() >= this.minUniquePatients
                 && this.getTopSomaticFrequency() >= this.minSomaticFrequency
                 && this.getNumOfSites() > this.uniquePatients.size()); //this makes sure that more than one position is in the cluster
     }
