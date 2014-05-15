@@ -71,7 +71,8 @@ public class VCFReader {
     public Site[] readNextPosition() throws InvalidDataLine {
         Site[] sites = null;
         if (parser.hasNextDataLine()) {
-            logger.info("Parsing data line #" + lineCounter++);
+            lineCounter++;
+            //logger.debug("Parsing data line #" + lineCounter++);
             try {
                 sites = new Site[PatientInfoIndexer.size()];
                 for (PatientInfoIndexer.PatientInfo patientInfo : PatientInfoIndexer.getPatients())
@@ -120,6 +121,9 @@ public class VCFReader {
                 throw new InvalidDataLine();
             }  finally {
                 parser.next();
+            }
+            if ((lineCounter % 10000) == 0 ) {
+                logger.info(lineCounter + " lines parsed");
             }
         }
         return sites;
