@@ -341,7 +341,7 @@ public class Cluster {
         return (relevant
                 && this.uniquePatients.size() >= this.minUniquePatients
                 && this.getTopSomaticFrequency() >= this.minSomaticFrequency
-                && this.getNumOfSites() > this.uniquePatients.size()); //this makes sure that more than one position is in the cluster
+                && this.getNumOfSites() >= this.uniquePatients.size()); //this makes sure that more than one position is in the cluster
     }
 
     /**
